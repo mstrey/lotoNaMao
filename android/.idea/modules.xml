@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LotoNaMao.iml" filepath="$PROJECT_DIR$/LotoNaMao.iml" />
       <module fileurl="file://$PROJECT_DIR$/LotonaMao/LotonaMao.iml" filepath="$PROJECT_DIR$/LotonaMao/LotonaMao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/LotonaMao/build/source/buildConfig/buildConfig.iml" filepath="$PROJECT_DIR$/LotonaMao/build/source/buildConfig/buildConfig.iml" />
       <module fileurl="file://$PROJECT_DIR$/LotonaMao/build/manifests/debug/debug.iml" filepath="$PROJECT_DIR$/LotonaMao/build/manifests/debug/debug.iml" />
       <module fileurl="file://$PROJECT_DIR$/LotonaMao/src/main/main.iml" filepath="$PROJECT_DIR$/LotonaMao/src/main/main.iml" />

@@ -8,7 +8,7 @@ if (!$main) {
 }
 
 function getConcurso($table, $concurso){  
-	$query = " SELECT * FROM ".$table." WHERE concurso = ".$concurso." ; ";
+	$query = " SELECT * FROM ".$table." WHERE concurso = ".anti_sql_injection($concurso)." ; ";
 	
 	openDB();
 	$resultSet = mysql_query($query);
