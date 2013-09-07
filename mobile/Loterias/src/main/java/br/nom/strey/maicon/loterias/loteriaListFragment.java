@@ -3,11 +3,12 @@ package br.nom.strey.maicon.loterias;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import br.nom.strey.maicon.loterias.dummy.DummyContent;
+import br.nom.strey.maicon.loterias.utils.DummyContent;
 
 /**
  * A list fragment representing a list of loterias. This fragment
@@ -19,6 +20,8 @@ import br.nom.strey.maicon.loterias.dummy.DummyContent;
  * interface.
  */
 public class loteriaListFragment extends ListFragment {
+
+    private final String TAG = "ListFragment";
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -69,6 +72,7 @@ public class loteriaListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
 
         // TODO: replace with a real list adapter.
         setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(

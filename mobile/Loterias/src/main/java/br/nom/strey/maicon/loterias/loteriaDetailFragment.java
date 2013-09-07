@@ -2,12 +2,13 @@ package br.nom.strey.maicon.loterias;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.nom.strey.maicon.loterias.dummy.DummyContent;
+import br.nom.strey.maicon.loterias.utils.DummyContent;
 
 /**
  * A fragment representing a single loteria detail screen.
@@ -16,6 +17,9 @@ import br.nom.strey.maicon.loterias.dummy.DummyContent;
  * on handsets.
  */
 public class loteriaDetailFragment extends Fragment {
+
+    private final String TAG = "DetailFragment";
+
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -37,6 +41,7 @@ public class loteriaDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment

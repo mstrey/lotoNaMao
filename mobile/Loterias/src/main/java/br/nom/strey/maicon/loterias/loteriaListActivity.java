@@ -3,6 +3,7 @@ package br.nom.strey.maicon.loterias;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 
 /**
@@ -24,6 +25,8 @@ import android.support.v4.app.FragmentActivity;
 public class loteriaListActivity extends FragmentActivity
         implements loteriaListFragment.Callbacks {
 
+    private final String TAG = "ListActivity";
+
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -34,6 +37,7 @@ public class loteriaListActivity extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loteria_list);
+        Log.d(TAG, "setContentView");
 
         if (findViewById(R.id.loteria_detail_container) != null) {
             // The detail container view will be present only in the
