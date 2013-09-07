@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- From: file:/home/maicon/backup/Dropbox/projetos/Comparador/LotonaMaoProject/LotonaMao/src/main/res/values-sw600dp/refs.xml -->
-    <item name="activity_jogo_list" type="layout">@layout/activity_jogo_twopane</item>
-
-</resources>
