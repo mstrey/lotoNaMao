@@ -1,4 +1,4 @@
-package br.nom.strey.maicon.loterias.megasena;
+package br.nom.strey.maicon.loterias.quina;
 
 
 import android.content.ContentValues;
@@ -10,12 +10,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosVO;
 import br.nom.strey.maicon.loterias.utils.DBHelper;
 
 /**
  * Created by maicon on 06/09/13.
  */
-public class MegasenaResultadosDAO {
+public class QuinaResultadosDAO {
 
     private Context ctx;
 
@@ -43,7 +44,7 @@ public class MegasenaResultadosDAO {
                                             "data_inclusao"
     };
 
-    public MegasenaResultadosDAO(Context ctx) {
+    public QuinaResultadosDAO(Context ctx) {
         this.ctx = ctx;
     }
 

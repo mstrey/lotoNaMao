@@ -1,10 +1,8 @@
-package br.nom.strey.maicon.loterias.megasena;
+package br.nom.strey.maicon.loterias.quina;
 
 import java.util.Date;
-/**
- * Created by maicon on 06/09/13.
- */
-public class MegasenaResultadosVO {
+
+public class QuinaResultadosVO {
 
     private Integer concurso;
     private Date data_sorteio;

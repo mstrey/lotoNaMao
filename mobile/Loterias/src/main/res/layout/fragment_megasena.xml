@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/mega_green_light"
+    android:orientation="vertical"
+    android:onClick="setListFooter">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/l_mega_conc_ini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/concurso_inicial"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/size_volante_label" />
+
+            <TextView
+                android:id="@+id/l_mega_teimosinha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/teimosinha"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/size_volante_label" />
+
+            <TextView
+                android:id="@+id/l_mega_conc_final"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/concurso_final"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/size_volante_label"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/l_mega_notifica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notifica_resultado"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/size_volante_label" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ed_mega_conc_ini"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:textSize="@dimen/size_volante_label"
+                android:singleLine="true"
+                android:gravity="center"
+                android:focusable="true"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:id="@+id/ed_mega_teimosinha"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:textSize="@dimen/size_volante_label"
+                android:singleLine="true"
+                android:gravity="center"
+                android:focusableInTouchMode="true" />
+
+            <TextView
+                android:id="@+id/ed_mega_conc_final"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:textSize="@dimen/size_volante_label"
+                android:singleLine="true"
+                android:gravity="center"
+                android:enabled="false"
+                android:visibility="gone" />
+
+            <Switch
+                android:id="@+id/sw_mega_notifica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/volante_linha1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/l_mega_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_01"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_02"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_03"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_04"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_05"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_06"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_07"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_08"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_09"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_09"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_10"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volante_linha2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/l_mega_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_11"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_12"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_13"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_14"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_15"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_16"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_17"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_18"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_19"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_20"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volante_linha3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/l_mega_21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_21"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_22"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_23"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_24"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_25"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_26"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_27"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_28"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_29"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_30"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volante_linha4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/l_mega_31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_31"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_32"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_33"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_34"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_35"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_36"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_37"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_38"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_39"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_40"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volante_linha5"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/l_mega_41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_41"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_42"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_43"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_44"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_45"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_46"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_46"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_47"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_48"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_49"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_49"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_50"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:onClick="setNumber"
+                android:clickable="true"
+                android:enabled="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volante_linha6"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/l_mega_51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_51"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_52"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_53"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_54"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_54"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_55"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_55"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_56"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_57"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_57"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_58"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_59"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+
+            <TextView
+                android:id="@+id/l_mega_60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:text="@string/num_60"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:clickable="true"
+                android:onClick="setNumber"
+                android:enabled="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:id="@+id/btn_mega_save"
+        android:layout_gravity="center"
+        android:enabled="false" />
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package br.nom.strey.maicon.loterias.megasena;
+package br.nom.strey.maicon.loterias.quina;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,15 +7,17 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
+import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosVO;
+
 /**
  * Created by maicon on 06/09/13.
  */
-public class MegasenaResultadosAdapter extends BaseAdapter{
+public class QuinaResultadosAdapter extends BaseAdapter{
 
     private List<MegasenaResultadosVO> lista;
     private Activity ctx;
 
-    public MegasenaResultadosAdapter(Activity ctx, List<MegasenaResultadosVO> lista){
+    public QuinaResultadosAdapter(Activity ctx, List<MegasenaResultadosVO> lista){
         this.ctx = ctx;
         this.lista = lista;
     }

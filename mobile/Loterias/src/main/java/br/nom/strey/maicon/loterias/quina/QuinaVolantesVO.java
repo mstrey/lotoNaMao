@@ -1,11 +1,11 @@
-package br.nom.strey.maicon.loterias.megasena;
+package br.nom.strey.maicon.loterias.quina;
 
 import java.util.Date;
 
 /**
  * Created by maicon on 06/09/13.
  */
-public class MegasenaVolantesVO {
+public class QuinaVolantesVO {
 
     private Integer volante_id;
     private Integer concurso;

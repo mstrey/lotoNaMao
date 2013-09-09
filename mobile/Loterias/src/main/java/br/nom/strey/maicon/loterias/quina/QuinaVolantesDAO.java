@@ -1,4 +1,4 @@
-package br.nom.strey.maicon.loterias.megasena;
+package br.nom.strey.maicon.loterias.quina;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.nom.strey.maicon.loterias.megasena.MegasenaVolantesVO;
 import br.nom.strey.maicon.loterias.utils.DBHelper;
 
 /**
  * Created by maicon on 06/09/13.
  */
-public class MegasenaVolantesDAO {
+public class QuinaVolantesDAO {
 
     private Context ctx;
 
@@ -30,7 +31,7 @@ public class MegasenaVolantesDAO {
             "data_inclusao"
     };
 
-    public MegasenaVolantesDAO(Context ctx) {
+    public QuinaVolantesDAO(Context ctx) {
         this.ctx = ctx;
     }
 
@@ -152,28 +153,6 @@ public class MegasenaVolantesDAO {
         db.close();
 
         return lista_volantes;
-    }
-
-    public Integer getMaxConc(){
-        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-        List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
-
-        Cursor c = db.query(TABLE_NAME,
-                COLUNAS,
-                null,
-                null,
-                null,
-                null,
-                "concurso desc",
-                null);
-
-        c.moveToFirst();
-
-        Integer concurso_max = c.getInt(c.getColumnIndex("concurso"));
-        c.close();
-        db.close();
-
-        return concurso_max;
     }
 
     public Boolean existAny(Integer concurso){

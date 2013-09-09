@@ -33,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
                                                     + "  local_gps VARCHAR(45),"
                                                     + "  data_inclusao DATETIME "
                                                     + "  );";
-    private static String dbSQL_megasena_resultados_index = "CREATE INDEX ON megasena_resultados(concurso); ";
+    private static String dbSQL_megasena_resultados_index = "CREATE INDEX mega_result_concurso ON megasena_resultados(concurso); ";
 
     private static String dbSQL_megasena_volantes = "CREATE TABLE megasena_volantes ("
                                                     + "  volante_id INTEGER PRIMARY KEY,"
@@ -43,11 +43,11 @@ public class DBHelper extends SQLiteOpenHelper {
                                                     + "  faixa_3 INTEGER ,"
                                                     + "  data_inclusao DATETIME ,"
                                                     + "  concurso INTEGER ,"
-                                                    + "  FOREIGN KEY(concurso) REFERENCES megasena_resultados(concurso)
+                                                    + "  FOREIGN KEY(concurso) REFERENCES megasena_resultados(concurso)"
                                                     + "  );";
 
-    private static String dbSQL_megasena_volantes_index_id = "CREATE INDEX ON megasena_volantes(volante_id); ";
-    private static String dbSQL_megasena_volantes_index_concurso = "CREATE INDEX ON megasena_volantes(concurso); ";
+    private static String dbSQL_megasena_volantes_index_id = "CREATE INDEX mega_volantes_id ON megasena_volantes(volante_id); ";
+    private static String dbSQL_megasena_volantes_index_concurso = "CREATE INDEX mega_volantes_conc ON megasena_volantes(concurso); ";
 
 
     // scripts para criação das tabelas da quina
@@ -74,22 +74,21 @@ public class DBHelper extends SQLiteOpenHelper {
                                                  + "  data_inclusao DATETIME "
                                                  + "  );";
 
-    private static String dbSQL_quina_resultados_index = "CREATE INDEX ON quina_resultados(concurso); ";
+    private static String dbSQL_quina_resultados_index = "CREATE INDEX quina_result_conc ON quina_resultados(concurso); ";
 
     private static String dbSQL_quina_volantes = "CREATE TABLE quina_volantes ("
             + "  volante_id INTEGER PRIMARY KEY,"
             + "  aposta VARCHAR(14) ,"
-            + "  faixa_1 INTEGER ,"
-            + "  faixa_2 INTEGER ,"
-            + "  faixa_3 INTEGER ,"
+            + "  faixa_1 DECIMAL(11,2) ,"
+            + "  faixa_2 DECIMAL(11,2) ,"
+            + "  faixa_3 DECIMAL(11,2) ,"
             + "  data_inclusao DATETIME ,"
             + "  concurso INTEGER ,"
-            + "  FOREIGN KEY(concurso) REFERENCES quina_resultados(concurso)
+            + "  FOREIGN KEY(concurso) REFERENCES quina_resultados(concurso)"
             + "  );";
 
-    private static String dbSQL_quina_volantes_index_id = "CREATE INDEX ON quina_volantes(volante_id); ";
-    private static String dbSQL_quina_volantes_index_concurso = "CREATE INDEX ON quina_volantes(concurso); ";
-
+    private static String dbSQL_quina_volantes_index_id = "CREATE INDEX quina_volantes_id ON quina_volantes(volante_id); ";
+    private static String dbSQL_quina_volantes_index_concurso = "CREATE INDEX quina_volantes_conc ON quina_volantes(concurso); ";
 
     public DBHelper(Context context) {
 		super(context, dbName, null, DB_VERSION);

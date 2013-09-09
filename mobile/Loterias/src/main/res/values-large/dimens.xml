@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><dimen name="titulo">50sp</dimen><dimen name="size_volante_label">20sp</dimen><dimen name="size_volante_edit">15sp</dimen><dimen name="size_volante_label_marcados">30sp</dimen>
+    <dimen name="margin_num_volante">5dp</dimen>
+</resources>

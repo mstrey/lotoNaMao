@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray_principal">#bebebe</color>
+    <color name="gray_principal_dark">#696969</color>
+    <color name="gray_principal_light">#d3d3d3</color>
+
+    <color name="mega_green">#3cb371</color>
+    <color name="mega_green_dark">#006400</color>
+    <color name="mega_green_light">#EEFFEE</color>
+
+    <color name="quina_blue">#4682b4</color>
+    <color name="quina_blue_dark">#0000cd</color>
+    <color name="quina_blue_light">#b0c4de</color>
+
+</resources>

@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="br.nom.strey.maicon.loterias.loteriaListActivity"
+            android:name=".main.LoteriaListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="br.nom.strey.maicon.loterias.loteriaDetailActivity"
+            android:name=".main.LoteriaDetailActivity"
             android:label="@string/title_loteria_detail"
             android:parentActivityName=".loteriaListActivity" >
             <meta-data
