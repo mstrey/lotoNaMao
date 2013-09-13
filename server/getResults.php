@@ -46,7 +46,7 @@ if (isset($_GET["concurso"])){
 	if ($json_concurso == 0){
 		getJsonMax($tables[$loteria]);
 	} else {
-		getConcurso($tables[$loteria], $_GET["concurso"]);
+		getJsonConcurso($tables[$loteria], $_GET["concurso"]);
 	}
 	die();
 }
