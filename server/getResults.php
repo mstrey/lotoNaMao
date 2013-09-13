@@ -42,7 +42,13 @@ $file = $htmls[$loteria];
 
 $json_concurso = 0 ;
 if (isset($_GET["concurso"])){
-	getConcurso($tables[$loteria], $_GET["concurso"]);
+	$json_concurso = $_GET["concurso"];
+	if ($json_concurso == 0){
+		getJsonMax($tables[$loteria]);
+	} else {
+		getConcurso($tables[$loteria], $_GET["concurso"]);
+	}
+	die();
 }
   
 writeMenu('main');

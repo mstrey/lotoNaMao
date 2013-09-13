@@ -7,15 +7,25 @@ if (!$main) {
 	error();
 }
 
-function getConcurso($table, $concurso){  
-	$query = " SELECT * FROM ".$table." WHERE concurso = ".anti_sql_injection($concurso)." ; ";
-	
+function getJsonConcurso($table, $concurso){
+	$query = " SELECT * FROM ".$table." WHERE concurso = ".$concurso." ; ";
+    printJson($query);
+}
+  
+function getJsonMax($table){
+    $query = " SELECT MAX( concurso ) AS max_conc FROM ".$table." where 1=1; ";
+    printJson($query);
+}
+  
+  
+function printJson($query){
 	openDB();
-	$resultSet = mysql_query($query);
+    $resultSet = mysql_query($query);
 	closeDB();
-	
+ 
 	$resultado = mysql_fetch_array($resultSet, MYSQL_ASSOC);
-	die( json_encode($resultado, JSON_NUMERIC_CHECK));
+	echo json_encode($resultado, JSON_NUMERIC_CHECK);
+	die();
 }
 
 ?>
