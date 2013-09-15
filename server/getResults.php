@@ -25,7 +25,7 @@ $htmls = array(
 			'dupla' => 'D_DPLSEN.HTM', 
 			'time' => 'D_TIMEMA.HTM');
 
-$tables = array(
+$tables_names = array(
 			'mega' => 'megasena_resultados', 
 			'lotofacil' => 'lotofacil_resultados', 
 			'quina' => 'quina_resultados', 
@@ -41,9 +41,9 @@ if ($_GET["loto"] < 0 OR $_GET["loto"] > 5) error();
 
 $loteria = $_GET["loto"];
 
-function saveLoto($index){
+function saveLoto($index, $files, $tables){
 
-	$file = $htmls[$index];
+	$file = $files[$index];
 	$rows = parseTable($file);
 
 	switch ($index) {
@@ -86,7 +86,7 @@ function saveLoto($index){
 
 }
 
-function retornoJson($json_concurso){
+function retornoJson($json_concurso, $tables){
 
 	if ($json_concurso == 0){
 		getJsonMax($tables[$loteria]);
@@ -98,7 +98,7 @@ function retornoJson($json_concurso){
 writeMenu('main');
 
 if($loteria == "todos"){
-  foreach ($tables as $key => $value) {
+  foreach ($tables_names as $key => $value) {
     saveLoto($key);
   }
   die;
