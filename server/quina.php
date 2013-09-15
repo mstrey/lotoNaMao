@@ -85,7 +85,7 @@ function saveQuina($rows, $table){
 	closeDB();
 	
   }
-  echo "<br/> maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+  echo "<br/> QUINA - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
 }
 
 ?>

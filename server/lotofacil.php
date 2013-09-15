@@ -124,7 +124,7 @@ function saveLotofacil($rows, $table){
 	closeDB();
 	
   }
-  echo "<br/> maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+  echo "<br/> LOTOFACIL - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
 }
 
 ?>

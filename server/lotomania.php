@@ -160,7 +160,7 @@ function saveLotomania($rows, $table){
 	closeDB();
 	
   }
-  echo "<br/> maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+  echo "<br/> LOTOMANIA - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
 }
 
 ?>

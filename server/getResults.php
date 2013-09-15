@@ -38,7 +38,6 @@ if (empty($_GET["loto"]) AND "0" != $_GET["loto"]) error();
 if ($_GET["loto"] < 0 OR $_GET["loto"] > 5) error();
 
 $loteria = $_GET["loto"];
-$file = $htmls[$loteria];
 
 $json_concurso = 0 ;
 if (isset($_GET["concurso"])){
@@ -53,48 +52,58 @@ if (isset($_GET["concurso"])){
   
 writeMenu('main');
 
-echo "Carregamento de resultados para: ";
 
-$count = 0;
+case 'todos': 
+  echo "TODOS";
+  foreach ($tables as $key => $value) {
+    saveLoto($key);
+  }
+  break;
+
+
+function saveLoto($index){
+
+	$file = $htmls[$index];
+	$rows = parseTable($file);
+
+	switch ($index) {
 	
-$rows = parseTable($file);
-
-switch ($loteria) {
-
-case 'mega': 
-  echo "MEGA-SENA";
-  saveMegasena($rows, $tables[$loteria]);
-  break;
-
-case 'lotofacil': 
-  echo "LOTO FACIL";
-  saveLotofacil($rows, $tables[$loteria]);
-  break;
-
-case 'quina': 
-  echo "QUINA";
-  saveQuina($rows, $tables[$loteria]);
-  break;
-
-case 'lotomania': 
-  echo "LOTO MANIA";
-  saveLotomania($rows, $tables[$loteria]);
-  break;
-
-case 'dupla': 
-  echo "DUPLA SENA";
-  saveDuplasena($rows, $tables[$loteria]);
-  break;
-
-case 'time': 
-  echo "TIME MANIA";
-  saveTimemania($rows, $tables[$loteria]);
-  break;
-
-default:
-  error();
-  break;
+	case 'mega': 
+	  echo "MEGA-SENA";
+	  saveMegasena($rows, $tables[$index]);
+	  break;
+	
+	case 'lotofacil': 
+	  echo "LOTO FACIL";
+	  saveLotofacil($rows, $tables[$index]);
+	  break;
+	
+	case 'quina': 
+	  echo "QUINA";
+	  saveQuina($rows, $tables[$index]);
+	  break;
+	
+	case 'lotomania': 
+	  echo "LOTO MANIA";
+	  saveLotomania($rows, $tables[$index]);
+	  break;
+	
+	case 'dupla': 
+	  echo "DUPLA SENA";
+	  saveDuplasena($rows, $tables[$index]);
+	  break;
+	
+	case 'time': 
+	  echo "TIME MANIA";
+	  saveTimemania($rows, $tables[$index]);
+	  break;
+	
+	default:
+	  error();
+	  break;
+	
+	}
 
 }
-
+	
 ?>

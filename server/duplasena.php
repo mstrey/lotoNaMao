@@ -121,7 +121,7 @@ function saveDuplasena($rows, $table){
 	closeDB();
 	
   }
-  echo "<br/> maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+  echo "<br/> DUPLASENA - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
 }
 
 ?>

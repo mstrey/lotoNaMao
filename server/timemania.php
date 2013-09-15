@@ -109,7 +109,7 @@ function saveTimemania($rows, $table){
 	closeDB();
 	
   }
-  echo "<br/> maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+  echo "<br/> TIMEMANIA - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
 }
 
 ?>
