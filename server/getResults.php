@@ -49,32 +49,26 @@ function saveLoto($index, $files, $tables){
 	switch ($index) {
 	
 	case 'mega': 
-	  echo "MEGA-SENA";
 	  saveMegasena($rows, $tables[$index]);
 	  break;
 	
 	case 'lotofacil': 
-	  echo "LOTO FACIL";
 	  saveLotofacil($rows, $tables[$index]);
 	  break;
 	
 	case 'quina': 
-	  echo "QUINA";
 	  saveQuina($rows, $tables[$index]);
 	  break;
 	
 	case 'lotomania': 
-	  echo "LOTO MANIA";
 	  saveLotomania($rows, $tables[$index]);
 	  break;
 	
 	case 'dupla': 
-	  echo "DUPLA SENA";
 	  saveDuplasena($rows, $tables[$index]);
 	  break;
 	
 	case 'time': 
-	  echo "TIME MANIA";
 	  saveTimemania($rows, $tables[$index]);
 	  break;
 	
