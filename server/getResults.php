@@ -110,7 +110,7 @@ if (isset($_GET["concurso"])){
   die();
 }
 
-saveLoto($loteria);
+saveLoto($loteria, $htmls, $tables_names);
 
 
 	
