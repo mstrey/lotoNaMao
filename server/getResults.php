@@ -16,6 +16,7 @@ include_once 'lotomania.php';
 include_once 'duplasena.php';
 include_once 'timemania.php';
 
+#variables
 $htmls = array(
 			'mega' => 'D_MEGA.HTM', 
 			'lotofacil' => 'D_LOTFAC.HTM', 
@@ -32,32 +33,13 @@ $tables = array(
 			'dupla' => 'duplasena_resultados', 
 			'time' => 'timemania_resultados');
 
+#verify get
 if (!isset($_GET["loto"])) error();
 if (is_null($_GET["loto"])) error();
 if (empty($_GET["loto"]) AND "0" != $_GET["loto"]) error();
 if ($_GET["loto"] < 0 OR $_GET["loto"] > 5) error();
 
 $loteria = $_GET["loto"];
-
-$json_concurso = 0 ;
-if (isset($_GET["concurso"])){
-	$json_concurso = $_GET["concurso"];
-	if ($json_concurso == 0){
-		getJsonMax($tables[$loteria]);
-	} else {
-		getJsonConcurso($tables[$loteria], $_GET["concurso"]);
-	}
-	die();
-}
-  
-writeMenu('main');
-
-
-if($loteria == "todos"){
-  foreach ($tables as $key => $value) {
-    saveLoto($key);
-  }
-}
 
 function saveLoto($index){
 
@@ -103,5 +85,32 @@ function saveLoto($index){
 	}
 
 }
+
+function retornoJson($json_concurso){
+
+	if ($json_concurso == 0){
+		getJsonMax($tables[$loteria]);
+	} else {
+		getJsonConcurso($tables[$loteria], $_GET["concurso"]);
+	}
+} 
+ 
+writeMenu('main');
+
+if($loteria == "todos"){
+  foreach ($tables as $key => $value) {
+    saveLoto($key);
+  }
+  die;
+}
+
+if (isset($_GET["concurso"])){
+  $json_concurso = 0 ;
+  retornoJson($_GET["concurso"]);
+  die();
+}
+saveLoto();
+
+
 	
 ?>
