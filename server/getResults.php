@@ -109,7 +109,8 @@ if (isset($_GET["concurso"])){
   retornoJson($_GET["concurso"]);
   die();
 }
-saveLoto();
+
+saveLoto($loteria);
 
 
 	
