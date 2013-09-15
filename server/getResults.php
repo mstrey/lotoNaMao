@@ -53,13 +53,11 @@ if (isset($_GET["concurso"])){
 writeMenu('main');
 
 
-case 'todos': 
-  echo "TODOS";
+if($loteria == "todos"){
   foreach ($tables as $key => $value) {
     saveLoto($key);
   }
-  break;
-
+}
 
 function saveLoto($index){
 
