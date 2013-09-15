@@ -94,7 +94,7 @@ writeMenu('main');
 if($loteria == "todos"){
   foreach ($tables_names as $key => $value) {
   	echo "<br/>";
-    saveLoto($key, $htmls, $tables_names););
+    saveLoto($key, $htmls, $tables_names);
   }
   die;
 }
