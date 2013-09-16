@@ -101,7 +101,7 @@ if($loteria == "todos"){
 
 if (isset($_GET["concurso"])){
   $json_concurso = 0 ;
-  retornoJson($_GET["concurso"]);
+  retornoJson($_GET["concurso"], $tables_names);
   die();
 }
 
