@@ -89,8 +89,6 @@ function retornoJson($json_concurso, $tables, $loto){
 	}
 } 
  
-writeMenu('main');
-
 if($loteria == "todos"){
   foreach ($tables_names as $key => $value) {
   	echo "<br/>";
@@ -103,6 +101,8 @@ if (isset($_GET["concurso"])){
   retornoJson($_GET["concurso"], $tables_names, $loto);
   die();
 }
+
+writeMenu('main');
 
 saveLoto($loteria, $htmls, $tables_names);
 
