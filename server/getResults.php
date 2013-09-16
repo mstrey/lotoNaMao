@@ -80,12 +80,12 @@ function saveLoto($index, $files, $tables){
 
 }
 
-function retornoJson($json_concurso, $tables){
+function retornoJson($json_concurso, $tables, $loto){
 
 	if ($json_concurso == 0){
-		getJsonMax($tables[$loteria]);
+		getJsonMax($tables[$loto]);
 	} else {
-		getJsonConcurso($tables[$loteria], $_GET["concurso"]);
+		getJsonConcurso($tables[$loto], $_GET["concurso"]);
 	}
 } 
  
@@ -100,8 +100,7 @@ if($loteria == "todos"){
 }
 
 if (isset($_GET["concurso"])){
-  $json_concurso = 0 ;
-  retornoJson($_GET["concurso"], $tables_names);
+  retornoJson($_GET["concurso"], $tables_names, $loto);
   die();
 }
 

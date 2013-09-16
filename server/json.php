@@ -21,9 +21,9 @@ function getJsonMax($table){
 function printJson($query){
 	openDB();
     $resultSet = mysql_query($query);
-	$resultado = mysql_fetch_array($resultSet, MYSQL_ASSOC);
 	closeDB();
  
+	$resultado = mysql_fetch_array($resultSet, MYSQL_ASSOC);
 	echo json_encode($resultado, JSON_NUMERIC_CHECK);
 	die();
 }
