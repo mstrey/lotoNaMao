@@ -41,6 +41,15 @@ if ($_GET["loto"] < 0 OR $_GET["loto"] > 5) error();
 
 $loteria = $_GET["loto"];
 
+function retornoJson($json_concurso, $tables, $loto){
+
+	if ($json_concurso == 0){
+		getJsonMax($tables[$loto]);
+	} else {
+		getJsonConcurso($tables[$loto], $_GET["concurso"]);
+	}
+} 
+ 
 function saveLoto($index, $files, $tables){
 
 	$file = $files[$index];
@@ -80,31 +89,23 @@ function saveLoto($index, $files, $tables){
 
 }
 
-function retornoJson($json_concurso, $tables, $loto){
-
-	if ($json_concurso == 0){
-		getJsonMax($tables[$loto]);
-	} else {
-		getJsonConcurso($tables[$loto], $_GET["concurso"]);
-	}
-} 
- 
-if($loteria == "todos"){
-  foreach ($tables_names as $key => $value) {
-  	echo "<br/>";
-    saveLoto($key, $htmls, $tables_names);
-  }
-  die;
-}
-
 if (isset($_GET["concurso"])){
   retornoJson($_GET["concurso"], $tables_names, $loto);
   die();
 }
 
+ 
 writeMenu('main');
 
-saveLoto($loteria, $htmls, $tables_names);
+//if($loteria == "todos"){
+  foreach ($tables_names as $key => $value) {
+  	echo "<br/>";
+    saveLoto($key, $htmls, $tables_names);
+  }
+  die;
+//}
+
+//saveLoto($loteria, $htmls, $tables_names);
 
 
 	
