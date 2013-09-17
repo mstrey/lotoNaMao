@@ -89,24 +89,19 @@ function saveLoto($index, $files, $tables){
 
 }
 
-if (isset($_GET["concurso"])){
-  retornoJson($_GET["concurso"], $tables_names, $loto);
-  die();
+function getAllResults($tables){
+    foreach ($tables as $key => $value) {
+        echo "<br/>";
+        saveLoto($key, $htmls, $tables);
+    }
+    die;	
+}  
+
+if (isset($_GET["concurso"]) AND isset($_GET["loto"])){
+    retornoJson($_GET["concurso"], $tables_names, isset($_GET["loto"]));
+    die();
+} else {
+    getAllResults($tables_names);
 }
 
- 
-//writeMenu('main');
-
-//if($loteria == "todos"){
-  foreach ($tables_names as $key => $value) {
-  	echo "<br/>";
-    saveLoto($key, $htmls, $tables_names);
-  }
-  die;
-//}
-
-//saveLoto($loteria, $htmls, $tables_names);
-
-
-	
 ?>
