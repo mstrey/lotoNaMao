@@ -126,7 +126,7 @@ function saveLotofacil($rows, $table){
   }
   
     $parse_result = array(
-	"category" => "dupla",
+	"category" => "lotofacil",
  	"concursos" => array(
  		"max_save" => $max_save,
 		"max_parse" => $parse
