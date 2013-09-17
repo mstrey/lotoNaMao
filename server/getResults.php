@@ -33,12 +33,12 @@ $tables_names = array(
 			'dupla' => 'duplasena_resultados', 
 			'time' => 'timemania_resultados');
 
-function retornoJson($json_concurso, $tables, $loto){
+function retornoJson($concurso, $tables, $loto){
 
-	if ($json_concurso == 0){
+	if ($concurso == 0){
 		getJsonMax($tables[$loto]);
 	} else {
-		getJsonConcurso($tables[$loto], $_GET["concurso"]);
+		getJsonConcurso($tables[$loto], $concurso);
 	}
 } 
  
@@ -81,10 +81,9 @@ function saveLoto($index, $files, $tables){
 
 }
 
-function getAllResults($tables){
+function getAllResults($tables, $files){
     foreach ($tables as $key => $value) {
-        echo "<br/>";
-        saveLoto($key, $htmls, $tables);
+        saveLoto($key, $files, $tables);
     }
     die;	
 }  
@@ -93,7 +92,7 @@ if (isset($_GET["concurso"]) AND isset($_GET["loto"])){
     retornoJson($_GET["concurso"], $tables_names, isset($_GET["loto"]));
     die();
 } else {
-    getAllResults($tables_names);
+    getAllResults($tables_names, $htmls);
 }
 
 ?>
