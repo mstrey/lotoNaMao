@@ -50,32 +50,32 @@ function saveLoto($index, $files, $tables){
 	switch ($index) {
 	
 	case 'mega': 
-	  saveMegasena($rows, $tables[$index]);
-	  break;
+	  	saveMegasena($rows, $tables[$index]);
+	  	break;
 	
 	case 'lotofacil': 
-	  saveLotofacil($rows, $tables[$index]);
-	  break;
+	  	saveLotofacil($rows, $tables[$index]);
+	  	break;
 	
 	case 'quina': 
-	  saveQuina($rows, $tables[$index]);
-	  break;
+	  	saveQuina($rows, $tables[$index]);
+	  	break;
 	
 	case 'lotomania': 
-	  saveLotomania($rows, $tables[$index]);
-	  break;
+	  	saveLotomania($rows, $tables[$index]);
+	  	break;
 	
 	case 'dupla': 
-	  saveDuplasena($rows, $tables[$index]);
-	  break;
+	  	saveDuplasena($rows, $tables[$index]);
+	  	break;
 	
 	case 'time': 
-	  saveTimemania($rows, $tables[$index]);
-	  break;
+	  	saveTimemania($rows, $tables[$index]);
+	  	break;
 	
 	default:
-	  error();
-	  break;
+		error();
+	  	break;
 	
 	}
 
@@ -89,7 +89,7 @@ function getAllResults($tables, $files){
 }  
 
 if (isset($_GET["concurso"]) AND isset($_GET["loto"])){
-    retornoJson($_GET["concurso"], $tables_names, isset($_GET["loto"]));
+    retornoJson($_GET["concurso"], $tables_names, $_GET["loto"]);
     die();
 } else {
     getAllResults($tables_names, $htmls);
