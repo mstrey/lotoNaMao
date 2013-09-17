@@ -10,18 +10,14 @@ if (!$main) {
   
 function saveDuplasena($rows, $table){  
   
-  $max = getMaxConcurso($table);
+  $max_save = getMaxConcurso($table);
   
-  /*** loop over the table rows ***/ 
   foreach ($rows as $row){ 
 
-    /*** get each column by tag name ***/ 
     $cols = $row->getElementsByTagName('td'); 
+    $parse = $cols->item(0)->nodeValue; 
 
-    /*** echo the values ***/ 
-    $concurso = $cols->item(0)->nodeValue; 
-
-    if (($max - 9)> $concurso) continue;
+    if (($max_save - 9)> $parse) continue;
 
     $data = explode("/",$cols->item(1)->nodeValue,3);
     $bola1_s1 = $cols->item(2)->nodeValue;
@@ -84,7 +80,7 @@ function saveDuplasena($rows, $table){
     $query .= " $ganhadores_4_s2, ";
     $query .= " '$rateio_4_s2', ";
     $query .= " '$estimativa_premio', ";
-	$query .= " null, null, sysdate() )	ON DUPLICATE KEY UPDATE ";
+    $query .= " null, null, sysdate() )	ON DUPLICATE KEY UPDATE ";
 
     $query .= " data_sorteio = '$data_sorteio', ";
     $query .= " bola1_s1 = $bola1_s1, ";
@@ -116,12 +112,21 @@ function saveDuplasena($rows, $table){
     $query .= " estimativa_premio = '$estimativa_premio', ";
     $query .= " local = null, local_gps = null, data_inclusao = sysdate() ;";
 
-	openDB();
+    openDB();
     mysql_query($query);
-	closeDB();
+    closeDB();
 	
   }
-  echo "<br/> DUPLASENA - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+  
+    $parse_result = array(
+	"category" => "dupla",
+ 	"concursos" => array(
+ 		"max_save" => $max_save,
+		"max_parse" => $parse
+		)
+	);
+    echo json_encode($parse_result, JSON_NUMERIC_CHECK);
+  
 }
 
 ?>
