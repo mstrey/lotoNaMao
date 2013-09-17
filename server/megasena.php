@@ -90,7 +90,8 @@ function saveMegasena($rows, $table){
   }
   
   $parse_result = array(
-  			"category" => array(
+  			"category" => "mega",
+  			"concursos" => array(
   					"max_save" => $max,
   					"max_parse" => $parse
   					)
