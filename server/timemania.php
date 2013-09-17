@@ -10,7 +10,7 @@ if (!$main) {
   
 function saveTimemania($rows, $table){  
   
-  $max = getMaxConcurso($table);
+  $max_save = getMaxConcurso($table);
   
   /*** loop over the table rows ***/ 
   foreach ($rows as $row){ 
@@ -19,9 +19,9 @@ function saveTimemania($rows, $table){
     $cols = $row->getElementsByTagName('td'); 
 
     /*** echo the values ***/ 
-    $concurso = $cols->item(0)->nodeValue; 
+    $parse = $cols->item(0)->nodeValue; 
 
-    if (($max - 9)> $concurso) continue;
+    if (($max_save - 9)> $parse) continue;
 
     $data = explode("/",$cols->item(1)->nodeValue,3);
     $bola1 = $cols->item(2)->nodeValue;
@@ -109,7 +109,14 @@ function saveTimemania($rows, $table){
 	closeDB();
 	
   }
-  echo "<br/> TIMEMANIA - maior salvo: ".$max."<br/> ultimo parseado: ".$concurso; 
+    $parse_result = array(
+	"category" => "dupla",
+ 	"concursos" => array(
+ 		"max_save" => $max_save,
+		"max_parse" => $parse
+		)
+	);
+    echo json_encode($parse_result, JSON_NUMERIC_CHECK);
 }
 
 ?>
