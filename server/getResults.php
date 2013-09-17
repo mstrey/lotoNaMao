@@ -33,14 +33,6 @@ $tables_names = array(
 			'dupla' => 'duplasena_resultados', 
 			'time' => 'timemania_resultados');
 
-#verify get
-if (!isset($_GET["loto"])) error();
-if (is_null($_GET["loto"])) error();
-if (empty($_GET["loto"]) AND "0" != $_GET["loto"]) error();
-if ($_GET["loto"] < 0 OR $_GET["loto"] > 5) error();
-
-$loteria = $_GET["loto"];
-
 function retornoJson($json_concurso, $tables, $loto){
 
 	if ($json_concurso == 0){
