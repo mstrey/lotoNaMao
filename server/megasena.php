@@ -89,7 +89,12 @@ function saveMegasena($rows, $table){
 	
   }
   
-  $parse_result = array("category" => array("max_save" => $max; "max_parse" => $parse));
+  $parse_result = array(
+  			"category" => array(
+  					"max_save" => $max,
+  					"max_parse" => $parse
+  					)
+  			);
   //echo "<br/> MEGASENA - maior salvo: ".$max."<br/> ultimo parseado: ".$parse; 
   echo json_encode($parse_result, JSON_NUMERIC_CHECK);
   
