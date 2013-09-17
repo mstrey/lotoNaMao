@@ -95,7 +95,7 @@ if (isset($_GET["concurso"])){
 }
 
  
-writeMenu('main');
+//writeMenu('main');
 
 //if($loteria == "todos"){
   foreach ($tables_names as $key => $value) {
