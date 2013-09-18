@@ -110,7 +110,7 @@ function saveTimemania($rows, $table){
 	
   }
     $parse_result = array(
-	"category" => "dupla",
+	"category" => "time",
  	"concursos" => array(
  		"max_save" => $max_save,
 		"max_parse" => $parse
