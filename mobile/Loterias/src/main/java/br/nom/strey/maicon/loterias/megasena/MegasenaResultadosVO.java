@@ -1,10 +1,18 @@
 package br.nom.strey.maicon.loterias.megasena;
 
+import android.util.Log;
+
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  * Created by maicon on 06/09/13.
  */
 public class MegasenaResultadosVO {
+
+    private static final String LOGTAG = "MegasenaResultadoVO";
 
     private Integer concurso;
     private Date data_sorteio;
@@ -37,6 +45,15 @@ public class MegasenaResultadosVO {
     }
 
     public Date getData_sorteio() {
+        try {
+            if (data_sorteio == null) {
+                SimpleDateFormat dateFormatSorteio = new SimpleDateFormat("yyyy-MM-dd");
+                data_sorteio = dateFormatSorteio.parse("1996-03-11");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        };
+
         return data_sorteio;
     }
 
@@ -189,11 +206,66 @@ public class MegasenaResultadosVO {
     }
 
     public Date getData_inclusao() {
+        try {
+            if (data_inclusao == null) {
+                SimpleDateFormat dateFormatInclusao = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                data_inclusao = dateFormatInclusao.parse("2013-01-01 00:00:00");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        };
+
         return data_inclusao;
     }
 
     public void setData_inclusao(Date data_inclusao) {
         this.data_inclusao = data_inclusao;
+    }
+
+    public void setJson(JSONObject obj_json) {
+
+        SimpleDateFormat dateFormatSorteio = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormatInclusao = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            setConcurso(obj_json.getInt("concurso"));
+
+            setBola1(obj_json.getInt("bola1"));
+            setBola2(obj_json.getInt("bola2"));
+            setBola3(obj_json.getInt("bola3"));
+            setBola4(obj_json.getInt("bola4"));
+            setBola5(obj_json.getInt("bola5"));
+            setBola6(obj_json.getInt("bola6"));
+
+            setGanhadores_6(obj_json.getInt("ganhadores_6"));
+            setGanhadores_5(obj_json.getInt("ganhadores_5"));
+            setGanhadores_4(obj_json.getInt("ganhadores_4"));
+
+            setArrecadacao_total(obj_json.getDouble("arrecadacao_total"));
+
+            setRateio_6(obj_json.getDouble("rateio_6"));
+            setRateio_5(obj_json.getDouble("rateio_5"));
+            setRateio_4(obj_json.getDouble("rateio_4"));
+
+            setAcumulado_5(obj_json.getDouble("acumulado_5"));
+            setEstimativa_premio(obj_json.getDouble("estimativa_premio"));
+            setAcumulado_virada(obj_json.getDouble("acumulado_virada"));
+
+            Date dataSorteio = new Date();
+            Date dataInclusao = new Date();
+
+            dataSorteio = dateFormatSorteio.parse(obj_json.getString("data_sorteio"));
+            setData_sorteio(dataSorteio);
+
+            dataInclusao = dateFormatInclusao.parse(obj_json.getString("data_inclusao"));
+            setData_inclusao(dataInclusao);
+
+            Log.d(LOGTAG,"data_sorteio:"+obj_json.getString("data_sorteio")+" - data_inclusao:"+obj_json.getString("data_inclusao"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ;
     }
 
 }

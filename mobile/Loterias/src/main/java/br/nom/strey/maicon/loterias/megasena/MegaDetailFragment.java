@@ -1,6 +1,7 @@
 package br.nom.strey.maicon.loterias.megasena;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,13 +21,11 @@ import br.nom.strey.maicon.loterias.R;
 
 public class MegaDetailFragment extends Fragment {
 
+    public static final String ARG_ITEM_ID = "item_id";
     private static final String TAG = "MegaDetailFragment";
-
     private static final Integer CONCURSO_INICAL = 111;
     private static final Integer TEIMOZINHA = 222;
-
-    public static final String ARG_ITEM_ID = "item_id";
-
+    public ArrayList<Integer> lista_numeros_marcados = new ArrayList<Integer>();
     private NumberPicker np_conc_ini;
     private View rootView = null;
     private TextView txt_conc_ini = null;
@@ -37,12 +36,11 @@ public class MegaDetailFragment extends Fragment {
     private Integer conc_ini;
     private Integer conc_fim;
     private Integer teimosinha;
+    private Integer concurso_max;
     private String[] teimosinha_options;
-
+    private Context ctx;
     private AlertDialog.Builder np_dialog_conc_ini;
     private AlertDialog.Builder np_dialog_teimosinha;
-
-    public ArrayList<Integer> lista_numeros_marcados = new ArrayList<Integer>();
 
     public MegaDetailFragment() {
 
@@ -57,18 +55,21 @@ public class MegaDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         getActivity().getActionBar().setTitle(getString(R.string.megasena));
         rootView = inflater.inflate(R.layout.fragment_megasena, container, false);
+
+        ctx = getActivity().getBaseContext();
 
         txt_conc_ini = (TextView) rootView.findViewById(R.id.ed_mega_conc_ini);
         txt_conc_fim = (TextView) rootView.findViewById(R.id.ed_mega_conc_final);
         txt_teimosinha = (TextView) rootView.findViewById(R.id.ed_mega_teimosinha);
         btn_save = (Button) rootView.findViewById(R.id.btn_mega_save);
 
-        MegasenaVolantesDAO volante_dao = new MegasenaVolantesDAO(getActivity().getBaseContext());
-        Integer concurso_max = volante_dao.getMaxConc();
+        MegasenaResultadosDAO dao_resultado = new MegasenaResultadosDAO(ctx);
+
+        concurso_max = dao_resultado.getMaxConcResultado();
 
         txt_conc_ini.setText(concurso_max.toString());
         txt_teimosinha.setText("1");
@@ -86,7 +87,7 @@ public class MegaDetailFragment extends Fragment {
                 np_conc_ini.setFocusable(true);
                 np_conc_ini.setFocusableInTouchMode(true);
                 np_conc_ini.setMinValue(1);
-                np_conc_ini.setMaxValue(1550);
+                np_conc_ini.setMaxValue(concurso_max + 8);
                 np_conc_ini.setValue(conc_ini);
 
                 np_dialog_conc_ini.setView(np_conc_ini);
@@ -155,7 +156,7 @@ public class MegaDetailFragment extends Fragment {
             }
         });
 
-        btn_save.setOnClickListener(new View.OnClickListener(){
+        btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MegasenaVolantesVO volante_vo = new MegasenaVolantesVO();
@@ -167,11 +168,11 @@ public class MegaDetailFragment extends Fragment {
 
                 String aposta = "";
 
-                for(int i = 0; i < lista_numeros_marcados.size(); i++){
+                for (int i = 0; i < lista_numeros_marcados.size(); i++) {
                     aposta += lista_numeros_marcados.get(i).toString();
                 }
 
-                for (int i=conc_ini; i<=conc_fim; i++) {
+                for (int i = conc_ini; i <= conc_fim; i++) {
                     volante_vo.setConcurso(i);
                     volante_vo.setAposta(aposta);
                     volante_dao.insert(volante_vo);
@@ -188,7 +189,7 @@ public class MegaDetailFragment extends Fragment {
         TextView txt_num = (TextView) v;
         Integer num = Integer.parseInt(txt_num.getText().toString());
 
-        Log.d(TAG, "setNumber("+txt_num.getText().toString()+")");
+        Log.d(TAG, "setNumber(" + txt_num.getText().toString() + ")");
 
         if (!lista_numeros_marcados.contains(num)) {
 

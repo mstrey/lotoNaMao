@@ -7,14 +7,9 @@ import java.util.Map;
 
 public class Categories {
 
-    /**
-     * An array of category items.
-     */
+    public static final String MEGASENA = "mega";
+    public static final String QUINA = "quina";
     public static List<Category> ITEMS = new ArrayList<Category>();
-
-    /**
-     * A map of category items, by ID.
-     */
     public static Map<String, Category> ITEM_MAP = new HashMap<String, Category>();
 
     static {
@@ -29,9 +24,6 @@ public class Categories {
         ITEM_MAP.put(item.id.toString(), item);
     }
 
-    /**
-     * A category item representing a piece of content.
-     */
     public static class Category {
         public Integer id;
         public String content;

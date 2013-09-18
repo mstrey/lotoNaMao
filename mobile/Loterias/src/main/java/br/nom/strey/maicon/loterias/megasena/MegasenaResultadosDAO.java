@@ -5,56 +5,76 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
+import android.util.Log;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.nom.strey.maicon.loterias.main.Categories;
 import br.nom.strey.maicon.loterias.utils.DBHelper;
+import br.nom.strey.maicon.loterias.utils.WebService;
 
 /**
  * Created by maicon on 06/09/13.
  */
 public class MegasenaResultadosDAO {
 
+    private static final String LOGTAG = "MegasenaResultadoDAO";
+    private static final String MAX_CONCURSO = "max_conc";
+    private static final String TABLE_NAME = "megasena_resultados";
+    private static final String[] COLUNAS = {"concurso",
+            "data_sorteio",
+            "bola1",
+            "bola2",
+            "bola3",
+            "bola4",
+            "bola5",
+            "bola6",
+            "arrecadacao_total",
+            "ganhadores_6",
+            "rateio_6",
+            "ganhadores_5",
+            "rateio_5",
+            "ganhadores_4",
+            "rateio_4",
+            "acumulado_5",
+            "estimativa_premio",
+            "acumulado_virada",
+            "local",
+            "local_gps",
+            "data_inclusao"
+    };
+    private static Integer concurso_max_local_volantes;
+    private static Integer concurso_max_local_resultados;
+    private static Integer concurso_max_remote;
+    private static Integer concurso_max;
     private Context ctx;
 
-    private static final String TABLE_NAME = "megasena_resultados";
-    private static final String[] COLUNAS = { "concurso",
-                                            "data_sorteio",
-                                            "bola1",
-                                            "bola2",
-                                            "bola3",
-                                            "bola4",
-                                            "bola5",
-                                            "bola6",
-                                            "arrecadacao_total",
-                                            "ganhadores_6",
-                                            "rateio_6",
-                                            "ganhadores_5",
-                                            "rateio_5",
-                                            "ganhadores_4",
-                                            "rateio_4",
-                                            "acumulado_5",
-                                            "estimativa_premio",
-                                            "acumulado_virada",
-                                            "local",
-                                            "local_gps",
-                                            "data_inclusao"
-    };
-
     public MegasenaResultadosDAO(Context ctx) {
+
         this.ctx = ctx;
+        new GetResultado().execute();
+
     }
 
-    public boolean insert(MegasenaResultadosVO vo){
+    public boolean insert(MegasenaResultadosVO vo) {
 
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         ContentValues ctv = new ContentValues();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormatSorteio = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormatInclusao = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        String data_sorteio = dateFormat.format(vo.getData_sorteio());
-        String data_inclusao = dateFormat.format(vo.getData_inclusao());
+        String data_sorteio = dateFormatSorteio.format(vo.getData_sorteio());
+        String data_inclusao = dateFormatInclusao.format(vo.getData_inclusao());
 
         ctv.put("concurso", vo.getConcurso());
         ctv.put("data_sorteio", data_sorteio);
@@ -84,7 +104,7 @@ public class MegasenaResultadosDAO {
         return (result);
     }
 
-    public boolean delete(MegasenaResultadosVO vo){
+    public boolean delete(MegasenaResultadosVO vo) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         boolean result = db.delete(TABLE_NAME, "concurso=?", new String[]{vo.getConcurso().toString()}) > 0;
         db.close();
@@ -92,7 +112,7 @@ public class MegasenaResultadosDAO {
         return (result);
     }
 
-    public boolean update(MegasenaResultadosVO vo){
+    public boolean update(MegasenaResultadosVO vo) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         ContentValues ctv = new ContentValues();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -129,7 +149,7 @@ public class MegasenaResultadosDAO {
 
     }
 
-    public MegasenaResultadosVO get(Integer concurso){
+    public MegasenaResultadosVO get(Integer concurso) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         Cursor c = db.query(TABLE_NAME, // table
                 COLUNAS,                // columns
@@ -144,7 +164,7 @@ public class MegasenaResultadosDAO {
         MegasenaResultadosVO vo = new MegasenaResultadosVO();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        if (c.getCount() > 0){
+        if (c.getCount() > 0) {
             vo.setConcurso(c.getInt(c.getColumnIndex("concurso")));
             vo.setBola1(c.getInt(c.getColumnIndex("bola1")));
             vo.setBola2(c.getInt(c.getColumnIndex("bola2")));
@@ -189,7 +209,7 @@ public class MegasenaResultadosDAO {
         return vo;
     }
 
-    public Boolean exist(Integer concurso){
+    public Boolean exist(Integer concurso) {
         Boolean result = false;
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
@@ -201,7 +221,7 @@ public class MegasenaResultadosDAO {
                 null,
                 null);
 
-        if (c.moveToNext()){
+        if (c.moveToNext()) {
             result = true;
         }
 
@@ -209,6 +229,108 @@ public class MegasenaResultadosDAO {
         db.close();
 
         return result;
+    }
+
+    public Integer getMaxConcResultado() {
+        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
+
+        String query =  " SELECT MAX(" + COLUNAS[0] + ") concurso " +
+                " from " + TABLE_NAME + ";";
+
+        Log.d(LOGTAG,query);
+        Cursor c = db.rawQuery(query, null);
+
+        c.moveToFirst();
+
+        concurso_max_local_resultados = c.getInt(c.getColumnIndex("concurso"));
+
+        c.close();
+
+        db.close();
+
+        concurso_max_remote = 0;
+        Log.d(LOGTAG, "max_remote: " + concurso_max_remote);
+        Log.d(LOGTAG, "max_local_resultados: "+concurso_max_local_resultados);
+        Log.d(LOGTAG, "max_local_volantes: "+concurso_max_local_volantes);
+        concurso_max = 1;
+
+        concurso_max_local_volantes = MegasenaVolantesDAO.getMaxConc(ctx);
+
+        if (concurso_max_local_resultados > concurso_max_remote) {
+            concurso_max = concurso_max_local_resultados;
+        } else {
+            MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
+
+            vo_resultado.setConcurso(concurso_max);
+            insert(vo_resultado);
+
+            concurso_max = concurso_max_remote;
+        }
+
+        if (concurso_max_local_volantes > concurso_max) {
+            concurso_max = concurso_max_local_volantes;
+        }
+        Log.d(LOGTAG, "max: "+concurso_max);
+        return concurso_max;
+    }
+
+    private class GetResultado extends AsyncTask<Void, Void, Void> {
+
+        public GetResultado() {
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
+                strUrl.append("loto/");
+                strUrl.append("getResults.php");
+                strUrl.append("?loto=");
+                strUrl.append(URLEncoder.encode(Categories.MEGASENA));
+                strUrl.append("&concurso=");
+                strUrl.append(concurso_max_remote);
+
+                try {
+
+                    URL url = new URL(strUrl.toString());
+                    URLConnection con = url.openConnection();
+                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String str_json = in.readLine();
+                    Log.e(LOGTAG, "str_json: " + str_json);
+
+                    JSONObject obj_json = new JSONObject(str_json);
+
+                    if (concurso_max_remote > 0) {
+                        MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
+                        vo_resultado.setJson(obj_json);
+                        insert(vo_resultado);
+
+                    } else {
+                        concurso_max_remote = obj_json.getInt(MAX_CONCURSO);
+                        Log.e(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote);
+                    }
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    concurso_max_remote = 1;
+                }
+            }
+            return null;
+        }
     }
 
 }

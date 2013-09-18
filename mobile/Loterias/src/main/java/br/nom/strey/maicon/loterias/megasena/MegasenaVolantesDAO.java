@@ -18,10 +18,8 @@ import br.nom.strey.maicon.loterias.utils.DBHelper;
  */
 public class MegasenaVolantesDAO {
 
-    private Context ctx;
-
     private static final String TABLE_NAME = "megasena_volantes";
-    private static final String[] COLUNAS = { "volante_id",
+    private static final String[] COLUNAS = {"volante_id",
             "concurso",
             "aposta",
             "faixa_1",
@@ -29,12 +27,13 @@ public class MegasenaVolantesDAO {
             "faixa_3",
             "data_inclusao"
     };
+    private Context ctx;
 
     public MegasenaVolantesDAO(Context ctx) {
         this.ctx = ctx;
     }
 
-    public boolean insert(MegasenaVolantesVO vo){
+    public boolean insert(MegasenaVolantesVO vo) {
 
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         ContentValues ctv = new ContentValues();
@@ -56,7 +55,7 @@ public class MegasenaVolantesDAO {
         return (result);
     }
 
-    public boolean delete(MegasenaVolantesVO vo){
+    public boolean delete(MegasenaVolantesVO vo) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         boolean result = db.delete(TABLE_NAME, "volante_id=?", new String[]{vo.getVolante_id().toString()}) > 0;
         db.close();
@@ -64,7 +63,7 @@ public class MegasenaVolantesDAO {
         return (result);
     }
 
-    public boolean update(MegasenaVolantesVO vo){
+    public boolean update(MegasenaVolantesVO vo) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         ContentValues ctv = new ContentValues();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -86,7 +85,7 @@ public class MegasenaVolantesDAO {
 
     }
 
-    public MegasenaVolantesVO get(Integer volante_id){
+    public MegasenaVolantesVO get(Integer volante_id) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         Cursor c = db.query(TABLE_NAME, // table
                 COLUNAS,                // columns
@@ -101,7 +100,7 @@ public class MegasenaVolantesDAO {
         MegasenaVolantesVO vo = new MegasenaVolantesVO();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        if (c.getCount() > 0){
+        if (c.getCount() > 0) {
 
             vo.setVolante_id(c.getInt(c.getColumnIndex("volante_id")));
             vo.setConcurso(c.getInt(c.getColumnIndex("concurso")));
@@ -128,7 +127,7 @@ public class MegasenaVolantesDAO {
         return vo;
     }
 
-    public List<MegasenaVolantesVO> getAll(Integer concurso){
+    public List<MegasenaVolantesVO> getAll(Integer concurso) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
 
@@ -141,7 +140,7 @@ public class MegasenaVolantesDAO {
                 "data_inclusao asc",
                 null);
 
-        while(c.moveToNext()){
+        while (c.moveToNext()) {
             MegasenaVolantesVO volante_vo = new MegasenaVolantesVO();
 
             volante_vo = get(c.getInt(c.getColumnIndex("volante_id")));
@@ -154,29 +153,24 @@ public class MegasenaVolantesDAO {
         return lista_volantes;
     }
 
-    public Integer getMaxConc(){
+    public static Integer getMaxConc(Context ctx){
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
 
-        Cursor c = db.query(TABLE_NAME,
-                COLUNAS,
-                null,
-                null,
-                null,
-                null,
-                "concurso desc",
-                null);
+        String query =  " SELECT MAX(" + COLUNAS[1] + ") concurso " +
+                " from " + TABLE_NAME + ";";
+        Cursor c = db.rawQuery(query, null);
 
         c.moveToFirst();
 
-        Integer concurso_max = c.getInt(c.getColumnIndex("concurso"));
+        Integer concurso_max = c.getInt(c.getColumnIndex(COLUNAS[1]));
         c.close();
         db.close();
 
         return concurso_max;
     }
 
-    public Boolean existAny(Integer concurso){
+    public Boolean existAny(Integer concurso) {
         Boolean result = false;
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
@@ -188,7 +182,7 @@ public class MegasenaVolantesDAO {
                 null,
                 null);
 
-        if (c.moveToNext()){
+        if (c.moveToNext()) {
             result = true;
         }
 
