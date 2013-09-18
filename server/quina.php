@@ -19,9 +19,9 @@ function saveQuina($rows, $table){
     $cols = $row->getElementsByTagName('td'); 
 
     /*** echo the values ***/ 
-    $parse = $cols->item(0)->nodeValue; 
+    $concurso_parse = $cols->item(0)->nodeValue; 
 
-    if (($max_save - 9)> $parse) continue;
+    if (($max_save - 9)> $concurso_parse) continue;
 
     $data = explode("/",$cols->item(1)->nodeValue,3);
     $bola1 = $cols->item(2)->nodeValue;
@@ -43,7 +43,7 @@ function saveQuina($rows, $table){
     $data_sorteio = $data[2]."-".$data[1]."-".$data[0];
 
     $query =  " INSERT INTO ".$table." VALUES ( ";
-    $query .= " $concurso, ";
+    $query .= " $concurso_parse, ";
     $query .= " '$data_sorteio', ";
     $query .= " $bola1, ";
     $query .= " $bola2, ";
@@ -94,7 +94,7 @@ function saveQuina($rows, $table){
 	"category" => "quina",
  	"concursos" => array(
  		"max_save" => $max_save,
-		"max_parse" => $parse
+		"max_parse" => $concurso_parse
 		)
 	);
     echo json_encode($parse_result, JSON_NUMERIC_CHECK);
