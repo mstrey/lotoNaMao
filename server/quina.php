@@ -81,12 +81,15 @@ function saveQuina($rows, $table){
     $query .= " local = null, local_gps = null, data_inclusao = sysdate() ;";
 
 	openDB();
-	echo "<br/>";
-    echo mysql_query($query);
-	echo "<br/>";
+    mysql_query($query);
 	closeDB();
 	
   }
+    
+    echo "<br/>";
+    echo $query;
+    echo "<br/>";
+    
     $parse_result = array(
 	"category" => "quina",
  	"concursos" => array(
