@@ -86,10 +86,6 @@ function saveQuina($rows, $table){
 	
   }
     
-    echo "<br/>";
-    echo $query;
-    echo "<br/>";
-    
     $parse_result = array(
 	"category" => "quina",
  	"concursos" => array(
