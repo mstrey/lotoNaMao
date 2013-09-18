@@ -81,7 +81,9 @@ function saveQuina($rows, $table){
     $query .= " local = null, local_gps = null, data_inclusao = sysdate() ;";
 
 	openDB();
-    mysql_query($query);
+	echo "<br/>";
+    echo mysql_query($query);
+	echo "<br/>";
 	closeDB();
 	
   }
