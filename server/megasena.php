@@ -19,9 +19,9 @@ function saveMegasena($rows, $table){
     $cols = $row->getElementsByTagName('td'); 
 
     /*** echo the values ***/ 
-    $parse = $cols->item(0)->nodeValue; 
+    $concurso_parse = $cols->item(0)->nodeValue; 
 
-    if (($max - 9)> $parse) continue;
+    if (($max - 9)> $concurso_parse) continue;
 
     $data = explode("/",$cols->item(1)->nodeValue,3);
     $bola1 = $cols->item(2)->nodeValue;
@@ -44,7 +44,7 @@ function saveMegasena($rows, $table){
     $data_sorteio = $data[2]."-".$data[1]."-".$data[0];
 
     $query =  " INSERT INTO ".$table." VALUES ( ";
-    $query .= " $concurso, ";
+    $query .= " $concurso_parse, ";
     $query .= " '$data_sorteio', ";
     $query .= " $bola1, ";
     $query .= " $bola2, ";
@@ -93,7 +93,7 @@ function saveMegasena($rows, $table){
   			"category" => "mega",
   			"concursos" => array(
   					"max_save" => $max,
-  					"max_parse" => $parse
+  					"max_parse" => $concurso_parse
   					)
   			);
   //echo "<br/> MEGASENA - maior salvo: ".$max."<br/> ultimo parseado: ".$parse; 
