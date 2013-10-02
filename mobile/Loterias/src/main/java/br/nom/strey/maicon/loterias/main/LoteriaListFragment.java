@@ -13,13 +13,13 @@ import android.widget.ListView;
  * also supports tablet devices by allowing list items to be given an
  * 'activated' state upon selection. This helps indicate which item is
  * currently being viewed in a {@link LoteriaDetailFragment}.
- * <p>
+ * <p/>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
 public class LoteriaListFragment extends ListFragment {
 
-    private final String TAG = "ListFragment";
+    private final String TAG = "LoteriaListFragment";
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -67,13 +67,13 @@ public class LoteriaListFragment extends ListFragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public LoteriaListFragment() {
-        Log.d(TAG, "1LoteriaListFragment");
+        Log.d(TAG, "LoteriaListFragment");
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "3onCreate");
+        Log.d(TAG, "onCreate");
 
         // TODO: replace with a real list adapter.
         setListAdapter(new ArrayAdapter<Categories.Category>(
@@ -86,7 +86,7 @@ public class LoteriaListFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "4onViewCreated");
+        Log.d(TAG, "onViewCreated");
 
         // Restore the previously serialized activated item position.
         if (savedInstanceState != null
@@ -99,7 +99,7 @@ public class LoteriaListFragment extends ListFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        Log.d(TAG, "2onAttach");
+        Log.d(TAG, "onAttach");
         // Activities containing this fragment must implement its callbacks.
         if (!(activity instanceof Callbacks)) {
             throw new IllegalStateException("Activity must implement fragment's callbacks.");

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import br.nom.strey.maicon.loterias.R;
+import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosDAO;
 
 
 /**
@@ -15,11 +16,11 @@ import br.nom.strey.maicon.loterias.R;
  * lead to a {@link LoteriaDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
- * <p>
+ * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link LoteriaListFragment} and the item details
  * (if present) is a {@link LoteriaDetailFragment}.
- * <p>
+ * <p/>
  * This activity also implements the required
  * {@link LoteriaListFragment.Callbacks} interface
  * to listen for item selections.
@@ -39,6 +40,7 @@ public class LoteriaListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loteria_list);
         Log.d(TAG, "1onCreate");
+        getConcursosRemote();
 
         if (findViewById(R.id.loteria_detail_container) != null) {
             // The detail container view will be present only in the
@@ -86,5 +88,10 @@ public class LoteriaListActivity extends FragmentActivity
             detailIntent.putExtra(LoteriaDetailFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
+    }
+
+    private void getConcursosRemote() {
+        MegasenaResultadosDAO dao_mega = new MegasenaResultadosDAO(getBaseContext());
+        dao_mega.getMaxConcRemote();
     }
 }

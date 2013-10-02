@@ -7,23 +7,26 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import br.nom.strey.maicon.loterias.R;
-import br.nom.strey.maicon.loterias.megasena.MegaDetailFragment;
+import br.nom.strey.maicon.loterias.megasena.MegaEditFragment;
+import br.nom.strey.maicon.loterias.megasena.MegaListFragment;
+import br.nom.strey.maicon.loterias.megasena.MegasenaVolantesVO;
 import br.nom.strey.maicon.loterias.quina.QuinaDetailFragment;
 
 public class LoteriaDetailActivity extends FragmentActivity {
 
     private final String TAG = "DetailActivity";
-
+    MegaEditFragment megaEditFragment = new MegaEditFragment();
+    MegaListFragment megaListFragment = new MegaListFragment();
     private Integer category;
-    MegaDetailFragment megaFragment = new MegaDetailFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loteria_detail);
-        Log.d(TAG,"setContentView");
+        Log.d(TAG, "setContentView");
 
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -32,18 +35,6 @@ public class LoteriaDetailActivity extends FragmentActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-
-
-//            arguments.putString(LoteriaDetailFragment.ARG_ITEM_ID,
-//                    getIntent().getStringExtra(LoteriaDetailFragment.ARG_ITEM_ID));
-//
-//            LoteriaDetailFragment fragment = new LoteriaDetailFragment();
-//
-//            fragment.setArguments(arguments);
-//
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.loteria_detail_container, fragment)
-//                    .commit();
 
             category = Integer.parseInt(getIntent().getStringExtra(LoteriaDetailFragment.ARG_ITEM_ID));
 
@@ -59,7 +50,7 @@ public class LoteriaDetailActivity extends FragmentActivity {
                 case 2:
 
                     getSupportFragmentManager().beginTransaction()
-                            .add(R.id.loteria_detail_container, megaFragment)
+                            .add(R.id.loteria_detail_container, megaListFragment)
                             .commit();
 
                     break;
@@ -87,7 +78,6 @@ public class LoteriaDetailActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void setNumber(View v) {
         switch (category) {
             case 1:
@@ -95,7 +85,7 @@ public class LoteriaDetailActivity extends FragmentActivity {
                 break;
 
             case 2:
-                megaFragment.setNumber(v);
+                megaEditFragment.setNumber(v);
                 break;
 
             case 3:
@@ -106,5 +96,26 @@ public class LoteriaDetailActivity extends FragmentActivity {
     public void setListFooter(View v) {
 
     }
+
+    public void exibeToast(Integer resource) {
+        Toast.makeText(this, resource, Toast.LENGTH_LONG).show();
+    }
+
+    public void editMegaFragment(MegasenaVolantesVO vo) {
+        megaEditFragment = new MegaEditFragment(vo);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.loteria_detail_container, megaEditFragment)
+                .commit();
+    }
+
+    public void editMegaFragment() {
+        megaEditFragment = new MegaEditFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.loteria_detail_container, megaEditFragment)
+                .commit();
+    }
+
 
 }

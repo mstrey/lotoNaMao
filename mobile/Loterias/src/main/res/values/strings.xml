@@ -4,6 +4,8 @@
     <string name="app_name">Loterias</string>
     <string name="title_loteria_detail">loteria Detail</string>
     <string name="megasena">Mega-Sena</string>
+    <string name="megasena_action_header_list">Lista volantes Mega-Sena</string>
+    <string name="megasena_action_header_edit">Cadastro volantes Mega-Sena</string>
     <string name="quina">Quina</string>
     <string name="emaberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>
@@ -12,12 +14,15 @@
     <string name="notifica_resultado">Ativar notificação:</string>
     <string name="numeros_marcados">Números Marcados:</string>
     <string name="concurso">Concurso</string>
-
-    <string name="ok">OK</string>
-    <string name="save">Salvar</string>
+    <string name="aposta">Aposta</string>
+    <string name="acertos">Acertos</string>
+    <string name="abertos">Em aberto</string>
+    <string name="arquivados">Arquivados</string>
     <string name="cancel">Cancelar</string>
-    <string name="yes">Sim</string>
-    <string name="no">Não</string>
+    <string name="ok">OK</string>
+    <string name="incluir">Incluir</string>
+    <string name="marcar_minimo_seis">Você deve selecionar no mínimo 6 números</string>
+    <string name="marcar_maximo_quinze">Você deve selecionar no máximo 15 números</string>
 
     <string name="num_00">00</string>
     <string name="num_01">01</string>
@@ -119,6 +124,5 @@
     <string name="num_97">97</string>
     <string name="num_98">98</string>
     <string name="num_99">99</string>
-
 
 </resources>

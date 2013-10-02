@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_incluir"
+        android:icon="@drawable/content_new"
+        android:title="@string/incluir"
+        android:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_update"
+        android:icon="@drawable/navigation_refresh"
+        android:title="@string/incluir"
+        android:showAsAction="ifRoom" />
+
+</menu>

@@ -28,7 +28,7 @@ public class LoteriaDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         View rootView = null;
         getActivity().getActionBar().setTitle(getString(R.string.emaberto));
@@ -46,7 +46,7 @@ public class LoteriaDetailFragment extends Fragment {
 //
 //            case 2:
 //                getActivity().getActionBar().setTitle(getString(R.string.megasena));
-//                rootView = inflater.inflate(R.layout.fragment_megasena, container, false);
+//                rootView = inflater.inflate(R.layout.fragment_megasena_edit, container, false);
 //
 //                txt_conc_ini = (TextView) rootView.findViewById(R.id.ed_mega_conc_ini);
 //                txt_conc_fim = (TextView) rootView.findViewById(R.id.ed_mega_conc_final);

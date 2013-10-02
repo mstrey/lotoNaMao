@@ -55,14 +55,14 @@ public class MegasenaResultadosDAO {
     };
     private static Integer concurso_max_local_volantes;
     private static Integer concurso_max_local_resultados;
-    private static Integer concurso_max_remote;
+    private static Integer concurso_max_remote_resultados;
     private static Integer concurso_max;
     private Context ctx;
 
     public MegasenaResultadosDAO(Context ctx) {
 
         this.ctx = ctx;
-        new GetResultado().execute();
+        new GetResultadoRemote().execute();
 
     }
 
@@ -231,13 +231,21 @@ public class MegasenaResultadosDAO {
         return result;
     }
 
+    public void getMaxConcRemote() {
+        concurso_max_remote_resultados = 0;
+        new GetResultadoRemote().execute();
+    }
+
     public Integer getMaxConcResultado() {
+
+        getMaxConcRemote();
+
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
-        String query =  " SELECT MAX(" + COLUNAS[0] + ") concurso " +
+        String query = " SELECT MAX(" + COLUNAS[0] + ") concurso " +
                 " from " + TABLE_NAME + ";";
 
-        Log.d(LOGTAG,query);
+        Log.d(LOGTAG, query);
         Cursor c = db.rawQuery(query, null);
 
         c.moveToFirst();
@@ -248,35 +256,34 @@ public class MegasenaResultadosDAO {
 
         db.close();
 
-        concurso_max_remote = 0;
-        Log.d(LOGTAG, "max_remote: " + concurso_max_remote);
-        Log.d(LOGTAG, "max_local_resultados: "+concurso_max_local_resultados);
-        Log.d(LOGTAG, "max_local_volantes: "+concurso_max_local_volantes);
-        concurso_max = 1;
-
         concurso_max_local_volantes = MegasenaVolantesDAO.getMaxConc(ctx);
 
-        if (concurso_max_local_resultados > concurso_max_remote) {
+        Log.d(LOGTAG, "max_remote_resultados: " + concurso_max_remote_resultados);
+        Log.d(LOGTAG, "max_local_resultados: " + concurso_max_local_resultados);
+        Log.d(LOGTAG, "max_local_volantes: " + concurso_max_local_volantes);
+        concurso_max = 1;
+
+        if (concurso_max_local_resultados > concurso_max_remote_resultados) {
             concurso_max = concurso_max_local_resultados;
         } else {
             MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
 
+            concurso_max = concurso_max_remote_resultados;
             vo_resultado.setConcurso(concurso_max);
             insert(vo_resultado);
 
-            concurso_max = concurso_max_remote;
         }
 
         if (concurso_max_local_volantes > concurso_max) {
             concurso_max = concurso_max_local_volantes;
         }
-        Log.d(LOGTAG, "max: "+concurso_max);
+        Log.d(LOGTAG, "max: " + concurso_max);
         return concurso_max;
     }
 
-    private class GetResultado extends AsyncTask<Void, Void, Void> {
+    private class GetResultadoRemote extends AsyncTask<Void, Void, Void> {
 
-        public GetResultado() {
+        public GetResultadoRemote() {
 
         }
 
@@ -300,7 +307,7 @@ public class MegasenaResultadosDAO {
                 strUrl.append("?loto=");
                 strUrl.append(URLEncoder.encode(Categories.MEGASENA));
                 strUrl.append("&concurso=");
-                strUrl.append(concurso_max_remote);
+                strUrl.append(concurso_max_remote_resultados);
 
                 try {
 
@@ -309,24 +316,28 @@ public class MegasenaResultadosDAO {
                     BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     String str_json = in.readLine();
-                    Log.e(LOGTAG, "str_json: " + str_json);
+                    Log.d(LOGTAG, "str_json: " + str_json);
 
                     JSONObject obj_json = new JSONObject(str_json);
 
-                    if (concurso_max_remote > 0) {
+                    if (concurso_max_remote_resultados > 0) {
                         MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
                         vo_resultado.setJson(obj_json);
-                        insert(vo_resultado);
+                        if (exist(vo_resultado.getConcurso())) {
+                            update(vo_resultado);
+                        } else {
+                            insert(vo_resultado);
+                        }
 
                     } else {
-                        concurso_max_remote = obj_json.getInt(MAX_CONCURSO);
-                        Log.e(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote);
+                        concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
+                        Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
                     }
 
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                    concurso_max_remote = 1;
+                    concurso_max_remote_resultados = 1;
                 }
             }
             return null;
