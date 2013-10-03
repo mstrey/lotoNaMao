@@ -24,7 +24,12 @@ function printJson($query){
 	closeDB();
  
 	$resultado = mysql_fetch_array($resultSet, MYSQL_ASSOC);
+	if($resultado == false){
+		$resultado = array ('concurso'=>0);
+	}
+
 	echo json_encode($resultado, JSON_NUMERIC_CHECK);
+
 	die();
 }
 
