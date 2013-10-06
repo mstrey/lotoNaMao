@@ -2,11 +2,14 @@ package br.nom.strey.maicon.loterias.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import br.nom.strey.maicon.loterias.R;
+import br.nom.strey.maicon.loterias.megasena.MegaListFragment;
 import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosDAO;
+import br.nom.strey.maicon.loterias.quina.QuinaDetailFragment;
 
 
 /**
@@ -28,12 +31,18 @@ import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosDAO;
 public class LoteriaListActivity extends FragmentActivity
         implements LoteriaListFragment.Callbacks {
 
+    public static final String TWO_PANE = "two_pane";
     private final String TAG = "ListActivity";
+    Fragment fragment = new LoteriaDetailFragment();
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
+
+    public boolean ismTwoPane() {
+        return mTwoPane;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +63,14 @@ public class LoteriaListActivity extends FragmentActivity
             ((LoteriaListFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.loteria_list))
                     .setActivateOnItemClick(true);
+
+            Fragment fragment = new LoteriaDetailFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.loteria_detail_container, fragment)
+                    .commit();
+
         }
+
 
         // TODO: If exposing deep links into your app, handle intents here.
     }
@@ -68,13 +84,30 @@ public class LoteriaListActivity extends FragmentActivity
         Log.d(TAG, "onItemSelected");
 
         if (mTwoPane) {
+            // TODO: corrigir erro ao carregar o menu da action bar em tablets (painel duplo)
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Log.d(TAG, "onItemSelected_twoPane");
             Bundle arguments = new Bundle();
-            arguments.putString(LoteriaDetailFragment.ARG_ITEM_ID, id);
-            LoteriaDetailFragment fragment = new LoteriaDetailFragment();
+            arguments.putString(LoteriaDetailActivity.ARG_ITEM_ID, id);
+            arguments.putBoolean(TWO_PANE, mTwoPane);
+
+            switch (Integer.parseInt(id)) {
+                case 1:
+                    fragment = new LoteriaDetailFragment();
+                    break;
+                case 2:
+                    fragment = new MegaListFragment();
+                    break;
+                case 3:
+                    fragment = new QuinaDetailFragment();
+                    break;
+                default:
+                    break;
+
+            }
+
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.loteria_detail_container, fragment)
@@ -85,7 +118,7 @@ public class LoteriaListActivity extends FragmentActivity
             // for the selected item ID.
             Log.d(TAG, "onItemSelected_singlePane");
             Intent detailIntent = new Intent(this, LoteriaDetailActivity.class);
-            detailIntent.putExtra(LoteriaDetailFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(LoteriaDetailActivity.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
     }
@@ -94,4 +127,5 @@ public class LoteriaListActivity extends FragmentActivity
         MegasenaResultadosDAO dao_mega = new MegasenaResultadosDAO(getBaseContext());
         dao_mega.getMaxConcRemote();
     }
+
 }

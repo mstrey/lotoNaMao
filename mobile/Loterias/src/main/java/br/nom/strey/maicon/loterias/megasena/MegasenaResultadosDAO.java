@@ -17,6 +17,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import br.nom.strey.maicon.loterias.main.Categories;
@@ -62,7 +63,7 @@ public class MegasenaResultadosDAO {
     public MegasenaResultadosDAO(Context ctx) {
 
         this.ctx = ctx;
-        new GetResultadoRemote().execute();
+        new GetResultadosRemote().execute();
 
     }
 
@@ -231,9 +232,16 @@ public class MegasenaResultadosDAO {
         return result;
     }
 
+    public void getConcRemote(ArrayList<Integer> concursos) {
+        GetResultadosRemote get_remote = new GetResultadosRemote();
+        get_remote.execute(concursos);
+    }
+
     public void getMaxConcRemote() {
-        concurso_max_remote_resultados = 0;
-        new GetResultadoRemote().execute();
+        ArrayList<Integer> concursos = new ArrayList<Integer>();
+        concursos.add(0);
+        GetResultadosRemote get_remote = new GetResultadosRemote();
+        get_remote.execute(concursos);
     }
 
     public Integer getMaxConcResultado() {
@@ -270,7 +278,11 @@ public class MegasenaResultadosDAO {
 
             concurso_max = concurso_max_remote_resultados;
             vo_resultado.setConcurso(concurso_max);
-            insert(vo_resultado);
+            if (!exist(concurso_max)) {
+                insert(vo_resultado);
+            } else {
+                update(vo_resultado);
+            }
 
         }
 
@@ -281,9 +293,9 @@ public class MegasenaResultadosDAO {
         return concurso_max;
     }
 
-    private class GetResultadoRemote extends AsyncTask<Void, Void, Void> {
+    private class GetResultadosRemote extends AsyncTask<ArrayList<Integer>, Void, Boolean> {
 
-        public GetResultadoRemote() {
+        public GetResultadosRemote() {
 
         }
 
@@ -293,53 +305,58 @@ public class MegasenaResultadosDAO {
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Boolean doInBackground(ArrayList<Integer>... concursos) {
 
-            if (WebService.connected(ctx) != WebService.DISCONNECTED) {
-                StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
-                strUrl.append("loto/");
-                strUrl.append("getResults.php");
-                strUrl.append("?loto=");
-                strUrl.append(URLEncoder.encode(Categories.MEGASENA));
-                strUrl.append("&concurso=");
-                strUrl.append(concurso_max_remote_resultados);
+            int cont = concursos.length;
 
-                try {
+            for (int i = 0; i < cont; i++) {
+                if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                    StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
+                    strUrl.append("loto/");
+                    strUrl.append("getResults.php");
+                    strUrl.append("?loto=");
+                    strUrl.append(URLEncoder.encode(Categories.MEGASENA));
+                    strUrl.append("&concurso=");
+                    strUrl.append(concursos[0].get(i));
+                    try {
 
-                    URL url = new URL(strUrl.toString());
-                    URLConnection con = url.openConnection();
-                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                        URL url = new URL(strUrl.toString());
+                        URLConnection con = url.openConnection();
+                        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-                    String str_json = in.readLine();
-                    Log.d(LOGTAG, "str_json: " + str_json);
+                        String str_json = in.readLine();
+                        Log.d(LOGTAG, "str_json: " + str_json);
 
-                    JSONObject obj_json = new JSONObject(str_json);
+                        JSONObject obj_json = new JSONObject(str_json);
 
-                    if (concurso_max_remote_resultados > 0) {
-                        MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
-                        vo_resultado.setJson(obj_json);
-                        if (exist(vo_resultado.getConcurso())) {
-                            update(vo_resultado);
+                        if (concursos[0].get(i) != 0) {
+                            MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
+                            vo_resultado.setJson(obj_json);
+
+                            if (exist(vo_resultado.getConcurso())) {
+                                update(vo_resultado);
+                            } else {
+                                insert(vo_resultado);
+                            }
+
                         } else {
-                            insert(vo_resultado);
+                            concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
+                            Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
                         }
 
-                    } else {
-                        concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
-                        Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        concurso_max_remote_resultados = 1;
                     }
-
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    concurso_max_remote_resultados = 1;
                 }
             }
+
             return null;
         }
     }

@@ -4,8 +4,8 @@
     <string name="app_name">Loterias</string>
     <string name="title_loteria_detail">loteria Detail</string>
     <string name="megasena">Mega-Sena</string>
-    <string name="megasena_action_header_list">Lista volantes Mega-Sena</string>
-    <string name="megasena_action_header_edit">Cadastro volantes Mega-Sena</string>
+    <string name="megasena_action_header_list">Lista volantes Mega</string>
+    <string name="megasena_action_header_edit">Volantes Mega-Sena</string>
     <string name="quina">Quina</string>
     <string name="emaberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>

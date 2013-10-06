@@ -255,7 +255,7 @@ public class MegaEditFragment extends Fragment {
                         Collections.sort(lista_numeros_marcados);
 
                         for (int i = 0; i < lista_numeros_marcados.size(); i++) {
-                            aposta += lista_numeros_marcados.get(i).toString();
+                            aposta += lista_numeros_marcados.get(i);
                         }
 
                         for (int i = conc_ini; i <= conc_fim; i++) {

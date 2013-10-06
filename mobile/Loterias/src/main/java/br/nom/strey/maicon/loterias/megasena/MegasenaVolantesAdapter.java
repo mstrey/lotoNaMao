@@ -50,7 +50,6 @@ public class MegasenaVolantesAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        // TODO ajustar dados na View
         final MegasenaVolantesVO vo_mega_volante = lista.get(position);
 
         LayoutInflater layout = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

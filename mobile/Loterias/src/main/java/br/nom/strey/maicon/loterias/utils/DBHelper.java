@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static String dbName = "loterias.db";
+    public static final String DBNAME = "loterias.db";
     private final static int DB_VERSION = 1;
 
     // scripts para criação das tabelas da mega-sena
@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + "  faixa_2 INTEGER ,"
             + "  faixa_3 INTEGER ,"
             + "  qtd_acertos INTEGER ,"
-            + "  conferido BOOLEAN ,"
+            + "  conferido BOOLEAN DEFAULT FALSE NOT NULL,"
             + "  data_inclusao DATETIME ,"
             + "  concurso INTEGER ,"
             + "  FOREIGN KEY(concurso) REFERENCES megasena_resultados(concurso)"
@@ -85,7 +85,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + "  faixa_2 DECIMAL(11,2) ,"
             + "  faixa_3 DECIMAL(11,2) ,"
             + "  qtd_acertos INTEGER ,"
-            + "  conferido BOOLEAN ,"
+            + "  conferido BOOLEAN DEFAULT FALSE,"
             + "  data_inclusao DATETIME ,"
             + "  concurso INTEGER ,"
             + "  FOREIGN KEY(concurso) REFERENCES quina_resultados(concurso)"
@@ -95,7 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static String dbSQL_quina_volantes_index_concurso = "CREATE INDEX quina_volantes_conc ON quina_volantes(concurso); ";
 
     public DBHelper(Context context) {
-        super(context, dbName, null, DB_VERSION);
+        super(context, DBNAME, null, DB_VERSION);
 
     }
 

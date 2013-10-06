@@ -1,6 +1,10 @@
 package br.nom.strey.maicon.loterias.megasena;
 
+import android.content.Context;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by maicon on 06/09/13.
@@ -15,7 +19,6 @@ public class MegasenaVolantesVO {
     private Double faixa_3;
     private Integer qtd_acertos;
     private Boolean conferido;
-    private Boolean arquivado;
     private Date data_inclusao;
 
     public Integer getQtdAcertos() {
@@ -40,22 +43,6 @@ public class MegasenaVolantesVO {
 
     public void setConferido(Boolean conferido) {
         this.conferido = conferido;
-    }
-
-    public Boolean getArquivado() {
-        return arquivado;
-    }
-
-    public void setArquivado(Integer arquivado) {
-        if (arquivado == 0) {
-            this.arquivado = false;
-        } else {
-            this.arquivado = true;
-        }
-    }
-
-    public void setArquivado(Boolean arquivado) {
-        this.arquivado = arquivado;
     }
 
     public Date getDataInclusao() {
@@ -95,10 +82,26 @@ public class MegasenaVolantesVO {
         return aposta;
     }
 
+    public void setAposta(String aposta) {
+        this.aposta = aposta;
+    }
+
     public String getApostaView() {
 
         String aposta_view = "";
         Boolean quebra = false;
+        List<Integer> list_aposta = new ArrayList<Integer>();
+        list_aposta = getApostaList();
+
+//        for (Integer numero: list_aposta) {
+//            aposta_view += numero+" ";
+//            if (aposta_view.length() >= 21) {
+//                if (!quebra) {
+//                    aposta_view += "\n";
+//                }
+//                quebra = true;
+//            }
+//        }
 
         for (int i = 0; i < aposta.length(); i = i + 2) {
             aposta_view += aposta.substring(i, i + 2) + " ";
@@ -113,8 +116,14 @@ public class MegasenaVolantesVO {
         return aposta_view;
     }
 
-    public void setAposta(String aposta) {
-        this.aposta = aposta;
+    public List<Integer> getApostaList() {
+
+        List<Integer> list_aposta = new ArrayList<Integer>();
+
+        for (int i = 0; i < aposta.length(); i = i + 2) {
+            list_aposta.add(Integer.parseInt(aposta.substring(i, i + 2)));
+        }
+        return list_aposta;
     }
 
     public Integer getConcurso() {
@@ -131,6 +140,25 @@ public class MegasenaVolantesVO {
 
     public void setVolanteId(Integer volante_id) {
         this.volante_id = volante_id;
+    }
+
+    public void confereResultado(Context ctx) {
+        MegasenaResultadosDAO dao_resultado = new MegasenaResultadosDAO(ctx);
+        qtd_acertos = 0;
+
+        if (dao_resultado.exist(concurso)) {
+            MegasenaResultadosVO vo_resultado = dao_resultado.get(concurso);
+
+            for (Integer numero : vo_resultado.getNumerosList()) {
+                if (apostaContem(numero)) {
+                    qtd_acertos++;
+                }
+            }
+        }
+    }
+
+    private boolean apostaContem(Integer numero) {
+        return getApostaList().contains(numero);
     }
 
 }

@@ -35,6 +35,23 @@ public class MegasenaVolantesDAO {
         this.ctx = ctx;
     }
 
+    public static Integer getMaxConc(Context ctx) {
+        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
+        List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
+
+        String query = " SELECT MAX(" + COLUNAS[1] + ") concurso " +
+                " from " + TABLE_NAME + ";";
+        Cursor c = db.rawQuery(query, null);
+
+        c.moveToFirst();
+
+        Integer concurso_max = c.getInt(c.getColumnIndex(COLUNAS[1]));
+        c.close();
+        db.close();
+
+        return concurso_max;
+    }
+
     public boolean insert(MegasenaVolantesVO vo) {
 
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
@@ -46,11 +63,6 @@ public class MegasenaVolantesDAO {
         ctv.put("volante_id", vo.getVolanteId());
         ctv.put("concurso", vo.getConcurso());
         ctv.put("aposta", vo.getAposta());
-        ctv.put("faixa_1", vo.getFaixa1());
-        ctv.put("faixa_2", vo.getFaixa2());
-        ctv.put("faixa_3", vo.getFaixa3());
-        ctv.put("qtd_acertos", vo.getQtdAcertos());
-        ctv.put("conferido", vo.getConferido());
         ctv.put("data_inclusao", data_inclusao);
 
         boolean result = db.insert(TABLE_NAME, null, ctv) > 0;
@@ -92,6 +104,10 @@ public class MegasenaVolantesDAO {
     }
 
     public MegasenaVolantesVO get(Integer volante_id) {
+        return get(volante_id, ctx);
+    }
+
+    public static MegasenaVolantesVO get(Integer volante_id, Context ctx) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         Cursor c = db.query(TABLE_NAME, // table
                 COLUNAS,                // columns
@@ -171,7 +187,7 @@ public class MegasenaVolantesDAO {
                 null,
                 null,
                 null,
-                "data_inclusao asc",
+                "concurso asc",
                 null);
 
         while (c.moveToNext()) {
@@ -187,21 +203,56 @@ public class MegasenaVolantesDAO {
         return lista_volantes;
     }
 
-    public static Integer getMaxConc(Context ctx) {
+    public static List<MegasenaVolantesVO> getNaoConferidos(Context ctx) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-        List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
 
-        String query = " SELECT MAX(" + COLUNAS[1] + ") concurso " +
-                " from " + TABLE_NAME + ";";
-        Cursor c = db.rawQuery(query, null);
+        List<MegasenaVolantesVO> list_vo_volantes = new ArrayList<MegasenaVolantesVO>();
+        MegasenaVolantesVO vo_volante = new MegasenaVolantesVO();
 
-        c.moveToFirst();
+        Cursor c = db.query(TABLE_NAME,
+                COLUNAS,
+                null,
+                null,
+                null,
+                null,
+                COLUNAS[1] + " asc",
+                null);
 
-        Integer concurso_max = c.getInt(c.getColumnIndex(COLUNAS[1]));
+
+        while (c.moveToNext()) {
+            vo_volante = get(c.getInt(c.getColumnIndex(COLUNAS[0])), ctx);
+            list_vo_volantes.add(vo_volante);
+        }
+
         c.close();
         db.close();
 
-        return concurso_max;
+        return list_vo_volantes;
+    }
+
+    public static List<Integer> getConcursosNaoConferidos(Context ctx) {
+        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
+
+        List<Integer> list_concursos = new ArrayList<Integer>();
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{COLUNAS[1]},
+                "conferido = 'FALSE'",
+                null,
+                COLUNAS[1],
+                null,
+                COLUNAS[1] + " asc",
+                null);
+
+
+        while (c.moveToNext()) {
+            list_concursos.add(c.getInt(c.getColumnIndex(COLUNAS[1])));
+        }
+
+        c.close();
+        db.close();
+
+        return list_concursos;
     }
 
     public Boolean existAny(Integer concurso) {

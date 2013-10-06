@@ -5,7 +5,9 @@ import android.util.Log;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by maicon on 06/09/13.
@@ -50,9 +52,10 @@ public class MegasenaResultadosVO {
                 SimpleDateFormat dateFormatSorteio = new SimpleDateFormat("yyyy-MM-dd");
                 data_sorteio = dateFormatSorteio.parse("1996-03-11");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        };
+        }
+        ;
 
         return data_sorteio;
     }
@@ -60,6 +63,21 @@ public class MegasenaResultadosVO {
     public void setData_sorteio(Date data_sorteio) {
         this.data_sorteio = data_sorteio;
     }
+
+    public List<Integer> getNumerosList() {
+
+        List<Integer> list_numeros = new ArrayList<Integer>();
+
+        list_numeros.add(bola1);
+        list_numeros.add(bola2);
+        list_numeros.add(bola3);
+        list_numeros.add(bola4);
+        list_numeros.add(bola5);
+        list_numeros.add(bola6);
+
+        return list_numeros;
+    }
+
 
     public Integer getBola1() {
         return bola1;
@@ -211,9 +229,10 @@ public class MegasenaResultadosVO {
                 SimpleDateFormat dateFormatInclusao = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 data_inclusao = dateFormatInclusao.parse("2013-01-01 00:00:00");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        };
+        }
+        ;
 
         return data_inclusao;
     }
@@ -260,7 +279,7 @@ public class MegasenaResultadosVO {
             dataInclusao = dateFormatInclusao.parse(obj_json.getString("data_inclusao"));
             setData_inclusao(dataInclusao);
 
-            Log.d(LOGTAG,"data_sorteio:"+obj_json.getString("data_sorteio")+" - data_inclusao:"+obj_json.getString("data_inclusao"));
+            Log.d(LOGTAG, "data_sorteio:" + obj_json.getString("data_sorteio") + " - data_inclusao:" + obj_json.getString("data_inclusao"));
 
         } catch (Exception e) {
             e.printStackTrace();

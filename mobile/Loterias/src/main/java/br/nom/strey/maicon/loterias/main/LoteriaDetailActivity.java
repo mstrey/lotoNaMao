@@ -17,10 +17,17 @@ import br.nom.strey.maicon.loterias.quina.QuinaDetailFragment;
 
 public class LoteriaDetailActivity extends FragmentActivity {
 
+    public static final String ARG_ITEM_ID = "item_id";
     private final String TAG = "DetailActivity";
     MegaEditFragment megaEditFragment = new MegaEditFragment();
     MegaListFragment megaListFragment = new MegaListFragment();
     private Integer category;
+
+    private boolean mTwoPane;
+
+    public boolean ismTwoPane() {
+        return mTwoPane;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public class LoteriaDetailActivity extends FragmentActivity {
             // using a fragment transaction.
             Bundle arguments = new Bundle();
 
-            category = Integer.parseInt(getIntent().getStringExtra(LoteriaDetailFragment.ARG_ITEM_ID));
+            category = Integer.parseInt(getIntent().getStringExtra(ARG_ITEM_ID));
 
             switch (category) {
                 case 1:
