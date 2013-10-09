@@ -32,6 +32,8 @@ function getMegaResults(){
   $page += "&opcao=concurso";
   $page += "&txtConcurso=1500";
   
+  echo "getMegaResults<br>";
+
   parsePage($page);
   
   $max = getMaxConcurso($table);
