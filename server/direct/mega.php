@@ -1,7 +1,7 @@
 <?php
-include_once 'connection.php';
-include_once 'getMax.php';
-include_once 'error.php';
+include_once '../connection.php';
+include_once '../getMax.php';
+include_once '../error.php';
 
   function parsePage($site){
 	/*** a new dom object ***/ 
