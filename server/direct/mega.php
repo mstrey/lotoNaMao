@@ -26,7 +26,7 @@ include_once '../error.php';
 	return $trs;
 }
 
-function getMegaResults($table){  
+function getMegaResults(){  
   $page = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
   $page += "?submeteu=sim";
   $page += "&opcao=concurso";
@@ -112,7 +112,8 @@ function getMegaResults($table){
 	closeDB();
 
   }
-  
+
+/*  
   $parse_result = array(
   			"category" => "mega",
   			"concursos" => array(
@@ -122,6 +123,8 @@ function getMegaResults($table){
   			);
   //echo "<br/> MEGASENA - maior salvo: ".$max."<br/> ultimo parseado: ".$parse; 
   echo json_encode($parse_result, JSON_NUMERIC_CHECK);
+  */
+  getMegaResults();
   
 }
 
