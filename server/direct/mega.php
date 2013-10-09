@@ -7,12 +7,12 @@ include_once '../error.php';
 	/*** a new dom object ***/ 
 	$dom = new domDocument; 
 
-	echo "parse<br>"
+	echo "parse<br>";
 	
 	/*** load the html into the object ***/
 	$dom->loadHTMLFile($site); 
 
-	print_r($dom);
+	echo $dom->saveHTML();
 	die();
 	
 	/*** discard white space ***/ 
