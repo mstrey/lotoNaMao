@@ -7,6 +7,8 @@ include_once '../error.php';
 	/*** a new dom object ***/ 
 	$dom = new domDocument; 
 
+	echo "parse<br>"
+	
 	/*** load the html into the object ***/
 	$dom->loadHTMLFile($site); 
 
