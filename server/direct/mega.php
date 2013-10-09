@@ -10,7 +10,7 @@ include_once '../error.php';
 	/*** load the html into the object ***/
 	$dom->loadHTMLFile($site); 
 
-	printr($dom);
+	print_r($dom);
 	die();
 	
 	/*** discard white space ***/ 
