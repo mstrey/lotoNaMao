@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class MegasenaVolantesVO {
 
+    public static final Integer CONFERIDO_FALSE = 0;
+    public static final Integer CONFERIDO_TRUE = 1;
     private Integer volante_id;
     private Integer concurso;
     private String aposta;
@@ -18,7 +20,7 @@ public class MegasenaVolantesVO {
     private Double faixa_2;
     private Double faixa_3;
     private Integer qtd_acertos;
-    private Boolean conferido;
+    private Integer conferido;
     private Date data_inclusao;
 
     public Integer getQtdAcertos() {
@@ -29,19 +31,11 @@ public class MegasenaVolantesVO {
         this.qtd_acertos = qtd_acertos;
     }
 
-    public Boolean getConferido() {
+    public Integer getConferido() {
         return conferido;
     }
 
     public void setConferido(Integer conferido) {
-        if (conferido == 0) {
-            this.conferido = false;
-        } else {
-            this.conferido = true;
-        }
-    }
-
-    public void setConferido(Boolean conferido) {
         this.conferido = conferido;
     }
 
@@ -148,6 +142,7 @@ public class MegasenaVolantesVO {
 
         if (dao_resultado.exist(concurso)) {
             MegasenaResultadosVO vo_resultado = dao_resultado.get(concurso);
+            setConferido(CONFERIDO_TRUE);
 
             for (Integer numero : vo_resultado.getNumerosList()) {
                 if (apostaContem(numero)) {

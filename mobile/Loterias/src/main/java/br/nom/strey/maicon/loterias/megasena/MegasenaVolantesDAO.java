@@ -211,7 +211,7 @@ public class MegasenaVolantesDAO {
 
         Cursor c = db.query(TABLE_NAME,
                 COLUNAS,
-                null,
+                COLUNAS[7] + " = " + MegasenaVolantesVO.CONFERIDO_FALSE,
                 null,
                 null,
                 null,
@@ -237,7 +237,7 @@ public class MegasenaVolantesDAO {
 
         Cursor c = db.query(TABLE_NAME,
                 new String[]{COLUNAS[1]},
-                "conferido = 'FALSE'",
+                COLUNAS[7] + " = " + MegasenaVolantesVO.CONFERIDO_FALSE,
                 null,
                 COLUNAS[1],
                 null,

@@ -12,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,6 +56,7 @@ public class MegaListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        new CheckVolantesResultado().execute();
         getActivity().getActionBar().setTitle(getString(R.string.megasena_action_header_list));
 
         ctx = getActivity().getBaseContext();
@@ -71,34 +71,45 @@ public class MegaListFragment extends Fragment {
         listView_volantes.setAdapter(adapter_volantes);
         listView_volantes.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        listView_volantes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                MegasenaVolantesVO vo_mega_volante_item = listMegaVolantes.get(position);
-
-                ((LoteriaDetailActivity) getActivity()).editMegaFragment(vo_mega_volante_item);
-
-            }
-        });
+//        listView_volantes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                MegasenaVolantesVO vo_mega_volante_item = listMegaVolantes.get(position);
+//
+//                ((LoteriaDetailActivity) getActivity()).editMegaFragment(vo_mega_volante_item);
+//
+//            }
+//        });
 
         return rootView;
 
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+
+        ctx = getActivity().getBaseContext();
+
+        refresh = menu.findItem(R.id.action_update);
+
+        MegasenaVolantesDAO dao_volantes = new MegasenaVolantesDAO(ctx);
+
+        if (dao_volantes.getAll().isEmpty()) {
+            refresh.setVisible(false);
+        }
+
+//        backUpDB();
+
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         this.menu = menu;
-        ctx = getActivity().getBaseContext();
 
         menu.clear();
         menuInflater = getActivity().getMenuInflater();
         menuInflater.inflate(R.menu.action_lista, menu);
-
-        refresh = menu.findItem(R.id.action_update);
-
-        if (MegasenaVolantesDAO.getNaoConferidos(ctx).isEmpty()) {
-            refresh.setEnabled(false);
-        }
 
         super.onCreateOptionsMenu(menu, menuInflater);
     }
@@ -171,7 +182,6 @@ public class MegaListFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             refresh.setActionView(null);
-            Toast.makeText(ctx, "refresh", Toast.LENGTH_LONG).show();
             refreshVolantesList();
 
             super.onPostExecute(aVoid);
@@ -201,7 +211,7 @@ public class MegaListFragment extends Fragment {
                 }
             }
 
-            backUpDB();
+//            backUpDB();
 
             return null;
         }

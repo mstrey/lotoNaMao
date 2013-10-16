@@ -40,19 +40,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/mega_row_discard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/mega_row_discard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/content_discard"
-            android:layout_gravity="right" />
-
-    </LinearLayout>
+        android:layout_gravity="right"
+        android:src="@drawable/content_discard" />
 
 </LinearLayout>

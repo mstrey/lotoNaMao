@@ -2,7 +2,9 @@ package br.nom.strey.maicon.loterias.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,8 +21,7 @@ public class LoteriaDetailActivity extends FragmentActivity {
 
     public static final String ARG_ITEM_ID = "item_id";
     private final String TAG = "DetailActivity";
-    MegaEditFragment megaEditFragment = new MegaEditFragment();
-    MegaListFragment megaListFragment = new MegaListFragment();
+    Fragment fragment = new Fragment();
     private Integer category;
 
     private boolean mTwoPane;
@@ -47,29 +48,21 @@ public class LoteriaDetailActivity extends FragmentActivity {
 
             switch (category) {
                 case 1:
-                    LoteriaDetailFragment principalFragment = new LoteriaDetailFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.loteria_detail_container, principalFragment)
-                            .commit();
-
+                    fragment = new LoteriaDetailFragment();
                     break;
 
                 case 2:
-
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.loteria_detail_container, megaListFragment)
-                            .commit();
-
+                    fragment = new MegaListFragment();
                     break;
 
                 case 3:
-                    QuinaDetailFragment quinaFragment = new QuinaDetailFragment();
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.loteria_detail_container, quinaFragment)
-                            .commit();
-
+                    fragment = new QuinaDetailFragment();
                     break;
             }
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.loteria_detail_container, fragment)
+                    .commit();
 
         }
 
@@ -92,7 +85,9 @@ public class LoteriaDetailActivity extends FragmentActivity {
                 break;
 
             case 2:
-                megaEditFragment.setNumber(v);
+                if (MegaEditFragment.class == fragment.getClass()) {
+                    ((MegaEditFragment) fragment).setNumber(v);
+                }
                 break;
 
             case 3:
@@ -109,20 +104,41 @@ public class LoteriaDetailActivity extends FragmentActivity {
     }
 
     public void editMegaFragment(MegasenaVolantesVO vo) {
-        megaEditFragment = new MegaEditFragment(vo);
+        fragment = new MegaEditFragment(vo);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.loteria_detail_container, megaEditFragment)
+                .replace(R.id.loteria_detail_container, fragment)
+                .setCustomAnimations(
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
+                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .commit();
     }
 
     public void editMegaFragment() {
-        megaEditFragment = new MegaEditFragment();
+        fragment = new MegaEditFragment();
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.loteria_detail_container, megaEditFragment)
+                .replace(R.id.loteria_detail_container, fragment)
+                .setCustomAnimations(
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
+                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .commit();
     }
 
+    public void refreshFragmentList() {
+        if (MegaListFragment.class == fragment.getClass()) {
+            ((MegaListFragment) fragment).refreshVolantesList();
+        } else {
+            fragment = new MegaListFragment();
+        }
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.loteria_detail_container, fragment)
+                .setCustomAnimations(
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
+                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .commit();
+
+    }
 
 }

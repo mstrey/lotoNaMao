@@ -47,6 +47,7 @@ public class MegaEditFragment extends Fragment {
     private AlertDialog.Builder np_dialog_conc_ini;
     private AlertDialog.Builder np_dialog_teimosinha;
     private Boolean editing = false;
+    private MenuItem discard;
 
     public MegaEditFragment() {
 
@@ -223,6 +224,15 @@ public class MegaEditFragment extends Fragment {
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        discard = menu.findItem(R.id.action_discard);
+        if (!editing) {
+            discard.setVisible(false);
+        }
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menu.clear();
         menuInflater = getActivity().getMenuInflater();
@@ -259,11 +269,16 @@ public class MegaEditFragment extends Fragment {
                         }
 
                         for (int i = conc_ini; i <= conc_fim; i++) {
+                            if (i != conc_ini) {
+                                vo_volante_mega = new MegasenaVolantesVO();
+                                editing = false;
+                            }
                             vo_volante_mega.setConcurso(i);
                             vo_volante_mega.setAposta(aposta);
                             if (!editing) {
                                 dao_volante_mega.insert(vo_volante_mega);
                             } else {
+                                vo_volante_mega.setConferido(MegasenaVolantesVO.CONFERIDO_FALSE);
                                 dao_volante_mega.update(vo_volante_mega);
                             }
                         }

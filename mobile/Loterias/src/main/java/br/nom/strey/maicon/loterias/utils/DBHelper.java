@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + "  faixa_2 INTEGER ,"
             + "  faixa_3 INTEGER ,"
             + "  qtd_acertos INTEGER ,"
-            + "  conferido BOOLEAN DEFAULT FALSE NOT NULL,"
+            + "  conferido INTEGER DEFAULT 0 NOT NULL,"
             + "  data_inclusao DATETIME ,"
             + "  concurso INTEGER ,"
             + "  FOREIGN KEY(concurso) REFERENCES megasena_resultados(concurso)"
