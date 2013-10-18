@@ -71,16 +71,6 @@ public class MegaListFragment extends Fragment {
         listView_volantes.setAdapter(adapter_volantes);
         listView_volantes.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-//        listView_volantes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                MegasenaVolantesVO vo_mega_volante_item = listMegaVolantes.get(position);
-//
-//                ((LoteriaDetailActivity) getActivity()).editMegaFragment(vo_mega_volante_item);
-//
-//            }
-//        });
-
         return rootView;
 
     }
@@ -190,23 +180,18 @@ public class MegaListFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            List<MegasenaVolantesVO> volantes_nao_conferidos = MegasenaVolantesDAO.getNaoConferidos(ctx);
-            List<Integer> concursos_nao_conferidos = MegasenaVolantesDAO.getConcursosNaoConferidos(ctx);
+            MegasenaVolantesDAO dao_volantes = new MegasenaVolantesDAO(ctx);
+            List<MegasenaVolantesVO> volantes_nao_conferidos = dao_volantes.getAll();
+            ArrayList<Integer> concursos_nao_conferidos = dao_volantes.getConcursosParaConferidos();
             MegasenaResultadosDAO dao_resultado = new MegasenaResultadosDAO(ctx);
-
-            ArrayList<Integer> concursos = new ArrayList<Integer>();
 
             if (!concursos_nao_conferidos.isEmpty()) {
 
-                for (Integer conc : concursos_nao_conferidos) {
-                    concursos.add(conc);
-                }
-
-                dao_resultado.getConcRemote(concursos);
+                dao_resultado.getConcRemote(concursos_nao_conferidos);
 
                 for (MegasenaVolantesVO vo_volante : volantes_nao_conferidos) {
                     vo_volante.confereResultado(ctx);
-                    MegasenaVolantesDAO dao_volantes = new MegasenaVolantesDAO(ctx);
+                    dao_volantes = new MegasenaVolantesDAO(ctx);
                     dao_volantes.update(vo_volante);
                 }
             }

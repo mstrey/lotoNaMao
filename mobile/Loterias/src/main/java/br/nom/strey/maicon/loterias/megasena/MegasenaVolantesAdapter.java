@@ -30,11 +30,6 @@ public class MegasenaVolantesAdapter extends BaseAdapter {
         this.lista = lista;
     }
 
-    //    public MegasenaVolantesAdapter(Fragment fragment, List<MegasenaVolantesVO> lista) {
-//        this.fragment = fragment;
-//        this.lista = lista;
-//    }
-//
     @Override
     public int getCount() {
         return lista.size();
@@ -63,11 +58,13 @@ public class MegasenaVolantesAdapter extends BaseAdapter {
         ImageView img_discard = (ImageView) v.findViewById(R.id.mega_row_discard);
 
         Integer acertos = vo_mega_volante.getQtdAcertos();
-        Boolean conferido = vo_mega_volante.getConferido().equals(MegasenaVolantesVO.CONFERIDO_TRUE);
 
         txt_concurso.setText(vo_mega_volante.getConcurso().toString());
         txt_aposta.setText(vo_mega_volante.getApostaView());
-        txt_acertos.setText(conferido ? acertos.toString() : "");
+
+        MegasenaResultadosDAO resultadosDAO = new MegasenaResultadosDAO(ctx);
+
+        txt_acertos.setText(resultadosDAO.exist(vo_mega_volante.getConcurso()) ? acertos.toString() : "");
 
         View.OnClickListener editClickListener = new View.OnClickListener() {
             @Override

@@ -4,23 +4,20 @@ import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by maicon on 06/09/13.
  */
 public class MegasenaVolantesVO {
 
-    public static final Integer CONFERIDO_FALSE = 0;
-    public static final Integer CONFERIDO_TRUE = 1;
     private Integer volante_id;
     private Integer concurso;
     private String aposta;
+    private ArrayList<Integer> lista_aposta = new ArrayList<Integer>();
     private Double faixa_1;
     private Double faixa_2;
     private Double faixa_3;
     private Integer qtd_acertos;
-    private Integer conferido;
     private Date data_inclusao;
 
     public Integer getQtdAcertos() {
@@ -29,14 +26,6 @@ public class MegasenaVolantesVO {
 
     public void setQtdAcertos(Integer qtd_acertos) {
         this.qtd_acertos = qtd_acertos;
-    }
-
-    public Integer getConferido() {
-        return conferido;
-    }
-
-    public void setConferido(Integer conferido) {
-        this.conferido = conferido;
     }
 
     public Date getDataInclusao() {
@@ -78,46 +67,32 @@ public class MegasenaVolantesVO {
 
     public void setAposta(String aposta) {
         this.aposta = aposta;
+        lista_aposta.clear();
+        for (int i = 0; i < aposta.length(); i = i + 2) {
+            lista_aposta.add(Integer.parseInt(aposta.substring(i, i + 2)));
+        }
     }
 
     public String getApostaView() {
 
         String aposta_view = "";
         Boolean quebra = false;
-        List<Integer> list_aposta = new ArrayList<Integer>();
-        list_aposta = getApostaList();
 
-//        for (Integer numero: list_aposta) {
-//            aposta_view += numero+" ";
-//            if (aposta_view.length() >= 21) {
-//                if (!quebra) {
-//                    aposta_view += "\n";
-//                }
-//                quebra = true;
-//            }
-//        }
-
-        for (int i = 0; i < aposta.length(); i = i + 2) {
-            aposta_view += aposta.substring(i, i + 2) + " ";
-            if (i >= 14) {
+        for (int i = 0; i < lista_aposta.size(); i++) {
+            if (i >= 15) {
                 if (!quebra) {
                     aposta_view += "\n";
                 }
                 quebra = true;
             }
+            aposta_view += lista_aposta.get(i) + " ";
         }
 
         return aposta_view;
     }
 
-    public List<Integer> getApostaList() {
-
-        List<Integer> list_aposta = new ArrayList<Integer>();
-
-        for (int i = 0; i < aposta.length(); i = i + 2) {
-            list_aposta.add(Integer.parseInt(aposta.substring(i, i + 2)));
-        }
-        return list_aposta;
+    public ArrayList<Integer> getApostaList() {
+        return lista_aposta;
     }
 
     public Integer getConcurso() {
@@ -142,18 +117,13 @@ public class MegasenaVolantesVO {
 
         if (dao_resultado.exist(concurso)) {
             MegasenaResultadosVO vo_resultado = dao_resultado.get(concurso);
-            setConferido(CONFERIDO_TRUE);
 
             for (Integer numero : vo_resultado.getNumerosList()) {
-                if (apostaContem(numero)) {
+                if (lista_aposta.contains(numero)) {
                     qtd_acertos++;
                 }
             }
         }
-    }
-
-    private boolean apostaContem(Integer numero) {
-        return getApostaList().contains(numero);
     }
 
 }

@@ -220,7 +220,7 @@ public class MegaEditFragment extends Fragment {
             setNumber(txt_aposta.get(0));
         }
 
-
+        // TODO: indentificar os numeros sorteados incluindo borda vermelha
     }
 
     @Override
@@ -278,7 +278,6 @@ public class MegaEditFragment extends Fragment {
                             if (!editing) {
                                 dao_volante_mega.insert(vo_volante_mega);
                             } else {
-                                vo_volante_mega.setConferido(MegasenaVolantesVO.CONFERIDO_FALSE);
                                 dao_volante_mega.update(vo_volante_mega);
                             }
                         }

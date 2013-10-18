@@ -93,7 +93,6 @@ public class MegasenaVolantesDAO {
         ctv.put("faixa_2", vo.getFaixa2());
         ctv.put("faixa_3", vo.getFaixa3());
         ctv.put("qtd_acertos", vo.getQtdAcertos());
-        ctv.put("conferido", vo.getConferido());
         ctv.put("data_inclusao", data_inclusao);
 
         boolean result = db.update(TABLE_NAME, ctv, "volante_id=?", new String[]{vo.getVolanteId().toString()}) > 0;
@@ -131,7 +130,6 @@ public class MegasenaVolantesDAO {
             vo.setFaixa2(c.getDouble(c.getColumnIndex("faixa_2")));
             vo.setFaixa3(c.getDouble(c.getColumnIndex("faixa_3")));
             vo.setQtdAcertos(c.getInt(c.getColumnIndex("qtd_acertos")));
-            vo.setConferido(c.getInt(c.getColumnIndex("conferido")));
 
             Date data_inclusao = new Date();
 
@@ -187,7 +185,7 @@ public class MegasenaVolantesDAO {
                 null,
                 null,
                 null,
-                "concurso asc",
+                COLUNAS[1] + " asc",
                 null);
 
         while (c.moveToNext()) {
@@ -203,41 +201,14 @@ public class MegasenaVolantesDAO {
         return lista_volantes;
     }
 
-    public static List<MegasenaVolantesVO> getNaoConferidos(Context ctx) {
+    public ArrayList<Integer> getConcursosParaConferidos() {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
-        List<MegasenaVolantesVO> list_vo_volantes = new ArrayList<MegasenaVolantesVO>();
-        MegasenaVolantesVO vo_volante = new MegasenaVolantesVO();
-
-        Cursor c = db.query(TABLE_NAME,
-                COLUNAS,
-                COLUNAS[7] + " = " + MegasenaVolantesVO.CONFERIDO_FALSE,
-                null,
-                null,
-                null,
-                COLUNAS[1] + " asc",
-                null);
-
-
-        while (c.moveToNext()) {
-            vo_volante = get(c.getInt(c.getColumnIndex(COLUNAS[0])), ctx);
-            list_vo_volantes.add(vo_volante);
-        }
-
-        c.close();
-        db.close();
-
-        return list_vo_volantes;
-    }
-
-    public static List<Integer> getConcursosNaoConferidos(Context ctx) {
-        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-
-        List<Integer> list_concursos = new ArrayList<Integer>();
+        ArrayList<Integer> list_concursos = new ArrayList<Integer>();
 
         Cursor c = db.query(TABLE_NAME,
                 new String[]{COLUNAS[1]},
-                COLUNAS[7] + " = " + MegasenaVolantesVO.CONFERIDO_FALSE,
+                null,
                 null,
                 COLUNAS[1],
                 null,

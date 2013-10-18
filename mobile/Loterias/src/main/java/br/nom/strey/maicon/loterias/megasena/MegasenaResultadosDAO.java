@@ -59,6 +59,7 @@ public class MegasenaResultadosDAO {
     private static Integer concurso_max_remote_resultados;
     private static Integer concurso_max;
     private Context ctx;
+    private Boolean concursos_carregados = false;
 
     public MegasenaResultadosDAO(Context ctx) {
 
@@ -195,7 +196,6 @@ public class MegasenaResultadosDAO {
                 data_sorteio = dateFormat.parse(c.getString(c.getColumnIndex("data_sorteio")));
                 data_inclusao = dateFormat.parse(c.getString(c.getColumnIndex("data_inclusao")));
             } catch (ParseException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -216,7 +216,7 @@ public class MegasenaResultadosDAO {
 
         Cursor c = db.query(TABLE_NAME,
                 COLUNAS,
-                "concurso = ?",
+                COLUNAS[0] + " = ? AND " + COLUNAS[8] + " > 0",
                 new String[]{concurso.toString()},
                 null,
                 null,
@@ -235,6 +235,7 @@ public class MegasenaResultadosDAO {
     public void getConcRemote(ArrayList<Integer> concursos) {
         GetResultadosRemote get_remote = new GetResultadosRemote();
         get_remote.execute(concursos);
+
     }
 
     public void getMaxConcRemote() {
@@ -312,49 +313,51 @@ public class MegasenaResultadosDAO {
         @Override
         protected Boolean doInBackground(ArrayList<Integer>... concursos) {
 
-            int cont = concursos.length;
+            if (concursos.length > 0) {
+                ArrayList<Integer> lista_concursos = concursos[0];
 
-            for (int i = 0; i < cont; i++) {
-                if (WebService.connected(ctx) != WebService.DISCONNECTED) {
-                    StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
-                    strUrl.append("loto/");
-                    strUrl.append("getResults.php");
-                    strUrl.append("?loto=");
-                    strUrl.append(URLEncoder.encode(Categories.MEGASENA));
-                    strUrl.append("&concurso=");
-                    strUrl.append(concursos[0].get(i));
-                    try {
+                for (Integer concurso : lista_concursos) {
+                    if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                        StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
+                        strUrl.append("loto/");
+                        strUrl.append("getResults.php");
+                        strUrl.append("?loto=");
+                        strUrl.append(URLEncoder.encode(Categories.MEGASENA));
+                        strUrl.append("&concurso=");
+                        strUrl.append(concurso);
+                        try {
 
-                        URL url = new URL(strUrl.toString());
-                        URLConnection con = url.openConnection();
-                        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                            URL url = new URL(strUrl.toString());
+                            URLConnection con = url.openConnection();
+                            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-                        String str_json = in.readLine();
-                        Log.d(LOGTAG, "str_json: " + str_json);
+                            String str_json = in.readLine();
+                            Log.d(LOGTAG, "str_json: " + str_json);
 
-                        JSONObject obj_json = new JSONObject(str_json);
+                            JSONObject obj_json = new JSONObject(str_json);
 
-                        if (concursos[0].get(i) != 0) {
-                            MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
-                            vo_resultado.setJson(obj_json);
+                            if (concurso > 0) {
+                                MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
+                                vo_resultado.setJson(obj_json);
 
-                            if (exist(vo_resultado.getConcurso())) {
-                                update(vo_resultado);
+                                if (exist(vo_resultado.getConcurso())) {
+                                    update(vo_resultado);
+                                } else {
+                                    insert(vo_resultado);
+                                }
+
                             } else {
-                                insert(vo_resultado);
+                                concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
+                                Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
                             }
 
-                        } else {
-                            concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
-                            Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            concurso_max_remote_resultados = 1;
                         }
-
-                    } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                        concurso_max_remote_resultados = 1;
                     }
                 }
+
             }
 
             return null;
