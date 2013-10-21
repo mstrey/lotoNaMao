@@ -85,7 +85,9 @@ public class MegasenaVolantesVO {
                 }
                 quebra = true;
             }
-            aposta_view += lista_aposta.get(i) + " ";
+            Integer numero = lista_aposta.get(i);
+            aposta_view += (numero < 10) ? "0" : "";
+            aposta_view += numero + " ";
         }
 
         return aposta_view;

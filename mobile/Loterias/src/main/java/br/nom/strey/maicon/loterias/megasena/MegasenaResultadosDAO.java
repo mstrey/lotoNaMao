@@ -24,6 +24,7 @@ import br.nom.strey.maicon.loterias.main.Categories;
 import br.nom.strey.maicon.loterias.utils.DBHelper;
 import br.nom.strey.maicon.loterias.utils.WebService;
 
+
 /**
  * Created by maicon on 06/09/13.
  */
@@ -251,15 +252,16 @@ public class MegasenaResultadosDAO {
 
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
-        String query = " SELECT MAX(" + COLUNAS[0] + ") concurso " +
-                " from " + TABLE_NAME + ";";
+        String query = " SELECT MAX(" + COLUNAS[0] + ") " + COLUNAS[0] +
+                " FROM " + TABLE_NAME +
+                " WHERE " + COLUNAS[8] + " > 0;";
 
         Log.d(LOGTAG, query);
         Cursor c = db.rawQuery(query, null);
 
         c.moveToFirst();
 
-        concurso_max_local_resultados = c.getInt(c.getColumnIndex("concurso"));
+        concurso_max_local_resultados = c.getInt(c.getColumnIndex(COLUNAS[0]));
 
         c.close();
 
@@ -267,9 +269,9 @@ public class MegasenaResultadosDAO {
 
         concurso_max_local_volantes = MegasenaVolantesDAO.getMaxConc(ctx);
 
-        Log.d(LOGTAG, "max_remote_resultados: " + concurso_max_remote_resultados);
-        Log.d(LOGTAG, "max_local_resultados: " + concurso_max_local_resultados);
-        Log.d(LOGTAG, "max_local_volantes: " + concurso_max_local_volantes);
+        Log.d(LOGTAG, "max_remote_resultado: " + concurso_max_remote_resultados);
+        Log.d(LOGTAG, "max_local_resultado: " + concurso_max_local_resultados);
+        Log.d(LOGTAG, "max_local_volante: " + concurso_max_local_volantes);
         concurso_max = 1;
 
         if (concurso_max_local_resultados > concurso_max_remote_resultados) {
@@ -352,8 +354,8 @@ public class MegasenaResultadosDAO {
                             }
 
                         } catch (Exception e) {
-                            e.printStackTrace();
                             concurso_max_remote_resultados = 1;
+                            e.printStackTrace();
                         }
                     }
                 }

@@ -57,7 +57,7 @@ public class MegaListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         new CheckVolantesResultado().execute();
-        getActivity().getActionBar().setTitle(getString(R.string.megasena_action_header_list));
+        getActivity().getActionBar().setTitle(getString(R.string.action_megasena_header_list));
 
         ctx = getActivity().getBaseContext();
         rootView = inflater.inflate(R.layout.fragment_megasena_list, container, false);

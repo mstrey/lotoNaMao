@@ -25,6 +25,7 @@ public class WebService {
                 //handler.sendEmptyMessage(0);
                 Log.e("WebService", "Status de conexão Wifi: " + cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected());
                 Log.e("WebService", "Status de conexão 3G: " + cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected());
+                // TODO: exibir um toast informando que nenhuma conexão foi localizada.
                 return DISCONNECTED;
             }
         } catch (Exception e) {

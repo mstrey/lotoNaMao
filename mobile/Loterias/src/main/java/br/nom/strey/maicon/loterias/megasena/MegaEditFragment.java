@@ -70,7 +70,7 @@ public class MegaEditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().getActionBar().setTitle(getString(R.string.megasena_action_header_edit));
+        getActivity().getActionBar().setTitle(getString(R.string.action_megasena_header_edit));
         rootView = inflater.inflate(R.layout.fragment_megasena_edit, container, false);
 
         ctx = getActivity().getBaseContext();
@@ -90,7 +90,7 @@ public class MegaEditFragment extends Fragment {
             txt_conc_ini.setText(concurso_max.toString());
         }
         txt_teimosinha.setText("1");
-        txt_conc_fim.setText(concurso_max.toString());
+        txt_conc_fim.setText(txt_conc_ini.getText().toString());
 
         txt_conc_ini.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -4,10 +4,10 @@
     <string name="app_name">Loterias</string>
     <string name="title_loteria_detail">loteria Detail</string>
     <string name="megasena">Mega-Sena</string>
-    <string name="megasena_action_header_list">Lista volantes Mega</string>
-    <string name="megasena_action_header_edit">Volantes Mega-Sena</string>
+    <string name="action_megasena_header_list">Lista volantes Mega</string>
+    <string name="action_megasena_header_edit">Volantes Mega-Sena</string>
     <string name="quina">Quina</string>
-    <string name="emaberto">Em Aberto</string>
+    <string name="em_aberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>
     <string name="teimosinha">Teimosinha:</string>
     <string name="concurso_final">Concurso Final:</string>
@@ -17,13 +17,13 @@
     <string name="aposta">Aposta</string>
     <string name="acertos">Acertos</string>
     <string name="abertos">Em aberto</string>
-    <string name="arquivados">Arquivados</string>
     <string name="cancel">Cancelar</string>
     <string name="ok">OK</string>
     <string name="incluir">Incluir</string>
     <string name="marcar_minimo_seis">Você deve selecionar no mínimo 6 números</string>
     <string name="marcar_maximo_quinze">Você deve selecionar no máximo 15 números</string>
     <string name="msg_excluir">Deseja mesmo excluir esta aposta?</string>
+    <string name="conexao_nao_identificada">Parace que você está sem conexão... verifique sua conexão e tente novamente.</string>
 
     <string name="num_00">00</string>
     <string name="num_01">01</string>

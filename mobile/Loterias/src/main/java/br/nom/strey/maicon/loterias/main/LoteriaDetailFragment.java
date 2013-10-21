@@ -29,7 +29,7 @@ public class LoteriaDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = null;
-        getActivity().getActionBar().setTitle(getString(R.string.emaberto));
+        getActivity().getActionBar().setTitle(getString(R.string.em_aberto));
         rootView = inflater.inflate(R.layout.fragment_principal, container, false);
 
         return rootView;
