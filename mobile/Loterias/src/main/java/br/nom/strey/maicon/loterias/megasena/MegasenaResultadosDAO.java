@@ -211,13 +211,35 @@ public class MegasenaResultadosDAO {
         return vo;
     }
 
-    public Boolean exist(Integer concurso) {
+    public Boolean existeResultado(Integer concurso) {
         Boolean result = false;
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
         Cursor c = db.query(TABLE_NAME,
                 COLUNAS,
                 COLUNAS[0] + " = ? AND " + COLUNAS[8] + " > 0",
+                new String[]{concurso.toString()},
+                null,
+                null,
+                null);
+
+        if (c.moveToNext()) {
+            result = true;
+        }
+
+        c.close();
+        db.close();
+
+        return result;
+    }
+
+    public Boolean existe(Integer concurso) {
+        Boolean result = false;
+        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
+
+        Cursor c = db.query(TABLE_NAME,
+                COLUNAS,
+                COLUNAS[0] + " = ? ",
                 new String[]{concurso.toString()},
                 null,
                 null,
@@ -281,7 +303,7 @@ public class MegasenaResultadosDAO {
 
             concurso_max = concurso_max_remote_resultados;
             vo_resultado.setConcurso(concurso_max);
-            if (!exist(concurso_max)) {
+            if (!existe(concurso_max)) {
                 insert(vo_resultado);
             } else {
                 update(vo_resultado);
@@ -319,43 +341,47 @@ public class MegasenaResultadosDAO {
                 ArrayList<Integer> lista_concursos = concursos[0];
 
                 for (Integer concurso : lista_concursos) {
-                    if (WebService.connected(ctx) != WebService.DISCONNECTED) {
-                        StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
-                        strUrl.append("loto/");
-                        strUrl.append("getResults.php");
-                        strUrl.append("?loto=");
-                        strUrl.append(URLEncoder.encode(Categories.MEGASENA));
-                        strUrl.append("&concurso=");
-                        strUrl.append(concurso);
-                        try {
+                    if (!existeResultado(concurso)) {
+                        if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                            StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
+                            strUrl.append("loto/");
+                            strUrl.append("getResults.php");
+                            strUrl.append("?loto=");
+                            strUrl.append(URLEncoder.encode(Categories.MEGASENA));
+                            strUrl.append("&concurso=");
+                            strUrl.append(concurso);
+                            try {
 
-                            URL url = new URL(strUrl.toString());
-                            URLConnection con = url.openConnection();
-                            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                                URL url = new URL(strUrl.toString());
+                                URLConnection con = url.openConnection();
+                                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-                            String str_json = in.readLine();
-                            Log.d(LOGTAG, "str_json: " + str_json);
+                                String str_json = in.readLine();
+                                Log.d(LOGTAG, "str_json: " + str_json);
 
-                            JSONObject obj_json = new JSONObject(str_json);
+                                JSONObject obj_json = new JSONObject(str_json);
 
-                            if (concurso > 0) {
-                                MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
-                                vo_resultado.setJson(obj_json);
+                                if (concurso > 0) {
+                                    MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
+                                    vo_resultado.setJson(obj_json);
 
-                                if (exist(vo_resultado.getConcurso())) {
-                                    update(vo_resultado);
+                                    if (existe(vo_resultado.getConcurso())) {
+                                        update(vo_resultado);
+                                    } else {
+                                        insert(vo_resultado);
+                                    }
+
                                 } else {
-                                    insert(vo_resultado);
+                                    concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
+                                    Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
                                 }
 
-                            } else {
-                                concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
-                                Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+                            } catch (Exception e) {
+                                concurso_max_remote_resultados = 1;
+                                e.printStackTrace();
                             }
-
-                        } catch (Exception e) {
-                            concurso_max_remote_resultados = 1;
-                            e.printStackTrace();
+                        } else {
+                            // TODO: exibir toast iformando que nenhuma conexão foi identificada
                         }
                     }
                 }

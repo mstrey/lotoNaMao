@@ -117,7 +117,7 @@ public class MegasenaVolantesVO {
         MegasenaResultadosDAO dao_resultado = new MegasenaResultadosDAO(ctx);
         qtd_acertos = 0;
 
-        if (dao_resultado.exist(concurso)) {
+        if (dao_resultado.existeResultado(concurso)) {
             MegasenaResultadosVO vo_resultado = dao_resultado.get(concurso);
 
             for (Integer numero : vo_resultado.getNumerosList()) {

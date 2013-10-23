@@ -64,7 +64,7 @@ public class MegasenaVolantesAdapter extends BaseAdapter {
 
         MegasenaResultadosDAO resultadosDAO = new MegasenaResultadosDAO(ctx);
 
-        txt_acertos.setText(resultadosDAO.exist(vo_mega_volante.getConcurso()) ? acertos.toString() : "");
+        txt_acertos.setText(resultadosDAO.existeResultado(vo_mega_volante.getConcurso()) ? acertos.toString() : "");
 
         View.OnClickListener editClickListener = new View.OnClickListener() {
             @Override

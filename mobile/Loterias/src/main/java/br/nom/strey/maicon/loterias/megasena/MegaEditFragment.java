@@ -32,20 +32,16 @@ public class MegaEditFragment extends Fragment {
     private static final String TAG = "MegaEditFragment";
     private ArrayList<String> lista_numeros_marcados = new ArrayList<String>();
     private MegasenaVolantesVO vo_volante_mega;
-    private NumberPicker np_conc_ini;
+    private NumberPicker numberPicker;
     private View rootView;
     private TextView txt_conc_ini = null;
-    private TextView txt_conc_fim = null;
-    private TextView txt_teimosinha = null;
+    private TextView txt_qtd_repetir = null;
     private Toast mToast;
     private Integer conc_ini;
-    private Integer conc_fim;
-    private Integer teimosinha;
+    private Integer qtd_repetir;
     private Integer concurso_max;
-    private String[] teimosinha_options;
     private Context ctx;
-    private AlertDialog.Builder np_dialog_conc_ini;
-    private AlertDialog.Builder np_dialog_teimosinha;
+    private AlertDialog.Builder np_dialog_np;
     private Boolean editing = false;
     private MenuItem discard;
 
@@ -76,8 +72,7 @@ public class MegaEditFragment extends Fragment {
         ctx = getActivity().getBaseContext();
 
         txt_conc_ini = (TextView) rootView.findViewById(R.id.mega_conc_ini_ed);
-        txt_conc_fim = (TextView) rootView.findViewById(R.id.mega_conc_final_ed);
-        txt_teimosinha = (TextView) rootView.findViewById(R.id.mega_teimosinha_ed);
+        txt_qtd_repetir = (TextView) rootView.findViewById(R.id.mega_qtd_repetir_ed);
 
         MegasenaResultadosDAO dao_resultado = new MegasenaResultadosDAO(ctx);
 
@@ -89,89 +84,81 @@ public class MegaEditFragment extends Fragment {
         } else {
             txt_conc_ini.setText(concurso_max.toString());
         }
-        txt_teimosinha.setText("1");
-        txt_conc_fim.setText(txt_conc_ini.getText().toString());
 
         txt_conc_ini.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d(TAG, "onClick(ini)");
 
-                np_dialog_conc_ini = new AlertDialog.Builder(getActivity());
+                np_dialog_np = new AlertDialog.Builder(getActivity());
 
                 conc_ini = Integer.parseInt(txt_conc_ini.getText().toString());
 
-                np_conc_ini = new NumberPicker(getActivity().getBaseContext());
-                np_conc_ini.setFocusable(true);
-                np_conc_ini.setFocusableInTouchMode(true);
-                np_conc_ini.setMinValue(1);
-                np_conc_ini.setMaxValue(concurso_max + 8);
+                numberPicker = new NumberPicker(getActivity().getBaseContext());
+                numberPicker.setFocusable(true);
+                numberPicker.setFocusableInTouchMode(true);
+                numberPicker.setMinValue(1);
+                numberPicker.setMaxValue(concurso_max + 20);
 
-                np_conc_ini.setValue(conc_ini);
+                numberPicker.setValue(conc_ini);
 
-                np_dialog_conc_ini.setView(np_conc_ini);
+                np_dialog_np.setView(numberPicker);
 
-                np_dialog_conc_ini.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                np_dialog_np.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        conc_ini = ((Integer) np_conc_ini.getValue());
-                        teimosinha = Integer.parseInt(txt_teimosinha.getText().toString());
-                        conc_fim = conc_ini + teimosinha - 1;
-
+                        conc_ini = ((Integer) numberPicker.getValue());
                         txt_conc_ini.setText(conc_ini.toString());
-                        txt_conc_fim.setText(conc_fim.toString());
 
                     }
                 });
-                np_dialog_conc_ini.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                np_dialog_np.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
 
-                np_dialog_conc_ini.setTitle(R.string.concurso_inicial);
-                np_dialog_conc_ini.show();
+                np_dialog_np.setTitle(R.string.concurso_inicial);
+                np_dialog_np.show();
             }
 
         });
 
-        txt_teimosinha.setOnClickListener(new View.OnClickListener() {
+        txt_qtd_repetir.setText("1");
+
+        txt_qtd_repetir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.d(TAG, "onClick(qtd_repetir)");
 
-                np_dialog_teimosinha = new AlertDialog.Builder(getActivity());
-                conc_ini = Integer.parseInt(txt_conc_ini.getText().toString());
-                teimosinha = Integer.parseInt(txt_teimosinha.getText().toString());
-                np_dialog_teimosinha.setTitle(R.string.teimosinha);
+                np_dialog_np = new AlertDialog.Builder(getActivity());
 
-                teimosinha_options = getResources().getStringArray(R.array.mega_teimosinha);
+                qtd_repetir = Integer.parseInt(txt_qtd_repetir.getText().toString());
 
-                np_dialog_teimosinha.setItems(teimosinha_options, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                numberPicker = new NumberPicker(getActivity().getBaseContext());
+                numberPicker.setFocusable(true);
+                numberPicker.setFocusableInTouchMode(true);
+                numberPicker.setMinValue(1);
+                numberPicker.setMaxValue(20);
 
-                        conc_ini = Integer.parseInt(txt_conc_ini.getText().toString());
-                        teimosinha = Integer.parseInt(teimosinha_options[which]);
-                        conc_fim = conc_ini + teimosinha - 1;
+                numberPicker.setValue(qtd_repetir);
 
-                        txt_teimosinha.setText(teimosinha.toString());
+                np_dialog_np.setView(numberPicker);
 
-                        TextView label_conc_fim = (TextView) rootView.findViewById(R.id.mega_conc_final_l);
+                np_dialog_np.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                        if (which > 0) {
-                            Log.d(TAG, "setVisible(teimosa1)");
-                            txt_conc_fim.setText(conc_fim.toString());
-                            txt_conc_fim.setVisibility(View.VISIBLE);
-                            label_conc_fim.setVisibility(View.VISIBLE);
-                        } else {
-                            Log.d(TAG, "setVisible(teimosa2)");
-                            txt_conc_fim.setText(conc_fim.toString());
-                            txt_conc_fim.setVisibility(View.GONE);
-                            label_conc_fim.setVisibility(View.GONE);
-                        }
+                        qtd_repetir = ((Integer) numberPicker.getValue());
+                        txt_qtd_repetir.setText(qtd_repetir.toString());
 
                     }
                 });
+                np_dialog_np.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
 
-                np_dialog_teimosinha.create();
-                np_dialog_teimosinha.show();
+                np_dialog_np.setTitle(R.string.qtd_repetir);
+                np_dialog_np.show();
             }
+
         });
 
         return rootView;
@@ -258,7 +245,7 @@ public class MegaEditFragment extends Fragment {
                         ((LoteriaDetailActivity) getActivity()).exibeToast(R.string.marcar_maximo_quinze);
                     } else {
                         conc_ini = Integer.parseInt(txt_conc_ini.getText().toString());
-                        conc_fim = Integer.parseInt(txt_conc_fim.getText().toString());
+                        qtd_repetir = Integer.parseInt(txt_qtd_repetir.getText().toString());
 
                         String aposta = "";
 
@@ -268,7 +255,7 @@ public class MegaEditFragment extends Fragment {
                             aposta += lista_numeros_marcados.get(i);
                         }
 
-                        for (int i = conc_ini; i <= conc_fim; i++) {
+                        for (int i = conc_ini; i < (conc_ini + qtd_repetir); i++) {
                             if (i != conc_ini) {
                                 vo_volante_mega = new MegasenaVolantesVO();
                                 editing = false;

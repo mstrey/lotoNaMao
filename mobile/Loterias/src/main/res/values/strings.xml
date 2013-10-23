@@ -9,8 +9,7 @@
     <string name="quina">Quina</string>
     <string name="em_aberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>
-    <string name="teimosinha">Teimosinha:</string>
-    <string name="concurso_final">Concurso Final:</string>
+    <string name="qtd_repetir">Repetir quantos concursos:</string>
     <string name="notifica_resultado">Ativar notificação:</string>
     <string name="numeros_marcados">Números Marcados:</string>
     <string name="concurso">Concurso</string>
