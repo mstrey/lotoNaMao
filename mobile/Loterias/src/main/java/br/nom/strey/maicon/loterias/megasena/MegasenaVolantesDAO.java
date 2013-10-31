@@ -37,7 +37,6 @@ public class MegasenaVolantesDAO {
 
     public static Integer getMaxConc(Context ctx) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-        List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
 
         String query = " SELECT MAX(" + COLUNAS[1] + ") concurso " +
                 " from " + TABLE_NAME + ";";
@@ -149,32 +148,6 @@ public class MegasenaVolantesDAO {
         return vo;
     }
 
-    public List<MegasenaVolantesVO> getAll(Integer concurso) {
-        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-        List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
-
-        Cursor c = db.query(TABLE_NAME,
-                COLUNAS,
-                "concurso = ?",
-                new String[]{concurso.toString()},
-                null,
-                null,
-                "data_inclusao asc",
-                null);
-
-        while (c.moveToNext()) {
-            MegasenaVolantesVO volante_vo = new MegasenaVolantesVO();
-
-            volante_vo = get(c.getInt(c.getColumnIndex("volante_id")));
-            lista_volantes.add(volante_vo);
-        }
-
-        c.close();
-        db.close();
-
-        return lista_volantes;
-    }
-
     public List<MegasenaVolantesVO> getAll() {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
@@ -189,9 +162,7 @@ public class MegasenaVolantesDAO {
                 null);
 
         while (c.moveToNext()) {
-            MegasenaVolantesVO volante_vo = new MegasenaVolantesVO();
-
-            volante_vo = get(c.getInt(c.getColumnIndex("volante_id")));
+            MegasenaVolantesVO volante_vo = get(c.getInt(c.getColumnIndex("volante_id")));
             lista_volantes.add(volante_vo);
         }
 
@@ -201,7 +172,7 @@ public class MegasenaVolantesDAO {
         return lista_volantes;
     }
 
-    public ArrayList<Integer> getConcursosParaConferidos() {
+    public ArrayList<Integer> getConcursosParaConferir() {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
         ArrayList<Integer> list_concursos = new ArrayList<Integer>();
@@ -224,28 +195,6 @@ public class MegasenaVolantesDAO {
         db.close();
 
         return list_concursos;
-    }
-
-    public Boolean existAny(Integer concurso) {
-        Boolean result = false;
-        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-
-        Cursor c = db.query(TABLE_NAME,
-                COLUNAS,
-                "concurso = ?",
-                new String[]{concurso.toString()},
-                null,
-                null,
-                null);
-
-        if (c.moveToNext()) {
-            result = true;
-        }
-
-        c.close();
-        db.close();
-
-        return result;
     }
 
 }

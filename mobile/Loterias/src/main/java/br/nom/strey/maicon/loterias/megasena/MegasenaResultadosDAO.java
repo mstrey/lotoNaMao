@@ -60,7 +60,6 @@ public class MegasenaResultadosDAO {
     private static Integer concurso_max_remote_resultados;
     private static Integer concurso_max;
     private Context ctx;
-    private Boolean concursos_carregados = false;
 
     public MegasenaResultadosDAO(Context ctx) {
 
@@ -102,14 +101,6 @@ public class MegasenaResultadosDAO {
         ctv.put("data_inclusao", data_inclusao);
 
         boolean result = db.insert(TABLE_NAME, null, ctv) > 0;
-        db.close();
-
-        return (result);
-    }
-
-    public boolean delete(MegasenaResultadosVO vo) {
-        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-        boolean result = db.delete(TABLE_NAME, "concurso=?", new String[]{vo.getConcurso().toString()}) > 0;
         db.close();
 
         return (result);
@@ -165,7 +156,8 @@ public class MegasenaResultadosDAO {
 
         c.moveToFirst();
         MegasenaResultadosVO vo = new MegasenaResultadosVO();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat dateFormatDay = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormatDayTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         if (c.getCount() > 0) {
             vo.setConcurso(c.getInt(c.getColumnIndex("concurso")));
@@ -194,8 +186,8 @@ public class MegasenaResultadosDAO {
             Date data_inclusao = new Date();
 
             try {
-                data_sorteio = dateFormat.parse(c.getString(c.getColumnIndex("data_sorteio")));
-                data_inclusao = dateFormat.parse(c.getString(c.getColumnIndex("data_inclusao")));
+                data_sorteio = dateFormatDay.parse(c.getString(c.getColumnIndex("data_sorteio")));
+                data_inclusao = dateFormatDayTime.parse(c.getString(c.getColumnIndex("data_inclusao")));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -255,11 +247,11 @@ public class MegasenaResultadosDAO {
         return result;
     }
 
-    public void getConcRemote(ArrayList<Integer> concursos) {
-        GetResultadosRemote get_remote = new GetResultadosRemote();
-        get_remote.execute(concursos);
-
-    }
+//    public void getConcRemote(ArrayList<Integer> concursos) {
+//        GetResultadosRemote get_remote = new GetResultadosRemote();
+//        get_remote.execute(concursos);
+//
+//    }
 
     public void getMaxConcRemote() {
         ArrayList<Integer> concursos = new ArrayList<Integer>();
@@ -342,7 +334,7 @@ public class MegasenaResultadosDAO {
 
                 for (Integer concurso : lista_concursos) {
                     if (!existeResultado(concurso)) {
-                        if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                        if (WebService.connected(ctx).equals(WebService.DISCONNECTED)) {
                             StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
                             strUrl.append("loto/");
                             strUrl.append("getResults.php");

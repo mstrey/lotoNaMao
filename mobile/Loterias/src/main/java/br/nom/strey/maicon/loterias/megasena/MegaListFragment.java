@@ -15,21 +15,29 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.nom.strey.maicon.loterias.R;
+import br.nom.strey.maicon.loterias.main.Categories;
 import br.nom.strey.maicon.loterias.main.LoteriaDetailActivity;
 import br.nom.strey.maicon.loterias.utils.DBHelper;
+import br.nom.strey.maicon.loterias.utils.WebService;
 
 public class MegaListFragment extends Fragment {
 
     private static final String LOGTAG = "MegaListFragment";
-    private MegaEditFragment megaEditFragment = new MegaEditFragment();
     private View rootView = null;
     private ListView listView_volantes = null;
     private Context ctx;
@@ -38,7 +46,8 @@ public class MegaListFragment extends Fragment {
     private MegasenaVolantesAdapter adapter_volantes;
     private MenuItem refresh;
     private Menu menu;
-    private Boolean mTwoPane;
+    private static Integer concurso_max_remote_resultados;
+    private static final String MAX_CONCURSO = "max_conc";
 
 
     public MegaListFragment() {
@@ -165,13 +174,17 @@ public class MegaListFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            refresh.setActionView(R.layout.actionbar_indeterminate_progress);
+            if (refresh != null) {
+                refresh.setActionView(R.layout.actionbar_indeterminate_progress);
+            }
             super.onPreExecute();
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            refresh.setActionView(null);
+            if (refresh != null) {
+                refresh.setActionView(null);
+            }
             refreshVolantesList();
 
             super.onPostExecute(aVoid);
@@ -181,15 +194,61 @@ public class MegaListFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
 
             MegasenaVolantesDAO dao_volantes = new MegasenaVolantesDAO(ctx);
-            List<MegasenaVolantesVO> volantes_nao_conferidos = dao_volantes.getAll();
-            ArrayList<Integer> concursos_nao_conferidos = dao_volantes.getConcursosParaConferidos();
+            List<MegasenaVolantesVO> volantes_para_conferir = dao_volantes.getAll();
+            ArrayList<Integer> concursos_para_conferir = dao_volantes.getConcursosParaConferir();
             MegasenaResultadosDAO dao_resultado = new MegasenaResultadosDAO(ctx);
 
-            if (!concursos_nao_conferidos.isEmpty()) {
+            if (!concursos_para_conferir.isEmpty()) {
 
-                dao_resultado.getConcRemote(concursos_nao_conferidos);
+//                dao_resultado.getConcRemote(concursos_para_conferir);
 
-                for (MegasenaVolantesVO vo_volante : volantes_nao_conferidos) {
+                for (Integer concurso : concursos_para_conferir) {
+                    if (!dao_resultado.existeResultado(concurso)) {
+                        if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                            StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
+                            strUrl.append("loto/");
+                            strUrl.append("getResults.php");
+                            strUrl.append("?loto=");
+                            strUrl.append(URLEncoder.encode(Categories.MEGASENA));
+                            strUrl.append("&concurso=");
+                            strUrl.append(concurso);
+                            try {
+
+                                URL url = new URL(strUrl.toString());
+                                URLConnection con = url.openConnection();
+                                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                                String str_json = in.readLine();
+                                Log.d(LOGTAG, "str_json: " + str_json);
+
+                                JSONObject obj_json = new JSONObject(str_json);
+
+                                if (concurso > 0) {
+                                    MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
+                                    vo_resultado.setJson(obj_json);
+
+                                    if (dao_resultado.existe(vo_resultado.getConcurso())) {
+                                        dao_resultado.update(vo_resultado);
+                                    } else {
+                                        dao_resultado.insert(vo_resultado);
+                                    }
+
+                                } else {
+                                    concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
+                                    Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+                                }
+
+                            } catch (Exception e) {
+                                concurso_max_remote_resultados = 1;
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(ctx, getString(R.string.conexao_nao_identificada), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+
+                for (MegasenaVolantesVO vo_volante : volantes_para_conferir) {
                     vo_volante.confereResultado(ctx);
                     dao_volantes = new MegasenaVolantesDAO(ctx);
                     dao_volantes.update(vo_volante);

@@ -10,7 +10,6 @@
     <string name="em_aberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>
     <string name="qtd_repetir">Repetir quantos concursos:</string>
-    <string name="notifica_resultado">Ativar notificação:</string>
     <string name="numeros_marcados">Números Marcados:</string>
     <string name="concurso">Concurso</string>
     <string name="aposta">Aposta</string>
@@ -23,6 +22,7 @@
     <string name="marcar_maximo_quinze">Você deve selecionar no máximo 15 números</string>
     <string name="msg_excluir">Deseja mesmo excluir esta aposta?</string>
     <string name="conexao_nao_identificada">Parace que você está sem conexão... verifique sua conexão e tente novamente.</string>
+    <string name="notifica_novo_resultado">Novos resultados estão disponíveis. Verifique suas apostas.</string>
 
     <string name="num_00">00</string>
     <string name="num_01">01</string>
