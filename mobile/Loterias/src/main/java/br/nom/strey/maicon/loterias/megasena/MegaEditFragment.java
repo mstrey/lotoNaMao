@@ -180,6 +180,7 @@ public class MegaEditFragment extends Fragment {
                 txt_num.setTextColor(getResources().getColor(R.color.mega_green_light));
 
                 lista_numeros_marcados.add(num);
+                // TODO: incluir campo na tela para informar quantos numeros já foram marcados
             }
         } else {
             txt_num.setBackgroundColor(Color.TRANSPARENT);
