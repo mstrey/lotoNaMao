@@ -10,7 +10,8 @@
     <string name="em_aberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>
     <string name="qtd_repetir">Repetir quantos concursos:</string>
-    <string name="numeros_marcados">Números Marcados:</string>
+    <string name="numeros_marcados">Números selecionados</string>
+    <string name="numeros_sorteados">Números sorteados</string>
     <string name="concurso">Concurso</string>
     <string name="aposta">Aposta</string>
     <string name="acertos">Acertos</string>

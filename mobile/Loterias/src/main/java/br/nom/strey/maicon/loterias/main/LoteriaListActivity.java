@@ -49,7 +49,8 @@ public class LoteriaListActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loteria_list);
         Log.d(TAG, "1onCreate");
-        getConcursosRemote();
+        MegasenaResultadosDAO dao_mega = new MegasenaResultadosDAO(getBaseContext());
+        dao_mega.getMaxConcRemote();
 
         if (findViewById(R.id.loteria_detail_container) != null) {
             // The detail container view will be present only in the
@@ -121,11 +122,6 @@ public class LoteriaListActivity extends FragmentActivity
             detailIntent.putExtra(LoteriaDetailActivity.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
-    }
-
-    private void getConcursosRemote() {
-        MegasenaResultadosDAO dao_mega = new MegasenaResultadosDAO(getBaseContext());
-        dao_mega.getMaxConcRemote();
     }
 
 }

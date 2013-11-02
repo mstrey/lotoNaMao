@@ -318,6 +318,7 @@ public class MegasenaResultadosDAO {
 
         @Override
         protected void onPreExecute() {
+            concurso_max_remote_resultados = 0;
             super.onPreExecute();
         }
 

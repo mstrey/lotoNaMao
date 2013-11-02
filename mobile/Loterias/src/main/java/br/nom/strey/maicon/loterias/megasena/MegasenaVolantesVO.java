@@ -120,8 +120,8 @@ public class MegasenaVolantesVO {
         if (dao_resultado.existeResultado(concurso)) {
             MegasenaResultadosVO vo_resultado = dao_resultado.get(concurso);
 
-            for (Integer numero : vo_resultado.getNumerosList()) {
-                if (lista_aposta.contains(numero)) {
+            for (String numero : vo_resultado.getNumerosList()) {
+                if (lista_aposta.contains(Integer.parseInt(numero))) {
                     qtd_acertos++;
                 }
             }

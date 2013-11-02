@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="red_acertos">#ff0000</color>
+
     <color name="gray_principal">#bebebe</color>
     <color name="gray_principal_dark">#696969</color>
     <color name="gray_principal_light">#d3d3d3</color>

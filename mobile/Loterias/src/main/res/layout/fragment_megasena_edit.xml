@@ -71,9 +71,10 @@
         android:id="@+id/mega_volante_numbers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="@dimen/abc_action_bar_icon_vertical_padding">
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/mega_volante_linha1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -940,6 +941,54 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_num_volante"
+            android:background="@drawable/marcado"
+            android:padding="@dimen/padding_num_volante"
+            android:text="@string/num_00"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/mega_green_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_num_volante"
+            android:text="@string/numeros_marcados"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_num_volante"
+            android:background="@drawable/sorteado"
+            android:padding="@dimen/padding_num_volante"
+            android:text="@string/num_00"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_num_volante"
+            android:text="@string/numeros_sorteados"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
 </LinearLayout>

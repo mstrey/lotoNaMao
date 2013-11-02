@@ -64,16 +64,16 @@ public class MegasenaResultadosVO {
         this.data_sorteio = data_sorteio;
     }
 
-    public List<Integer> getNumerosList() {
+    public List<String> getNumerosList() {
 
-        List<Integer> list_numeros = new ArrayList<Integer>();
+        List<String> list_numeros = new ArrayList<String>();
 
-        list_numeros.add(bola1);
-        list_numeros.add(bola2);
-        list_numeros.add(bola3);
-        list_numeros.add(bola4);
-        list_numeros.add(bola5);
-        list_numeros.add(bola6);
+        list_numeros.add(bola1 < 10 ? ("0" + bola1) : bola1.toString());
+        list_numeros.add(bola2 < 10 ? ("0" + bola2) : bola2.toString());
+        list_numeros.add(bola3 < 10 ? ("0" + bola3) : bola3.toString());
+        list_numeros.add(bola4 < 10 ? ("0" + bola4) : bola4.toString());
+        list_numeros.add(bola5 < 10 ? ("0" + bola5) : bola5.toString());
+        list_numeros.add(bola6 < 10 ? ("0" + bola6) : bola6.toString());
 
         return list_numeros;
     }

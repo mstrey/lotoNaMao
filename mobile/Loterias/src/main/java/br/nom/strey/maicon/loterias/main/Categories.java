@@ -14,7 +14,7 @@ public class Categories {
 
     static {
         // Add 3 categrory items.
-        addItem(new Category(1, "Todos"));
+//        addItem(new Category(1, "Todos"));
         addItem(new Category(2, "Mega-Sena"));
         addItem(new Category(3, "Quina"));
     }

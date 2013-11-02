@@ -136,6 +136,11 @@ public class MegaListFragment extends Fragment {
         adapter_volantes = new MegasenaVolantesAdapter(getActivity(), listMegaVolantes);
         listView_volantes.setAdapter(adapter_volantes);
         adapter_volantes.notifyDataSetChanged();
+        if (listMegaVolantes.size() > 0) {
+            refresh.setVisible(true);
+        } else {
+            refresh.setVisible(false);
+        }
     }
 
     private void backUpDB() {
