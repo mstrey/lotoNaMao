@@ -75,7 +75,7 @@ public class MegaListFragment extends Fragment {
         dao_volantes = new MegasenaVolantesDAO(ctx);
         listMegaVolantes = dao_volantes.getAll();
 
-        adapter_volantes = new MegasenaVolantesAdapter(getActivity(), listMegaVolantes);
+        adapter_volantes = new MegasenaVolantesAdapter(getActivity(), listMegaVolantes, false);
 
         listView_volantes.setAdapter(adapter_volantes);
         listView_volantes.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -131,9 +131,9 @@ public class MegaListFragment extends Fragment {
         }
     }
 
-    public void refreshVolantesList() {
+    public void refreshVolantesList(Boolean exibe_acertos) {
         listMegaVolantes = dao_volantes.getAll();
-        adapter_volantes = new MegasenaVolantesAdapter(getActivity(), listMegaVolantes);
+        adapter_volantes = new MegasenaVolantesAdapter(getActivity(), listMegaVolantes, exibe_acertos);
         listView_volantes.setAdapter(adapter_volantes);
         adapter_volantes.notifyDataSetChanged();
         if (listMegaVolantes.size() > 0) {
@@ -190,7 +190,7 @@ public class MegaListFragment extends Fragment {
             if (refresh != null) {
                 refresh.setActionView(null);
             }
-            refreshVolantesList();
+            refreshVolantesList(true);
 
             super.onPostExecute(aVoid);
         }

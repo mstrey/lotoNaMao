@@ -79,7 +79,7 @@ public class MegasenaVolantesVO {
         Boolean quebra = false;
 
         for (int i = 0; i < lista_aposta.size(); i++) {
-            if (i >= 15) {
+            if (i >= 8) {
                 if (!quebra) {
                     aposta_view += "\n";
                 }

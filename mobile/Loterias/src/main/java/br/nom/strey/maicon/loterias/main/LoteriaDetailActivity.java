@@ -125,9 +125,9 @@ public class LoteriaDetailActivity extends FragmentActivity {
                 .commit();
     }
 
-    public void refreshFragmentList() {
+    public void refreshFragmentList(Boolean exibe_acertos) {
         if (MegaListFragment.class == fragment.getClass()) {
-            ((MegaListFragment) fragment).refreshVolantesList();
+            ((MegaListFragment) fragment).refreshVolantesList(exibe_acertos);
         } else {
             fragment = new MegaListFragment();
         }

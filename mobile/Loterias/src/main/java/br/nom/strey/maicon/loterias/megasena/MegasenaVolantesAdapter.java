@@ -23,11 +23,13 @@ import br.nom.strey.maicon.loterias.main.LoteriaDetailActivity;
 public class MegasenaVolantesAdapter extends BaseAdapter {
     private List<MegasenaVolantesVO> lista;
     private Activity ctx;
+    private Boolean exibe_acertos;
     private Fragment fragment;
 
-    public MegasenaVolantesAdapter(Activity ctx, List<MegasenaVolantesVO> lista) {
+    public MegasenaVolantesAdapter(Activity ctx, List<MegasenaVolantesVO> lista, Boolean exibe_acertos) {
         this.ctx = ctx;
         this.lista = lista;
+        this.exibe_acertos = exibe_acertos;
     }
 
     @Override
@@ -64,7 +66,9 @@ public class MegasenaVolantesAdapter extends BaseAdapter {
 
         MegasenaResultadosDAO resultadosDAO = new MegasenaResultadosDAO(ctx);
 
-        txt_acertos.setText(resultadosDAO.existeResultado(vo_mega_volante.getConcurso()) ? acertos.toString() : "");
+        if (exibe_acertos) {
+            txt_acertos.setText(resultadosDAO.existeResultado(vo_mega_volante.getConcurso()) ? acertos.toString() : "");
+        }
 
         View.OnClickListener editClickListener = new View.OnClickListener() {
             @Override
@@ -88,7 +92,7 @@ public class MegasenaVolantesAdapter extends BaseAdapter {
                             case DialogInterface.BUTTON_POSITIVE:
                                 MegasenaVolantesDAO dao_volantes = new MegasenaVolantesDAO(ctx);
                                 dao_volantes.delete(vo_mega_volante);
-                                ((LoteriaDetailActivity) ctx).refreshFragmentList();
+                                ((LoteriaDetailActivity) ctx).refreshFragmentList(true);
                         }
 
                     }
