@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.nom.strey.maicon.loterias.megasena.MegasenaVolantesVO;
 import br.nom.strey.maicon.loterias.utils.DBHelper;
 
 /**
@@ -19,23 +18,40 @@ import br.nom.strey.maicon.loterias.utils.DBHelper;
  */
 public class QuinaVolantesDAO {
 
-    private Context ctx;
-
-    private static final String TABLE_NAME = "megasena_volantes";
+    private static final String TABLE_NAME = "quina_volantes";
     private static final String[] COLUNAS = {"volante_id",
             "concurso",
             "aposta",
             "faixa_1",
             "faixa_2",
             "faixa_3",
+            "qtd_acertos",
+            "conferido",
             "data_inclusao"
     };
+    private Context ctx;
 
     public QuinaVolantesDAO(Context ctx) {
         this.ctx = ctx;
     }
 
-    public boolean insert(MegasenaVolantesVO vo) {
+    public static Integer getMaxConc(Context ctx) {
+        SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
+
+        String query = " SELECT MAX(" + COLUNAS[1] + ") concurso " +
+                " from " + TABLE_NAME + ";";
+        Cursor c = db.rawQuery(query, null);
+
+        c.moveToFirst();
+
+        Integer concurso_max = c.getInt(c.getColumnIndex(COLUNAS[1]));
+        c.close();
+        db.close();
+
+        return concurso_max;
+    }
+
+    public boolean insert(QuinaVolantesVO vo) {
 
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         ContentValues ctv = new ContentValues();
@@ -46,9 +62,6 @@ public class QuinaVolantesDAO {
         ctv.put("volante_id", vo.getVolanteId());
         ctv.put("concurso", vo.getConcurso());
         ctv.put("aposta", vo.getAposta());
-        ctv.put("faixa_1", vo.getFaixa1());
-        ctv.put("faixa_2", vo.getFaixa2());
-        ctv.put("faixa_3", vo.getFaixa3());
         ctv.put("data_inclusao", data_inclusao);
 
         boolean result = db.insert(TABLE_NAME, null, ctv) > 0;
@@ -57,7 +70,7 @@ public class QuinaVolantesDAO {
         return (result);
     }
 
-    public boolean delete(MegasenaVolantesVO vo) {
+    public boolean delete(QuinaVolantesVO vo) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         boolean result = db.delete(TABLE_NAME, "volante_id=?", new String[]{vo.getVolanteId().toString()}) > 0;
         db.close();
@@ -65,7 +78,7 @@ public class QuinaVolantesDAO {
         return (result);
     }
 
-    public boolean update(MegasenaVolantesVO vo) {
+    public boolean update(QuinaVolantesVO vo) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         ContentValues ctv = new ContentValues();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -78,6 +91,7 @@ public class QuinaVolantesDAO {
         ctv.put("faixa_1", vo.getFaixa1());
         ctv.put("faixa_2", vo.getFaixa2());
         ctv.put("faixa_3", vo.getFaixa3());
+        ctv.put("qtd_acertos", vo.getQtdAcertos());
         ctv.put("data_inclusao", data_inclusao);
 
         boolean result = db.update(TABLE_NAME, ctv, "volante_id=?", new String[]{vo.getVolanteId().toString()}) > 0;
@@ -87,7 +101,11 @@ public class QuinaVolantesDAO {
 
     }
 
-    public MegasenaVolantesVO get(Integer volante_id) {
+    public QuinaVolantesVO get(Integer volante_id) {
+        return get(volante_id, ctx);
+    }
+
+    public static QuinaVolantesVO get(Integer volante_id, Context ctx) {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
         Cursor c = db.query(TABLE_NAME, // table
                 COLUNAS,                // columns
@@ -99,7 +117,7 @@ public class QuinaVolantesDAO {
                 null);                  // limit
 
         c.moveToFirst();
-        MegasenaVolantesVO vo = new MegasenaVolantesVO();
+        QuinaVolantesVO vo = new QuinaVolantesVO();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         if (c.getCount() > 0) {
@@ -110,6 +128,7 @@ public class QuinaVolantesDAO {
             vo.setFaixa1(c.getDouble(c.getColumnIndex("faixa_1")));
             vo.setFaixa2(c.getDouble(c.getColumnIndex("faixa_2")));
             vo.setFaixa3(c.getDouble(c.getColumnIndex("faixa_3")));
+            vo.setQtdAcertos(c.getInt(c.getColumnIndex("qtd_acertos")));
 
             Date data_inclusao = new Date();
 
@@ -129,23 +148,21 @@ public class QuinaVolantesDAO {
         return vo;
     }
 
-    public List<MegasenaVolantesVO> getAll(Integer concurso) {
+    public List<QuinaVolantesVO> getAll() {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
-        List<MegasenaVolantesVO> lista_volantes = new ArrayList<MegasenaVolantesVO>();
+        List<QuinaVolantesVO> lista_volantes = new ArrayList<QuinaVolantesVO>();
 
         Cursor c = db.query(TABLE_NAME,
                 COLUNAS,
-                "concurso = ?",
-                new String[]{concurso.toString()},
                 null,
                 null,
-                "data_inclusao asc",
+                null,
+                null,
+                COLUNAS[1] + " asc",
                 null);
 
         while (c.moveToNext()) {
-            MegasenaVolantesVO volante_vo = new MegasenaVolantesVO();
-
-            volante_vo = get(c.getInt(c.getColumnIndex("volante_id")));
+            QuinaVolantesVO volante_vo = get(c.getInt(c.getColumnIndex("volante_id")));
             lista_volantes.add(volante_vo);
         }
 
@@ -155,26 +172,29 @@ public class QuinaVolantesDAO {
         return lista_volantes;
     }
 
-    public Boolean existAny(Integer concurso) {
-        Boolean result = false;
+    public ArrayList<Integer> getConcursosParaConferir() {
         SQLiteDatabase db = new DBHelper(ctx).getWritableDatabase();
 
+        ArrayList<Integer> list_concursos = new ArrayList<Integer>();
+
         Cursor c = db.query(TABLE_NAME,
-                COLUNAS,
-                "concurso = ?",
-                new String[]{concurso.toString()},
+                new String[]{COLUNAS[1]},
                 null,
                 null,
+                COLUNAS[1],
+                null,
+                COLUNAS[1] + " asc",
                 null);
 
-        if (c.moveToNext()) {
-            result = true;
+
+        while (c.moveToNext()) {
+            list_concursos.add(c.getInt(c.getColumnIndex(COLUNAS[1])));
         }
 
         c.close();
         db.close();
 
-        return result;
+        return list_concursos;
     }
 
 }

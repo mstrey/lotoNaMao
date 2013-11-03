@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mega_green_light"
+    android:background="@color/quina_blue_light"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/mega_conc_ini_l"
+                android:id="@+id/quina_conc_ini_l"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/concurso_inicial"
@@ -25,7 +25,7 @@
                 android:textSize="@dimen/size_volante_label" />
 
             <TextView
-                android:id="@+id/mega_conc_qtd_repetir_l"
+                android:id="@+id/quina_conc_qtd_repetir_l"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/qtd_repetir"
@@ -40,7 +40,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/mega_conc_ini_ed"
+                android:id="@+id/quina_conc_ini_ed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -52,7 +52,7 @@
                 android:textSize="@dimen/size_volante_label" />
 
             <TextView
-                android:id="@+id/mega_qtd_repetir_ed"
+                android:id="@+id/quina_qtd_repetir_ed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -68,20 +68,20 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/mega_volante_numbers"
+        android:id="@+id/quina_volante_numbers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="@dimen/abc_action_bar_icon_vertical_padding">
 
         <LinearLayout
-            android:id="@+id/mega_volante_linha1"
+            android:id="@+id/quina_volante_linha1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mega_l_01"
+                android:id="@+id/quina_l_01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -93,7 +93,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_02"
+                android:id="@+id/quina_l_02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -105,7 +105,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_03"
+                android:id="@+id/quina_l_03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -117,7 +117,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_04"
+                android:id="@+id/quina_l_04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -129,7 +129,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_05"
+                android:id="@+id/quina_l_05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -141,7 +141,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_06"
+                android:id="@+id/quina_l_06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -154,7 +154,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_07"
+                android:id="@+id/quina_l_07"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -167,7 +167,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_08"
+                android:id="@+id/quina_l_08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -180,7 +180,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_09"
+                android:id="@+id/quina_l_09"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -193,7 +193,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_10"
+                android:id="@+id/quina_l_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -207,13 +207,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mega_volante_linha2"
+            android:id="@+id/quina_volante_linha2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mega_l_11"
+                android:id="@+id/quina_l_11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -227,7 +227,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_12"
+                android:id="@+id/quina_l_12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -241,7 +241,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_13"
+                android:id="@+id/quina_l_13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -255,7 +255,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_14"
+                android:id="@+id/quina_l_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -269,7 +269,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_15"
+                android:id="@+id/quina_l_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -283,7 +283,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_16"
+                android:id="@+id/quina_l_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -297,7 +297,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_17"
+                android:id="@+id/quina_l_17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -311,7 +311,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_18"
+                android:id="@+id/quina_l_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -325,7 +325,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_19"
+                android:id="@+id/quina_l_19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -339,7 +339,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_20"
+                android:id="@+id/quina_l_20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -354,13 +354,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mega_volante_linha3"
+            android:id="@+id/quina_volante_linha3"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mega_l_21"
+                android:id="@+id/quina_l_21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -374,7 +374,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_22"
+                android:id="@+id/quina_l_22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -388,7 +388,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_23"
+                android:id="@+id/quina_l_23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -402,7 +402,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_24"
+                android:id="@+id/quina_l_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -416,7 +416,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_25"
+                android:id="@+id/quina_l_25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -430,7 +430,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_26"
+                android:id="@+id/quina_l_26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -444,7 +444,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_27"
+                android:id="@+id/quina_l_27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -458,7 +458,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_28"
+                android:id="@+id/quina_l_28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -472,7 +472,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_29"
+                android:id="@+id/quina_l_29"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -486,7 +486,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_30"
+                android:id="@+id/quina_l_30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -501,13 +501,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mega_volante_linha4"
+            android:id="@+id/quina_volante_linha4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mega_l_31"
+                android:id="@+id/quina_l_31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -521,7 +521,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_32"
+                android:id="@+id/quina_l_32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -535,7 +535,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_33"
+                android:id="@+id/quina_l_33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -549,7 +549,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_34"
+                android:id="@+id/quina_l_34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -563,7 +563,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_35"
+                android:id="@+id/quina_l_35"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -577,7 +577,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_36"
+                android:id="@+id/quina_l_36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -591,7 +591,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_37"
+                android:id="@+id/quina_l_37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -605,7 +605,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_38"
+                android:id="@+id/quina_l_38"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -619,7 +619,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_39"
+                android:id="@+id/quina_l_39"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -633,7 +633,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_40"
+                android:id="@+id/quina_l_40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -648,13 +648,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mega_volante_linha5"
+            android:id="@+id/quina_volante_linha5"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mega_l_41"
+                android:id="@+id/quina_l_41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -668,7 +668,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_42"
+                android:id="@+id/quina_l_42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -682,7 +682,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_43"
+                android:id="@+id/quina_l_43"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -696,7 +696,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_44"
+                android:id="@+id/quina_l_44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -710,7 +710,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_45"
+                android:id="@+id/quina_l_45"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -724,7 +724,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_46"
+                android:id="@+id/quina_l_46"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -738,7 +738,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_47"
+                android:id="@+id/quina_l_47"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -752,7 +752,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_48"
+                android:id="@+id/quina_l_48"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -766,7 +766,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_49"
+                android:id="@+id/quina_l_49"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -780,7 +780,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_50"
+                android:id="@+id/quina_l_50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -795,13 +795,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mega_volante_linha6"
+            android:id="@+id/quina_volante_linha6"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <TextView
-                android:id="@+id/mega_l_51"
+                android:id="@+id/quina_l_51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -815,7 +815,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_52"
+                android:id="@+id/quina_l_52"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -829,7 +829,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_53"
+                android:id="@+id/quina_l_53"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -843,7 +843,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_54"
+                android:id="@+id/quina_l_54"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -857,7 +857,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_55"
+                android:id="@+id/quina_l_55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -871,7 +871,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_56"
+                android:id="@+id/quina_l_56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -885,7 +885,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_57"
+                android:id="@+id/quina_l_57"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -899,7 +899,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_58"
+                android:id="@+id/quina_l_58"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -913,7 +913,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_59"
+                android:id="@+id/quina_l_59"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -927,7 +927,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/mega_l_60"
+                android:id="@+id/quina_l_60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_num_volante"
@@ -940,6 +940,261 @@
                 android:text="@string/num_60"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/quina_volante_linha7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/quina_l_61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_61"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_62"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_63"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_64"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_65"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_65"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_66"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_66"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_67"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_57"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_68"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_68"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_69"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_70"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/quina_volante_linha8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/quina_l_71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_71"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_72"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_73"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_73"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_74"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_74"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_75"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_76"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_76"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_77"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_78"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_78"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_79"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_79"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/quina_l_80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_num_volante"
+                android:clickable="true"
+                android:enabled="true"
+                android:onClick="setNumber"
+                android:padding="@dimen/padding_num_volante"
+                android:text="@string/num_80"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -954,11 +1209,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_num_volante"
-            android:background="@drawable/mega_marcado"
+            android:background="@drawable/quina_marcado"
             android:padding="@dimen/padding_num_volante"
             android:text="@string/num_00"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/mega_green_light" />
+            android:textColor="@color/quina_blue_light" />
 
         <TextView
             android:layout_width="wrap_content"

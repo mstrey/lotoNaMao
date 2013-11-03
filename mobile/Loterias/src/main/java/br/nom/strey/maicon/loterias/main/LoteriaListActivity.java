@@ -9,7 +9,8 @@ import android.util.Log;
 import br.nom.strey.maicon.loterias.R;
 import br.nom.strey.maicon.loterias.megasena.MegaListFragment;
 import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosDAO;
-import br.nom.strey.maicon.loterias.quina.QuinaDetailFragment;
+import br.nom.strey.maicon.loterias.quina.QuinaListFragment;
+import br.nom.strey.maicon.loterias.quina.QuinaResultadosDAO;
 
 
 /**
@@ -51,6 +52,9 @@ public class LoteriaListActivity extends FragmentActivity
         Log.d(TAG, "1onCreate");
         MegasenaResultadosDAO dao_mega = new MegasenaResultadosDAO(getBaseContext());
         dao_mega.getMaxConcRemote();
+
+        QuinaResultadosDAO dao_quina = new QuinaResultadosDAO(getBaseContext());
+        dao_quina.getMaxConcRemote();
 
         if (findViewById(R.id.loteria_detail_container) != null) {
             // The detail container view will be present only in the
@@ -102,7 +106,7 @@ public class LoteriaListActivity extends FragmentActivity
                     fragment = new MegaListFragment();
                     break;
                 case 3:
-                    fragment = new QuinaDetailFragment();
+                    fragment = new QuinaListFragment();
                     break;
                 default:
                     break;

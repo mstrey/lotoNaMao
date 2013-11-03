@@ -7,17 +7,15 @@ import android.widget.BaseAdapter;
 
 import java.util.List;
 
-import br.nom.strey.maicon.loterias.megasena.MegasenaResultadosVO;
-
 /**
  * Created by maicon on 06/09/13.
  */
-public class QuinaResultadosAdapter extends BaseAdapter{
+public class QuinaResultadosAdapter extends BaseAdapter {
 
-    private List<MegasenaResultadosVO> lista;
+    private List<QuinaResultadosVO> lista;
     private Activity ctx;
 
-    public QuinaResultadosAdapter(Activity ctx, List<MegasenaResultadosVO> lista){
+    public QuinaResultadosAdapter(Activity ctx, List<QuinaResultadosVO> lista) {
         this.ctx = ctx;
         this.lista = lista;
     }

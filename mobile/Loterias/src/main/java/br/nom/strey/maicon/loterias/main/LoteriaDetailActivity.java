@@ -15,7 +15,9 @@ import br.nom.strey.maicon.loterias.R;
 import br.nom.strey.maicon.loterias.megasena.MegaEditFragment;
 import br.nom.strey.maicon.loterias.megasena.MegaListFragment;
 import br.nom.strey.maicon.loterias.megasena.MegasenaVolantesVO;
-import br.nom.strey.maicon.loterias.quina.QuinaDetailFragment;
+import br.nom.strey.maicon.loterias.quina.QuinaEditFragment;
+import br.nom.strey.maicon.loterias.quina.QuinaListFragment;
+import br.nom.strey.maicon.loterias.quina.QuinaVolantesVO;
 
 public class LoteriaDetailActivity extends FragmentActivity {
 
@@ -56,7 +58,7 @@ public class LoteriaDetailActivity extends FragmentActivity {
                     break;
 
                 case 3:
-                    fragment = new QuinaDetailFragment();
+                    fragment = new QuinaListFragment();
                     break;
             }
 
@@ -91,6 +93,9 @@ public class LoteriaDetailActivity extends FragmentActivity {
                 break;
 
             case 3:
+                if (QuinaEditFragment.class == fragment.getClass()) {
+                    ((QuinaEditFragment) fragment).setNumber(v);
+                }
                 break;
         }
     }
@@ -125,11 +130,33 @@ public class LoteriaDetailActivity extends FragmentActivity {
                 .commit();
     }
 
+    public void editQuinaFragment(QuinaVolantesVO vo) {
+        fragment = new QuinaEditFragment(vo);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.loteria_detail_container, fragment)
+                .setCustomAnimations(
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
+                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .commit();
+    }
+
+    public void editQuinaFragment() {
+        fragment = new QuinaEditFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.loteria_detail_container, fragment)
+                .setCustomAnimations(
+                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
+                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .commit();
+    }
+
     public void refreshFragmentList(Boolean exibe_acertos) {
         if (MegaListFragment.class == fragment.getClass()) {
             ((MegaListFragment) fragment).refreshVolantesList(exibe_acertos);
-        } else {
-            fragment = new MegaListFragment();
+        } else if (QuinaListFragment.class == fragment.getClass()) {
+            ((QuinaListFragment) fragment).refreshVolantesList(exibe_acertos);
         }
 
         getSupportFragmentManager().beginTransaction()
