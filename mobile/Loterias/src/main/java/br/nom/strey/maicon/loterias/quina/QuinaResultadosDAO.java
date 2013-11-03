@@ -326,7 +326,7 @@ public class QuinaResultadosDAO {
 
                 for (Integer concurso : lista_concursos) {
                     if (!existeResultado(concurso)) {
-                        if (WebService.connected(ctx).equals(WebService.DISCONNECTED)) {
+                        if (!WebService.isConnected(ctx).equals(WebService.DISCONNECTED)) {
                             StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
                             strUrl.append("loto/");
                             strUrl.append("getResults.php");
@@ -345,20 +345,20 @@ public class QuinaResultadosDAO {
 
                                 JSONObject obj_json = new JSONObject(str_json);
 
-                                if (concurso > 0) {
-                                    QuinaResultadosVO vo_resultado = new QuinaResultadosVO();
-                                    vo_resultado.setJson(obj_json);
+//                                if (concurso > 0) {
+                                QuinaResultadosVO vo_resultado = new QuinaResultadosVO();
+                                vo_resultado.setJson(obj_json);
 
-                                    if (existe(vo_resultado.getConcurso())) {
-                                        update(vo_resultado);
-                                    } else {
-                                        insert(vo_resultado);
-                                    }
-
+                                if (existe(vo_resultado.getConcurso())) {
+                                    update(vo_resultado);
                                 } else {
-                                    concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
-                                    Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+                                    insert(vo_resultado);
                                 }
+
+//                                } else {
+//                                    concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
+//                                    Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+//                                }
 
                             } catch (Exception e) {
                                 concurso_max_remote_resultados = 1;

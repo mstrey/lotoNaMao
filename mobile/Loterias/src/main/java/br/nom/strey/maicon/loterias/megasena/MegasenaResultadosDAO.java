@@ -14,7 +14,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -335,12 +334,12 @@ public class MegasenaResultadosDAO {
 
                 for (Integer concurso : lista_concursos) {
                     if (!existeResultado(concurso)) {
-                        if (WebService.connected(ctx).equals(WebService.DISCONNECTED)) {
+                        if (!WebService.isConnected(ctx).equals(WebService.DISCONNECTED)) {
                             StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
                             strUrl.append("loto/");
                             strUrl.append("getResults.php");
                             strUrl.append("?loto=");
-                            strUrl.append(URLEncoder.encode(Categories.MEGASENA));
+                            strUrl.append(Categories.MEGASENA.toString());
                             strUrl.append("&concurso=");
                             strUrl.append(concurso);
                             try {
@@ -354,19 +353,14 @@ public class MegasenaResultadosDAO {
 
                                 JSONObject obj_json = new JSONObject(str_json);
 
-                                if (concurso > 0) {
-                                    MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
-                                    vo_resultado.setJson(obj_json);
+                                MegasenaResultadosVO vo_resultado = new MegasenaResultadosVO();
 
-                                    if (existe(vo_resultado.getConcurso())) {
-                                        update(vo_resultado);
-                                    } else {
-                                        insert(vo_resultado);
-                                    }
+                                vo_resultado.setJson(obj_json);
 
+                                if (existe(vo_resultado.getConcurso())) {
+                                    update(vo_resultado);
                                 } else {
-                                    concurso_max_remote_resultados = obj_json.getInt(MAX_CONCURSO);
-                                    Log.d(LOGTAG, MAX_CONCURSO + "_remote: " + concurso_max_remote_resultados);
+                                    insert(vo_resultado);
                                 }
 
                             } catch (Exception e) {

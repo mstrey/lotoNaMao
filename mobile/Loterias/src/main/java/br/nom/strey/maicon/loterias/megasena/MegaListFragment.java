@@ -209,7 +209,7 @@ public class MegaListFragment extends Fragment {
 
                 for (Integer concurso : concursos_para_conferir) {
                     if (!dao_resultado.existeResultado(concurso)) {
-                        if (WebService.connected(ctx) != WebService.DISCONNECTED) {
+                        if (WebService.isConnected(ctx) != WebService.DISCONNECTED) {
                             StringBuffer strUrl = new StringBuffer("http://maicon.strey.nom.br/");
                             strUrl.append("loto/");
                             strUrl.append("getResults.php");
