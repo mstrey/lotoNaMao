@@ -35,11 +35,11 @@ $tables_names = array(
 
 function retornoJson($concurso, $tables, $loto){
 
-	if ($concurso == 0){
-		getJsonMax($tables[$loto]);
-	} else {
+//	if ($concurso == 0){
+//		getJsonMax($tables[$loto]);
+//	} else {
 		getJsonConcurso($tables[$loto], $concurso);
-	}
+//	}
 } 
  
 function saveLoto($index, $files, $tables){

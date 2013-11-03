@@ -2,20 +2,24 @@
 include_once 'connection.php';
 include_once 'menu.php';
 include_once 'error.php';
+include_once 'getMax.php';
 
 if (!$main) {
 	error();
 }
 
 function getJsonConcurso($table, $concurso){
+	if ($concurso == 0){
+		$concurso = getMaxConcurso($table);
+	}
 	$query = " SELECT * FROM ".$table." WHERE concurso = ".$concurso." ; ";
     printJson($query);
 }
   
-function getJsonMax($table){
-    $query = " SELECT MAX( concurso ) AS max_conc FROM ".$table." where 1=1; ";
-    printJson($query);
-}
+//function getJsonMax($table){
+//    $query = " SELECT MAX( concurso ) AS max_conc FROM ".$table." where 1=1; ";
+//    printJson($query);
+//}
   
   
 function printJson($query){
