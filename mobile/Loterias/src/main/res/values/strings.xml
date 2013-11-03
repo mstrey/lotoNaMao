@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Loterias</string>
+    <string name="app_name">Loto Na Mão</string>
     <string name="title_loteria_detail">loteria Detail</string>
     <string name="em_aberto">Em Aberto</string>
     <string name="concurso_inicial">Concurso Inicial:</string>
