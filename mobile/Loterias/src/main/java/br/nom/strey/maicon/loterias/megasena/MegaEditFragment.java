@@ -344,9 +344,8 @@ public class MegaEditFragment extends Fragment {
                                 dao_volante_mega.update(vo_volante_mega);
                             }
                         }
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.loteria_detail_container, megaListFragment)
-                                .commit();
+                        LoteriaDetailActivity activity = (LoteriaDetailActivity) getActivity();
+                        activity.listMegaFragment();
 
                     }
                 } else {

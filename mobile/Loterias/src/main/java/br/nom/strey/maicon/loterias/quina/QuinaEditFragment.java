@@ -344,9 +344,8 @@ public class QuinaEditFragment extends Fragment {
                                 dao_volante_quina.update(vo_volante_quina);
                             }
                         }
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.loteria_detail_container, quinaListFragment)
-                                .commit();
+                        LoteriaDetailActivity activity = (LoteriaDetailActivity) getActivity();
+                        activity.listQuinaFragment();
 
                     }
                 } else {

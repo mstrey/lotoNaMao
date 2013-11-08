@@ -25,7 +25,6 @@ public class LoteriaDetailActivity extends FragmentActivity {
     private final String TAG = "DetailActivity";
     Fragment fragment = new Fragment();
     private Integer category;
-
     private boolean mTwoPane;
 
     public boolean ismTwoPane() {
@@ -100,56 +99,55 @@ public class LoteriaDetailActivity extends FragmentActivity {
         }
     }
 
-    public void setListFooter(View v) {
-
-    }
-
     public void exibeToast(Integer resource) {
         Toast.makeText(this, resource, Toast.LENGTH_LONG).show();
+    }
+
+    public void listMegaFragment() {
+        fragment = new MegaListFragment();
+
+        replaceFragment();
+    }
+
+    public void listQuinaFragment() {
+        fragment = new QuinaListFragment();
+
+        replaceFragment();
     }
 
     public void editMegaFragment(MegasenaVolantesVO vo) {
         fragment = new MegaEditFragment(vo);
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.loteria_detail_container, fragment)
-                .setCustomAnimations(
-                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
-                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .commit();
+        replaceFragment();
     }
 
     public void editMegaFragment() {
         fragment = new MegaEditFragment();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.loteria_detail_container, fragment)
-                .setCustomAnimations(
-                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
-                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .commit();
+        replaceFragment();
     }
 
     public void editQuinaFragment(QuinaVolantesVO vo) {
         fragment = new QuinaEditFragment(vo);
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.loteria_detail_container, fragment)
-                .setCustomAnimations(
-                        FragmentTransaction.TRANSIT_FRAGMENT_FADE,
-                        FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .commit();
+        replaceFragment();
     }
 
     public void editQuinaFragment() {
         fragment = new QuinaEditFragment();
 
+        replaceFragment();
+    }
+
+    private void replaceFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.loteria_detail_container, fragment)
                 .setCustomAnimations(
                         FragmentTransaction.TRANSIT_FRAGMENT_FADE,
                         FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .addToBackStack(null)
                 .commit();
+
     }
 
     public void refreshFragmentList(Boolean exibe_acertos) {
