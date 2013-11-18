@@ -71,6 +71,8 @@ public class QuinaListFragment extends Fragment {
         ctx = getActivity().getBaseContext();
         rootView = inflater.inflate(R.layout.fragment_quina_list, container, false);
 
+        refresh = menu.findItem(R.id.action_update);
+
         listView_volantes = (ListView) rootView.findViewById(R.id.lv_volantes);
         dao_volantes = new QuinaVolantesDAO(ctx);
         listQuinaVolantes = dao_volantes.getAll();

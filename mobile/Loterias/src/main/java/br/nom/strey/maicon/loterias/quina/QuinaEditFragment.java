@@ -316,9 +316,9 @@ public class QuinaEditFragment extends Fragment {
             case R.id.action_save:
                 Log.d(TAG, "save");
 
-                if (lista_numeros_marcados.size() >= 6) {
-                    if (lista_numeros_marcados.size() > 15) {
-                        ((LoteriaDetailActivity) getActivity()).exibeToast(R.string.marcar_maximo_quinze);
+                if (lista_numeros_marcados.size() >= 5) {
+                    if (lista_numeros_marcados.size() > 7) {
+                        ((LoteriaDetailActivity) getActivity()).exibeToast(R.string.marcar_maximo_sete);
                     } else {
                         conc_ini = Integer.parseInt(txt_conc_ini.getText().toString());
                         qtd_repetir = Integer.parseInt(txt_qtd_repetir.getText().toString());
@@ -349,7 +349,7 @@ public class QuinaEditFragment extends Fragment {
 
                     }
                 } else {
-                    ((LoteriaDetailActivity) getActivity()).exibeToast(R.string.marcar_minimo_seis);
+                    ((LoteriaDetailActivity) getActivity()).exibeToast(R.string.marcar_minimo_cinco);
                 }
 
                 return true;

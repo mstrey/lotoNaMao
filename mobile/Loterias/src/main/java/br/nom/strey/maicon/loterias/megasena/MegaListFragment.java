@@ -71,6 +71,8 @@ public class MegaListFragment extends Fragment {
         ctx = getActivity().getBaseContext();
         rootView = inflater.inflate(R.layout.fragment_megasena_list, container, false);
 
+        refresh = menu.findItem(R.id.action_update);
+
         listView_volantes = (ListView) rootView.findViewById(R.id.lv_volantes);
         dao_volantes = new MegasenaVolantesDAO(ctx);
         listMegaVolantes = dao_volantes.getAll();
