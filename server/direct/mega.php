@@ -3,14 +3,16 @@ include_once '../connection.php';
 include_once '../getMax.php';
 include_once '../error.php';
 
-function parsePage($site){
+$table = megasena;
+
+function parseXml($content, $node){
 	/*** a new dom object ***/ 
 	$dom = new domDocument; 
 
 	echo "parse<br>";
 
 	/*** load the html into the object ***/
-	$dom->loadHTMLFile($site); 
+	$dom->loadHTML($content); 
 
 	echo $dom->saveHTML();
 	die();
@@ -19,22 +21,69 @@ function parsePage($site){
 	$dom->preserveWhiteSpace = false; 
 
 	/*** the table by its tag name ***/ 
-	$tables = $dom->getElementsByTagName('table'); 
+	$nodes = $dom->getElementsByTagName($node); 
+	
+	return $nodes;
 
-	/*** get all rows from the table ***/ 
-	$trs = $tables->item(0)->getElementsByTagName('tr'); 
-	return $trs;
 }
 
-function getMegaResults(){  
+function parseResult($site){
+	$sorteio = split("| ",file_get_contents($site));
+	$resultado["concurso"] = $sorteio[0];
+	$resultado["acumulado_5"] = $sorteio[1];
+	
+	$numeros = parseXml($sorteio[2], 'li');
+	
+	$resultado["bola_1"] = $numeros->item(0)->nodeValue;
+	$resultado["bola_2"] = $numeros->item(1)->nodeValue;
+	$resultado["bola_3"] = $numeros->item(2)->nodeValue;
+	$resultado["bola_4"] = $numeros->item(3)->nodeValue;
+	$resultado["bola_5"] = $numeros->item(4)->nodeValue;
+	$resultado["bola_6"] = $numeros->item(5)->nodeValue;
+	
+	
+	$resultado["ganhadores_6"] = $sorteio[3];
+	$resultado["rateio_6"] = $sorteio[4];
+	$resultado["ganhadores_5"] = $sorteio[5];
+	$resultado["rateio_5"] = $sorteio[6];
+	$resultado["ganhadores_4"] = $sorteio[7];
+	$resultado["rateio_4"] = $sorteio[8];
+
+	$resultado["data"] = explode("/",$sorteio[11],3);
+	
+	$resultado["cidade_sorteio"] = $sorteio[12];
+	$resultado["uf_sorteio"] = $sorteio[13];
+	$resultado["tipo_sorteio"] = $sorteio[14]; // C= Caminhão, A= Estúdio
+	$resultado["obs_sorteio"] = $sorteio[15];
+	
+	$resultado["prox_acumulado_5"] = $sorteio[16];
+	$resultado["final_acumulado_5"] = $sorteio[17];
+	$resultado["valor_acumulado_5"] = $sorteio[18];
+
+	// verificar como validar a classe de cada tr pra ver se é um estado ou cidade
+	$cidades_ganhadores = parseXml($sorteio[19], 'tr');
+	
+	
+	$resultado["bola_1"] = $numeros->item(0)->nodeValue;
+	$resultado["bola_2"] = $numeros->item(1)->nodeValue;
+	$resultado["bola_3"] = $numeros->item(2)->nodeValue;
+	$resultado["bola_4"] = $numeros->item(3)->nodeValue;
+	$resultado["bola_5"] = $numeros->item(4)->nodeValue;
+	$resultado["bola_6"] = $numeros->item(5)->nodeValue;
+
+	
+	
+}
+
+function getMegaResults($concurso){  
 	$page = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
 	$page += "?submeteu=sim";
 	$page += "&opcao=concurso";
-	$page += "&txtConcurso=1500";
+	$page += "&txtConcurso="+$concurso;
 
 	echo "getMegaResults<br>";
-
-	parsePage($page);
+	
+	parseResult($page);
 
 	$max = getMaxConcurso($table);
 
