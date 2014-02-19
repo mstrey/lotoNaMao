@@ -63,6 +63,13 @@ function parseResult($site){
 	// verificar como validar a classe de cada tr pra ver se é um estado ou cidade
 	$cidades_ganhadores = parseXml($sorteio[19], 'tr');
 	
+	$estado = "";
+	$cidades = array();
+	$cont = 0;
+	
+	foreach($cidades_ganhadores as $ganhador){
+		$resultado["ganhadores_6_cidades"] = $sorteio[3];
+	}
 	
 	$resultado["bola_1"] = $numeros->item(0)->nodeValue;
 	$resultado["bola_2"] = $numeros->item(1)->nodeValue;
