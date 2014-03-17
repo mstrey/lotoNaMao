@@ -4,6 +4,7 @@ include_once '../getMax.php';
 include_once '../error.php';
 
 $table = megasena;
+$resultado = array();
 
 function parseXml($content, $node){
 	/*** a new dom object ***/ 
@@ -91,14 +92,10 @@ function parseResult($site){
 		}
 	}
 	
-	$resultado["bola_1"] = $numeros->item(0)->nodeValue;
-	$resultado["bola_2"] = $numeros->item(1)->nodeValue;
-	$resultado["bola_3"] = $numeros->item(2)->nodeValue;
-	$resultado["bola_4"] = $numeros->item(3)->nodeValue;
-	$resultado["bola_5"] = $numeros->item(4)->nodeValue;
-	$resultado["bola_6"] = $numeros->item(5)->nodeValue;
-
-	
+	$resultado["premio_proximo"] = $sorteio[21];
+	$resultado["data_proximo"] = $sorteio[22];
+	$resultado["arrecadacao"] = $sorteio[23];
+	$resultado["acumulado_especial"] = $sorteio[24];
 	
 }
 
