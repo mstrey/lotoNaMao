@@ -61,14 +61,34 @@ function parseResult($site){
 	$resultado["valor_acumulado_5"] = $sorteio[18];
 
 	// verificar como validar a classe de cada tr pra ver se é um estado ou cidade
-	$cidades_ganhadores = parseXml($sorteio[19], 'tr');
+	$tabela_ganhadores = parseXml($sorteio[19], 'tbody');
+	$linhas_ganhadores = parseXml(tabela_ganhadores, 'tr');
 	
 	$estado = "";
+	$pega_estado = true;
 	$cidades = array();
-	$cont = 0;
+	$cont_estado = 0;
+	$idx_cidades = 0;
 	
-	foreach($cidades_ganhadores as $ganhador){
-		$resultado["ganhadores_6_cidades"] = $sorteio[3];
+	foreach($linhas_ganhadores as $linha){
+		$valores = parseXml($cidade, 'td');
+		if($pega_estado){
+			$estado = $valores->item(0)->nodeValue;
+			$count_estado = $valores->item(1)->nodeValue;
+			$pega_estado = false;
+		} else {
+			$cidades[$idx_cidades] = [				
+				"estado" => $estado ,
+				"cidade" => $valores->item(0)->nodeValue ,
+				"ganhadores" => $valores->item(1)->nodeValue
+			]
+			$idx_cidades++;
+			$cont_estado -= $valores->item(1)->nodeValue
+		}
+		
+		if($count_estado == 0){
+			$pega_estado = true;
+		}
 	}
 	
 	$resultado["bola_1"] = $numeros->item(0)->nodeValue;
