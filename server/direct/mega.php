@@ -78,11 +78,11 @@ function parseResult($site){
 			$count_estado = $valores->item(1)->nodeValue;
 			$pega_estado = false;
 		} else {
-			$cidades[$idx_cidades] = [				
+			$cidades[$idx_cidades] = {
 				"estado" => $estado ,
 				"cidade" => strip_tags($valores->item(0)->nodeValue) ,
 				"ganhadores" => $valores->item(1)->nodeValue
-			];
+			};
 			$idx_cidades++;
 			$cont_estado -= $valores->item(1)->nodeValue;
 		}
