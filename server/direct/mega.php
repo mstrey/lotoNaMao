@@ -31,6 +31,8 @@ function parseResult($site){
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
 	
+	echo "parse";
+	
 	$numeros = parseXml($sorteio[2], 'li');
 	
 	$resultado["bola_1"] = $numeros->item(0)->nodeValue;
@@ -70,12 +72,17 @@ function parseResult($site){
 	$idx_cidades = 0;
 	
 	foreach($linhas_ganhadores as $linha){
+		echo "parseFor";
+	
 		$valores = parseXml($linha, 'td');
 		if($pega_estado){
+			echo "parseForIf";
+	
 			$estado = $valores->item(0)->nodeValue;
 			$count_estado = $valores->item(1)->nodeValue;
 			$pega_estado = false;
 		} else {
+			echo "parseForElse";
 			$cidades[$idx_cidades] = array (
 				"estado" => $estado ,
 				"cidade" => strip_tags($valores->item(0)->nodeValue) ,
@@ -104,6 +111,8 @@ function getMegaResults($concurso){
 	$page .= "&txtConcurso=".strval($concurso);
 
 	parseResult($page);
+
+	echo "get";
 	
 	print_r($resultado);
 	
