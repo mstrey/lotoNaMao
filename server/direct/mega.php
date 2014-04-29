@@ -82,9 +82,9 @@ function parseResult($site){
 				"estado" => $estado ,
 				"cidade" => strip_tags($valores->item(0)->nodeValue) ,
 				"ganhadores" => $valores->item(1)->nodeValue
-			]
+			];
 			$idx_cidades++;
-			$cont_estado -= $valores->item(1)->nodeValue
+			$cont_estado -= $valores->item(1)->nodeValue;
 		}
 		
 		if($count_estado == 0){
@@ -103,7 +103,10 @@ function getMegaResults($concurso){
 	$page = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
 	$page += "?submeteu=sim";
 	$page += "&opcao=concurso";
+	
+	if($concurso != null){
 	$page += "&txtConcurso="+$concurso;
+	}
 
 	echo "getMegaResults<br>";
 	
