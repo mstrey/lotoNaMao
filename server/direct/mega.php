@@ -10,13 +10,11 @@ function parseXml($content, $node){
 	/*** a new dom object ***/ 
 	$dom = new domDocument; 
 
-	echo "parse<br>";
-
 	/*** load the html into the object ***/
 	$dom->loadHTML($content); 
 
-	echo $dom->saveHTML();
-	die();
+//	echo $dom->saveHTML();
+//	die();
 
 	/*** discard white space ***/ 
 	$dom->preserveWhiteSpace = false; 
@@ -29,9 +27,6 @@ function parseXml($content, $node){
 }
 
 function parseResult($site){
-	echo "parseResult<br/>";
-	echo $site+"<br/>";
-	die();
 	$sorteio = split("| ",file_get_contents($site));
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
@@ -108,9 +103,6 @@ function getMegaResults($concurso){
 	$page .= "&opcao=concurso";
 	$page .= "&txtConcurso=".strval($concurso);
 
-	echo "getMegaResults<br/>";
-	echo $page;
-	die();
 	parseResult($page);
 	
 	print_r($resultado);
