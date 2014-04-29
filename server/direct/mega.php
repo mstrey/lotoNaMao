@@ -27,7 +27,7 @@ function parseXml($content, $node){
 }
 
 function parseResult($site){
-	$sorteio = split("| ",file_get_contents(htmlentities(urlencode($site))));
+	$sorteio = split("| ",file_get_contents(htmlentities($site)));
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
 	
