@@ -29,7 +29,8 @@ function parseXml($content, $node){
 }
 
 function parseResult($site){
-	echo $site;
+	echo "parseResult<br/>";
+	echo $site+"<br/>";
 	die();
 	$sorteio = split("| ",file_get_contents($site));
 	$resultado["concurso"] = $sorteio[0];
@@ -107,8 +108,8 @@ function getMegaResults($concurso){
 	$page += "&opcao=concurso";
 	$page += "&txtConcurso="+$concurso;
 
-	echo "getMegaResults<br>";
-	
+	echo "getMegaResults<br/>";
+	echo $page+"<br/>"
 	parseResult($page);
 	
 	print_r($resultado);
