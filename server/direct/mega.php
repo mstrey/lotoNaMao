@@ -13,8 +13,8 @@ function parseXml($content, $node){
 	/*** load the html into the object ***/
 	$dom->loadHTML($content); 
 
-//	echo $dom->saveHTML();
-//	die();
+	echo $dom->saveHTML();
+	die();
 
 	/*** discard white space ***/ 
 	$dom->preserveWhiteSpace = false; 
@@ -41,7 +41,7 @@ function parseResult($site){
 	// close cURL resource, and free up system resources
 	curl_close($ch);
 	
-	echo $data;
+	echo "data".$data."<br><br>";
 	
 	$sorteio = explode("|",$data);
 
