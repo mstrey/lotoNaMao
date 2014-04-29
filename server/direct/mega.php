@@ -72,7 +72,7 @@ function parseResult($site){
 	$idx_cidades = 0;
 	
 	foreach($linhas_ganhadores as $linha){
-		$valores = parseXml($cidade, 'td');
+		$valores = parseXml($linha, 'td');
 		if($pega_estado){
 			$estado = $valores->item(0)->nodeValue;
 			$count_estado = $valores->item(1)->nodeValue;
@@ -80,7 +80,7 @@ function parseResult($site){
 		} else {
 			$cidades[$idx_cidades] = [				
 				"estado" => $estado ,
-				"cidade" => $valores->item(0)->nodeValue ,
+				"cidade" => strip_tags($valores->item(0)->nodeValue) ,
 				"ganhadores" => $valores->item(1)->nodeValue
 			]
 			$idx_cidades++;
@@ -108,6 +108,10 @@ function getMegaResults($concurso){
 	echo "getMegaResults<br>";
 	
 	parseResult($page);
+	
+	print_r($resultado);
+	
+	die();
 
 	$max = getMaxConcurso($table);
 
