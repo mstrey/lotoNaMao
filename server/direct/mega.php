@@ -27,7 +27,20 @@ function parseXml($content, $node){
 }
 
 function parseResult($site){
-	$sorteio = split("| ",file_get_contents($site));
+	$opts = array( 
+		'http' => array( 
+			'method'=>"GET", 
+			'header'=>"Content-Type: text/html; charset=utf-8" 
+		) 
+	); 
+
+    $context = stream_context_create($opts); 
+	
+	$sorteio = split("| ",file_get_contents($site, false, $context));
+	if ($sorteio === false) { 
+	    echo "erro ao recuperar dados";
+	    die();
+	} 
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
 	
