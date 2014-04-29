@@ -26,21 +26,17 @@ function parseXml($content, $node){
 
 }
 
-function parseResult($site){
+function parseResult($url){
 
-	// create a new cURL resource
 	$ch = curl_init();
-	
-	// set URL and other appropriate options
-	curl_setopt($ch, CURLOPT_URL, $site);
-	//curl_setopt($ch, CURLOPT_HEADER, 0);
-	
-	// grab URL and pass it to the browser
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_VERBOSE, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
+	curl_setopt($ch, CURLOPT_URL, urlencode($url));
 	$data = curl_exec($ch);
-	
-	// close cURL resource, and free up system resources
 	curl_close($ch);
-	
+
 	echo "data".$data."<br><br>";
 	
 	$sorteio = explode("|",$data);
