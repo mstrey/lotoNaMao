@@ -28,13 +28,17 @@ function parseXml($content, $node){
 
 function parseResult($site){
 
+	// create a new cURL resource
 	$ch = curl_init();
-	$timeout = 5;
+	
+	// set URL and other appropriate options
 	curl_setopt($ch, CURLOPT_URL, $site);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	
+	// grab URL and pass it to the browser
 	$data = curl_exec($ch);
 	
+	// close cURL resource, and free up system resources
 	curl_close($ch);
 	
 	echo $data;
