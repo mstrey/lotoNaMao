@@ -37,7 +37,9 @@ function parseResult($site){
 	
 	curl_close($ch);
 	
-	$sorteio = split("| ",$data);
+	echo $data;
+	
+	$sorteio = explode("|",$data);
 
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
