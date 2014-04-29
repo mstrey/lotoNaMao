@@ -27,20 +27,18 @@ function parseXml($content, $node){
 }
 
 function parseResult($site){
-	$opts = array( 
-		'http' => array( 
-			'method'=>"GET", 
-			'header'=>"Content-Type: text/html; charset=utf-8" 
-		) 
-	); 
 
-    $context = stream_context_create($opts); 
+	$ch = curl_init();
+	$timeout = 5;
+	curl_setopt($ch, CURLOPT_URL, $site);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+	$data = curl_exec($ch);
 	
-	$sorteio = split("| ",file_get_contents($site, false, $context));
-	if ($sorteio === false) { 
-	    echo "erro ao recuperar dados";
-	    die();
-	} 
+	curl_close($ch);
+	
+	$sorteio = split("| ",$data);
+
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
 	
