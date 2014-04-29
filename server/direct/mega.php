@@ -103,10 +103,7 @@ function getMegaResults($concurso){
 	$page = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
 	$page += "?submeteu=sim";
 	$page += "&opcao=concurso";
-	
-	if($concurso != null){
 	$page += "&txtConcurso="+$concurso;
-	}
 
 	echo "getMegaResults<br>";
 	
@@ -208,7 +205,11 @@ function getMegaResults($concurso){
 	*/
 }
 
-getMegaResults();
+if(isset($_GET["concurso"])){
+	getMegaResults($_GET["concurso"]);
+} else {
+	echo "concurso não informado";
+}
   
 
 ?>
