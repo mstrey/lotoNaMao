@@ -31,7 +31,7 @@ function parseResult($site){
 	$resultado["concurso"] = $sorteio[0];
 	$resultado["acumulado_5"] = $sorteio[1];
 	
-	print_r($resultado);
+	print_r($sorteio);
 	
 	$numeros = parseXml($sorteio[2], 'li');
 	
