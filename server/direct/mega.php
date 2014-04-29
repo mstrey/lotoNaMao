@@ -109,7 +109,7 @@ function getMegaResults($concurso){
 	$page += "&txtConcurso="+$concurso;
 
 	echo "getMegaResults<br/>";
-	echo $page+"<br/>"
+	echo $page+"<br/>";
 	parseResult($page);
 	
 	print_r($resultado);
