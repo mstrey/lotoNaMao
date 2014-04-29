@@ -104,12 +104,13 @@ function parseResult($site){
 
 function getMegaResults($concurso){  
 	$page = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
-	$page += "?submeteu=sim";
-	$page += "&opcao=concurso";
+	//$page += "?submeteu=sim";
+	//$page += "&opcao=concurso";
 	//$page += "&txtConcurso="+strval($concurso);
 
 	echo "getMegaResults<br/>";
 	echo $page+"<br/>";
+	die();
 	parseResult($page);
 	
 	print_r($resultado);
