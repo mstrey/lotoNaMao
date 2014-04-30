@@ -13,7 +13,7 @@ function parseXml($content, $node){
 	/*** load the html into the object ***/
 	$dom->loadHTML($content); 
 
-	echo $dom->saveHTML();
+	echo "dom".$dom->saveHTML();
 	die();
 
 	/*** discard white space ***/ 
