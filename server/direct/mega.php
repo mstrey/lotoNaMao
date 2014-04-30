@@ -33,11 +33,11 @@ function parseResult($url){
         curl_setopt($ch, CURLOPT_URL, $url);  
         curl_setopt($ch, CURLOPT_TIMEOUT, '10');  
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-	$data = curl_exec($ch);  
-        curl_close($ch);  
+	$data=curl_exec($ch) or die(curl_error()); 
+	echo "data<font color=black face=verdana size=3>".$data."</font>"."<br><br>"; 
+	echo curl_error($ch);
+	curl_close($ch);  
 
-	echo "data".$data."<br><br>";
-	
 	$sorteio = explode("|",$data);
 
 	$resultado["concurso"] = $sorteio[0];
