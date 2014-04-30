@@ -38,7 +38,7 @@ function parseResult($concurso){
 	curl_setopt($ch, CURLOPT_POST,1); 
 	curl_setopt($ch, CURLOPT_POSTFIELDS,$params);
 	$data=curl_exec($ch);
-	echo "data<font color=black face=verdana size=3>".$data."->".echo curl_error($ch);."</font><br><br>"; 
+	echo "data<font color=black face=verdana size=3>".$data."->".curl_error($ch);."</font><br><br>"; 
 	
 	curl_close($ch);  
 
