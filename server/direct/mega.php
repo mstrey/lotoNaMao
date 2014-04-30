@@ -28,14 +28,12 @@ function parseXml($content, $node){
 
 function parseResult($url){
 
-	$keywords = array();
-	$domain = array($url);
-	$doc = new DOMDocument;
-	$doc->preserveWhiteSpace = FALSE;
-	foreach ($domain as $key => $value) {
-		@$doc->loadHTMLFile($value);
-		$data = $doc->saveHTML();
-	}
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $data = curl_exec($ch);       
+        curl_close($ch);
 
 	echo "data".$data."<br><br>";
 	
