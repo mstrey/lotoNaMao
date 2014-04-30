@@ -26,13 +26,17 @@ function parseXml($content, $node){
 
 }
 
-function parseResult($url){
+function parseResult($concurso){
+
+	$url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
+	$params = array('submeteu' => 'sim', 'opcao' => 'concurso', 'txtConcurso' => strval($concurso));
 
 	$ch = curl_init();     
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  
         curl_setopt($ch, CURLOPT_URL, $url);  
         curl_setopt($ch, CURLOPT_TIMEOUT, '10');  
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+	curl_setopt($ch, CURLOPT_POST,1); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS,$params);
 	$data=curl_exec($ch);
 	echo "data<font color=black face=verdana size=3>".$data."</font><br><br>"; 
 	echo curl_error($ch);
@@ -117,12 +121,8 @@ function parseResult($url){
 }
 
 function getMegaResults($concurso){  
-	$page = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
-	$page .= "?submeteu=sim";
-	$page .= "&opcao=concurso";
-	$page .= "&txtConcurso=".strval($concurso);
 
-	parseResult($page);
+	parseResult($concurso);
 
 	echo "get";
 	
