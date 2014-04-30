@@ -1,3 +1,9 @@
+<html>
+<head>
+<script	src="http://www1.caixa.gov.br/loterias/_includes/megasena_ajax_new.js"
+	type="text/javascript"></script>
+</head>
+<body>
 <?php
 include_once '../connection.php';
 include_once '../getMax.php';
@@ -28,19 +34,27 @@ function parseXml($content, $node){
 
 function parseResult($concurso){
 
-	$url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
-	$params = array('submeteu' => 'sim', 'opcao' => 'concurso', 'txtConcurso' => strval($concurso));
-
+/*	$url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp";
+	$params = array("submeteu" => "sim", "opcao" => "concurso", "txtConcurso" => strval($concurso));
+	
 	$ch = curl_init();     
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  
-        curl_setopt($ch, CURLOPT_URL, $url);  
-        curl_setopt($ch, CURLOPT_TIMEOUT, '10');  
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);  
+	curl_setopt($ch, CURLOPT_URL, $url);  
+	
+//	curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL,0); 
+//	curl_setopt($ch, CURLOPT_PROXY, "proxy3.tjrs.gov.br:3128"); 
+//	curl_setopt($ch, CURLOPT_PROXYUSERPWD, "userass"); 
+	
 	curl_setopt($ch, CURLOPT_POST,1); 
 	curl_setopt($ch, CURLOPT_POSTFIELDS,$params);
-	$data=curl_exec($ch);
+	$data = curl_exec($ch);
 	echo "data<font color=black face=verdana size=3>".$data."->".curl_error($ch)."</font><br><br>"; 
-	
-	curl_close($ch);  
+	 
+	curl_close($ch);
+  */
+  
+  	$url = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?submeteu=sim&opcao=concurso&txtConcurso=1560";
+
 
 	$sorteio = explode("|",$data);
 
@@ -230,3 +244,5 @@ if(isset($_GET["concurso"])){
   
 
 ?>
+</body>
+</html
