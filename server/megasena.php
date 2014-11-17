@@ -21,7 +21,7 @@ function saveMegasena($rows, $table){
     /*** echo the values ***/ 
     $concurso_parse = $cols->item(0)->nodeValue; 
 
-    if (($max - 9)> $concurso_parse) continue;
+#    if (($max - 9)> $concurso_parse) continue;
 
     $data = explode("/",$cols->item(1)->nodeValue,3);
     $bola1 = $cols->item(2)->nodeValue;
@@ -83,10 +83,10 @@ function saveMegasena($rows, $table){
     $query .= " acumulado_virada = '$acumulado_virada', ";
     $query .= " local = null, local_gps = null, data_inclusao = sysdate() ;";
 
-	openDB();
+    openDB();
     mysql_query($query);
-	closeDB();
-	
+    closeDB();
+
   }
   
   $parse_result = array(
