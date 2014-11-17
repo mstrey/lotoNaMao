@@ -16,4 +16,5 @@ done
 #clean
 rm *.GIF
 
-find . -name "*.htm" | xargs sed -i s/nbsp</nbsp;</g
+# uso do find está bloqueado no kinghost
+# find . -name "*.htm" | xargs sed -i s/nbsp</nbsp;</g
