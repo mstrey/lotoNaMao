@@ -18,20 +18,22 @@ include_once 'timemania.php';
 
 #variables
 $htmls = array(
-			'mega' => 'D_MEGA.HTM', 
-			'lotofacil' => 'D_LOTFAC.HTM', 
-			'quina' => 'D_QUINA.HTM', 
-			'lotomania' => 'D_LOTMAN.HTM', 
-			'dupla' => 'D_DPLSEN.HTM', 
-			'time' => 'D_TIMEMA.HTM');
+			'mega' => 'D_MEGA.HTM'
+#			,'lotofacil' => 'D_LOTFAC.HTM' 
+			,'quina' => 'D_QUINA.HTM'
+#			,'lotomania' => 'D_LOTMAN.HTM'
+#			,'dupla' => 'D_DPLSEN.HTM'
+#			,'time' => 'D_TIMEMA.HTM'
+			);
 
 $tables_names = array(
-			'mega' => 'megasena_resultados', 
-			'lotofacil' => 'lotofacil_resultados', 
-			'quina' => 'quina_resultados', 
-			'lotomania' => 'lotomania_resultados', 
-			'dupla' => 'duplasena_resultados', 
-			'time' => 'timemania_resultados');
+			'mega' => 'megasena_resultados'
+#			,'lotofacil' => 'lotofacil_resultados'
+			,'quina' => 'quina_resultados'
+#			,'lotomania' => 'lotomania_resultados'
+#			,'dupla' => 'duplasena_resultados'
+#			,'time' => 'timemania_resultados'
+			);
 
 function retornoJson($concurso, $tables, $loto){
 
