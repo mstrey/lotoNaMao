@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # define a sort of loteries
-declare -a loterias="megase lotfac quina lotoma dplsen timema"
+# declare -a loterias="megase lotfac quina lotoma dplsen timema"
+declare -a loterias="megase quina"
 
 #go to directory
 cd ~/www/loto/cef
