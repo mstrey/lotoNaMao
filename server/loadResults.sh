@@ -16,4 +16,4 @@ done
 #clean
 rm *.GIF
 
-find . -name "cef/*.htm" | xargs sed -i s/nbsp</nbsp;</g
+find . -name "*.htm" | xargs sed -i s/nbsp</nbsp;</g
