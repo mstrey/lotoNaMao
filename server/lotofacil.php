@@ -125,6 +125,8 @@ function saveLotofacil($rows, $table){
 
 	openDB();
     mysql_query($query);
+    print_r($query);
+    echo "<br /><br />";
 	closeDB();
 	
   }
