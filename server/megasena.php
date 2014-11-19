@@ -10,8 +10,6 @@ if (!$main) {
 
 function saveMegasena($rows, $table){  
 
-  print_r($rows->item(1));
-  die();
   $max = getMaxConcurso($table);
   
   /*** loop over the table rows ***/ 
@@ -19,6 +17,9 @@ function saveMegasena($rows, $table){
 
     /*** get each column by tag name ***/ 
     $cols = $row->getElementsByTagName('td'); 
+
+	print_r($cols);
+ 	die();
 
     /*** echo the values ***/ 
     $concurso_parse = $cols->item(0)->nodeValue; 
