@@ -2,8 +2,8 @@
 
 # define a sort of loteries
 # declare -a loterias="megase lotfac quina lotoma dplsen timema"
-declare -a loterias="megase quina"
-declare -a files="D_MEGA D_QUINA"
+declare -a loterias="megase quina lotfac"
+declare -a files="D_MEGA D_QUINA D_LOTFAC"
 
 #go to directory
 cd ~/www/loto/cef
