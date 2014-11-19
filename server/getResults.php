@@ -19,7 +19,7 @@ include_once 'timemania.php';
 #variables
 $htmls = array(
 			'mega' => 'D_MEGA.html'
-#			,'lotofacil' => 'D_LOTFAC.html' 
+			,'lotofacil' => 'D_LOTFAC.html' 
 			,'quina' => 'D_QUINA.html'
 #			,'lotomania' => 'D_LOTMAN.html'
 #			,'dupla' => 'D_DPLSEN.html'
@@ -28,7 +28,7 @@ $htmls = array(
 
 $tables_names = array(
 			'mega' => 'megasena_resultados'
-#			,'lotofacil' => 'lotofacil_resultados'
+			,'lotofacil' => 'lotofacil_resultados'
 			,'quina' => 'quina_resultados'
 #			,'lotomania' => 'lotomania_resultados'
 #			,'dupla' => 'duplasena_resultados'
