@@ -18,7 +18,7 @@ function saveQuina($rows, $table){
     /*** get each column by tag name ***/ 
     $cols = $row->getElementsByTagName('td'); 
 
-    $index = 0
+    $index = 0;
     /*** echo the values ***/ 
     $concurso_parse = $cols->item($index++)->nodeValue; 
 
