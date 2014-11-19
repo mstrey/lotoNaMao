@@ -21,5 +21,5 @@ rm *.GIF
 # include final command o blank Spaces
 for file in ${files[@]}
 do 
-    sed -e "s/nbsp</nbsp;</g" $file.HTM > $file.Html
+    sed -e "s/nbsp</nbsp;</g" $file.HTM > $file.html
 done
