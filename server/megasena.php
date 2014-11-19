@@ -9,7 +9,9 @@ if (!$main) {
 }
 
 function saveMegasena($rows, $table){  
-  
+
+  print_r($rows);
+  die();
   $max = getMaxConcurso($table);
   
   /*** loop over the table rows ***/ 
