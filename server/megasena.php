@@ -85,6 +85,7 @@ function saveMegasena($rows, $table){
 
     openDB();
     mysql_query($query);
+    die($query);
     closeDB();
 
   }
