@@ -21,7 +21,7 @@ function saveMegasena($rows, $table){
     $index = 0;
 
     /*** echo the values ***/ 
-    $concurso_parse = $cols->item($index++)->nodeValue; echo "<p>".$cols->item($index)->nodeValue."|";
+    $concurso_parse = $cols->item($index++)->nodeValue; echo $concurso_parse."|";
 
     if (($max - 9)> $concurso_parse) continue;
 
