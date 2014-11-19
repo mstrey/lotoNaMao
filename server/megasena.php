@@ -10,7 +10,7 @@ if (!$main) {
 
 function saveMegasena($rows, $table){  
 
-  print_r($rows[1]);
+  print_r($rows->item(1));
   die();
   $max = getMaxConcurso($table);
   
