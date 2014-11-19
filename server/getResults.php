@@ -49,6 +49,8 @@ function saveLoto($index, $files, $tables){
 	$file = $files[$index];
 	$rows = parseTable($file);
 
+        print_r($rows);
+        
 	switch ($index) {
 	
 	case 'mega': 
