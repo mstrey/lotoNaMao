@@ -25,23 +25,23 @@ function saveMegasena($rows, $table){
 
 #    if (($max - 9)> $concurso_parse) continue;
 
-    $data = explode("/",$cols->item($index++)->nodeValue,3); echo $cols->item($index++)->nodeValue."|";
-    $bola1 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $bola2 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $bola3 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $bola4 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $bola5 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $bola6 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
-    $ganhadores_6 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
-    $ganhadores_5 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
-    $ganhadores_4 = $cols->item($index++)->nodeValue; echo $cols->item($index++)->nodeValue."|";
-    $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
-    $acumulado_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
-    $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
-    $acumulado_virada = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index++)->nodeValue."|";
+    $data = explode("/",$cols->item($index++)->nodeValue,3); echo $cols->item($index)->nodeValue."|";
+    $bola1 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $bola2 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $bola3 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $bola4 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $bola5 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $bola6 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $ganhadores_6 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $ganhadores_5 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $ganhadores_4 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
+    $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $acumulado_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $acumulado_virada = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
 
     $data_sorteio = $data[2]."-".$data[1]."-".$data[0];
 
