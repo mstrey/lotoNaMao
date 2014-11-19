@@ -19,7 +19,7 @@ function saveMegasena($rows, $table){
     $cols = $row->getElementsByTagName('td'); 
 
     print_r($row);
-    echo("\n\n");
+    echo "\n\n";
 
     /*** echo the values ***/ 
     $concurso_parse = $cols->item(0)->nodeValue; 
@@ -88,7 +88,7 @@ function saveMegasena($rows, $table){
 
     openDB();
     mysql_query($query);
-    die($query);
+#    die($query);
     closeDB();
 
   }
