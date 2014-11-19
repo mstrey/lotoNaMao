@@ -19,7 +19,7 @@ function saveMegasena($rows, $table){
     $cols = $row->getElementsByTagName('td'); 
 
     print_r($row);
-    echo "\n\n";
+    echo "<p>";
 
     /*** echo the values ***/ 
     $concurso_parse = $cols->item(0)->nodeValue; 
