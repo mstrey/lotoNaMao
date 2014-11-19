@@ -49,7 +49,7 @@ function saveLoto($index, $files, $tables){
 	$file = $files[$index];
 	$rows = parseTable($file);
 
-        print_r($rows[1]);
+        print_r($rows->item(0));
         
 	switch ($index) {
 	
