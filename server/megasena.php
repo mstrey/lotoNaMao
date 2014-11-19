@@ -21,29 +21,29 @@ function saveMegasena($rows, $table){
     $index = 0;
 
     /*** echo the values ***/ 
-    $concurso_parse = $cols->item($index++)->nodeValue; 
+    $concurso_parse = $cols->item($index++)->nodeValue; echo "<p>".$cols->item($index)->nodeValue."|";
 
-#    if (($max - 9)> $concurso_parse) continue;
+    if (($max - 9)> $concurso_parse) continue;
 
-    $data = explode("/",$cols->item($index++)->nodeValue,3); echo "<p>".$cols->item($index)->nodeValue."|";
-    $bola1 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $bola2 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $bola3 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $bola4 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $bola5 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $bola6 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
-    $ganhadores_6 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
-    $ganhadores_5 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
-    $ganhadores_4 = $cols->item($index++)->nodeValue; echo $cols->item($index)->nodeValue."|";
-    $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
-    $acumulado_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
-    $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
-    $acumulado_virada = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $cols->item($index)->nodeValue."|";
+    $data = explode("/",$cols->item($index++)->nodeValue,3); print_r($data)."|";
+    $bola1 = $cols->item($index++)->nodeValue; echo $bola1."|";
+    $bola2 = $cols->item($index++)->nodeValue; echo $bola2."|";
+    $bola3 = $cols->item($index++)->nodeValue; echo $bola3."|";
+    $bola4 = $cols->item($index++)->nodeValue; echo $bola4."|";
+    $bola5 = $cols->item($index++)->nodeValue; echo $bola5."|";
+    $bola6 = $cols->item($index++)->nodeValue; echo $bola6."|";
+    $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $arrecadacao_total."|";
+    $ganhadores_6 = $cols->item($index++)->nodeValue; echo $ganhadores_6."|";
+    $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_6."|";
+    $ganhadores_5 = $cols->item($index++)->nodeValue; echo $ganhadores_5."|";
+    $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_5."|";
+    $ganhadores_4 = $cols->item($index++)->nodeValue; echo $ganhadores_4."|";
+    $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_4."|";
+    $acumulado_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_5."|";
+    $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $estimativa_premio."|";
+    $acumulado_virada = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_virada."|";
 
-    $data_sorteio = $data[2]."-".$data[1]."-".$data[0];
+    $data_sorteio = $data[2]."-".$data[1]."-".$data[0]; echo $data_sorteio."|";
 
     $query =  " INSERT INTO ".$table." VALUES ( ";
     $query .= " $concurso_parse, ";
@@ -87,7 +87,7 @@ function saveMegasena($rows, $table){
 
     openDB();
     mysql_query($query);
-#    die($query);
+    echo "<br />".$query."<br />";
     closeDB();
 
   }
