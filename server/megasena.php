@@ -34,14 +34,17 @@ function saveMegasena($rows, $table){
     $bola6 = $cols->item($index++)->nodeValue; echo $bola6."|";
     $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $arrecadacao_total."|";
     $ganhadores_6 = $cols->item($index++)->nodeValue; echo $ganhadores_6."|";
+    $cidade_6 = $cols->item($index++)->nodeValue; echo $cidade_6."|";
+    $UF_6 = $cols->item($index++)->nodeValue; echo $UF_6."|";
     $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_6."|";
     $ganhadores_5 = $cols->item($index++)->nodeValue; echo $ganhadores_5."|";
     $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_5."|";
     $ganhadores_4 = $cols->item($index++)->nodeValue; echo $ganhadores_4."|";
     $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_4."|";
-    $acumulado_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_5."|";
+    $acumulado = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado."|";
+    $acumulado_vlr = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_vlr."|";
     $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $estimativa_premio."|";
-    $acumulado_virada = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_virada."|";
+    $acumulado_natal = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_natal."|";
 
     $data_sorteio = $data[2]."-".$data[1]."-".$data[0]; echo $data_sorteio."|";
 
@@ -61,9 +64,9 @@ function saveMegasena($rows, $table){
     $query .= " '$rateio_5', ";
     $query .= " $ganhadores_4, ";
     $query .= " '$rateio_4', ";
-    $query .= " '$acumulado_5', ";
+    $query .= " '$acumulado_vlr', ";
     $query .= " '$estimativa_premio', ";
-    $query .= " '$acumulado_virada', ";
+    $query .= " '$acumulado_natal', ";
     $query .= " null, null, sysdate() )	ON DUPLICATE KEY UPDATE ";
 
     $query .= " data_sorteio = '$data_sorteio', ";
@@ -80,9 +83,9 @@ function saveMegasena($rows, $table){
     $query .= " rateio_5 = '$rateio_5', ";
     $query .= " ganhadores_4 = $ganhadores_4, ";
     $query .= " rateio_4 = '$rateio_4', ";
-    $query .= " acumulado_5 = '$acumulado_5', ";
+    $query .= " acumulado_5 = '$acumulado_vlr', ";
     $query .= " estimativa_premio = '$estimativa_premio', ";
-    $query .= " acumulado_virada = '$acumulado_virada', ";
+    $query .= " acumulado_virada = '$acumulado_natal', ";
     $query .= " local = null, local_gps = null, data_inclusao = sysdate() ;";
 
     openDB();
