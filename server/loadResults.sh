@@ -3,6 +3,7 @@
 # define a sort of loteries
 # declare -a loterias="megase lotfac quina lotoma dplsen timema"
 declare -a loterias="megase quina"
+declare -a files="D_MEGA D_QUINA"
 
 #go to directory
 cd ~/www/loto/cef
@@ -17,5 +18,8 @@ done
 #clean
 rm *.GIF
 
-# find usage is locked on KingHost
-# find . -name "*.htm" | xargs sed -i s/nbsp</nbsp;</g
+# include final command o blank Spaces
+for file in ${files[@]}
+do 
+    sed -e "s/nbsp</nbsp;</g" $file.HTM > $file.Html
+done
