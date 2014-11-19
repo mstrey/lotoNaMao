@@ -21,32 +21,32 @@ function saveMegasena($rows, $table){
     $index = 0;
 
     /*** echo the values ***/ 
-    $concurso_parse = $cols->item($index++)->nodeValue; echo $concurso_parse."|";
+    $concurso_parse = $cols->item($index++)->nodeValue;
 
     if (($max - 9)> $concurso_parse) continue;
 
-    $data = explode("/",$cols->item($index++)->nodeValue,3); print_r($data)."|";
-    $bola1 = $cols->item($index++)->nodeValue; echo $bola1."|";
-    $bola2 = $cols->item($index++)->nodeValue; echo $bola2."|";
-    $bola3 = $cols->item($index++)->nodeValue; echo $bola3."|";
-    $bola4 = $cols->item($index++)->nodeValue; echo $bola4."|";
-    $bola5 = $cols->item($index++)->nodeValue; echo $bola5."|";
-    $bola6 = $cols->item($index++)->nodeValue; echo $bola6."|";
-    $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $arrecadacao_total."|";
-    $ganhadores_6 = $cols->item($index++)->nodeValue; echo $ganhadores_6."|";
-    $cidade_6 = $cols->item($index++)->nodeValue; echo $cidade_6."|";
-    $UF_6 = $cols->item($index++)->nodeValue; echo $UF_6."|";
-    $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_6."|";
-    $ganhadores_5 = $cols->item($index++)->nodeValue; echo $ganhadores_5."|";
-    $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_5."|";
-    $ganhadores_4 = $cols->item($index++)->nodeValue; echo $ganhadores_4."|";
-    $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $rateio_4."|";
-    $acumulado = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado."|";
-    $acumulado_vlr = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_vlr."|";
-    $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $estimativa_premio."|";
-    $acumulado_natal = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue)); echo $acumulado_natal."|";
+    $data = explode("/",$cols->item($index++)->nodeValue,3);
+    $bola1 = $cols->item($index++)->nodeValue;
+    $bola2 = $cols->item($index++)->nodeValue;
+    $bola3 = $cols->item($index++)->nodeValue;
+    $bola4 = $cols->item($index++)->nodeValue;
+    $bola5 = $cols->item($index++)->nodeValue;
+    $bola6 = $cols->item($index++)->nodeValue;
+    $arrecadacao_total = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $ganhadores_6 = $cols->item($index++)->nodeValue;
+    $cidade_6 = $cols->item($index++)->nodeValue;
+    $UF_6 = $cols->item($index++)->nodeValue;
+    $rateio_6 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $ganhadores_5 = $cols->item($index++)->nodeValue;
+    $rateio_5 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $ganhadores_4 = $cols->item($index++)->nodeValue;
+    $rateio_4 = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $acumulado = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $acumulado_vlr = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $estimativa_premio = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
+    $acumulado_natal = str_replace(",",".",str_replace(".","",$cols->item($index++)->nodeValue));
 
-    $data_sorteio = $data[2]."-".$data[1]."-".$data[0]; echo $data_sorteio."|";
+    $data_sorteio = $data[2]."-".$data[1]."-".$data[0];
 
     $query =  " INSERT INTO ".$table." VALUES ( ";
     $query .= " '$concurso_parse', ";
@@ -90,7 +90,6 @@ function saveMegasena($rows, $table){
 
     openDB();
     mysql_query($query);
-    echo "<br />".$query."<br />";
     closeDB();
 
   }
