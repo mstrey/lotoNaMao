@@ -18,7 +18,7 @@ function saveMegasena($rows, $table){
     /*** get each column by tag name ***/ 
     $cols = $row->getElementsByTagName('td'); 
 
-	print_r($cols);
+	print_r($row);
  	die();
 
     /*** echo the values ***/ 
