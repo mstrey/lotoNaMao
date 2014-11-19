@@ -18,12 +18,12 @@ include_once 'timemania.php';
 
 #variables
 $htmls = array(
-			'mega' => 'D_MEGA.HTM'
-#			,'lotofacil' => 'D_LOTFAC.HTM' 
-			,'quina' => 'D_QUINA.HTM'
-#			,'lotomania' => 'D_LOTMAN.HTM'
-#			,'dupla' => 'D_DPLSEN.HTM'
-#			,'time' => 'D_TIMEMA.HTM'
+			'mega' => 'D_MEGA.html'
+#			,'lotofacil' => 'D_LOTFAC.html' 
+			,'quina' => 'D_QUINA.html'
+#			,'lotomania' => 'D_LOTMAN.html'
+#			,'dupla' => 'D_DPLSEN.html'
+#			,'time' => 'D_TIMEMA.html'
 			);
 
 $tables_names = array(
