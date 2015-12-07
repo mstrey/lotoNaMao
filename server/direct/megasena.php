@@ -29,11 +29,21 @@ $server -> handle();
 class WsMegaSena {
 	public function getResultado($concurso) {
 		$urlMega = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?submeteu=sim";
-		$urlMega .= "\&opcao=concurso\&txtConcurso=1765";
+		$postFields = array(
+						'submeteu' => 'sim'
+						,'opcao' => 'concurso'
+						,'txtConcurso' => '1765'
+					);
+		// $urlMega .= "\&opcao=concurso\&txtConcurso=1765";
 		echo $urlMega;
 		
-		$ch = curl_init($urlMega);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $urlMega);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilome/44.0.2403.125 Safari/537.36");
 		//curl_setopt($ch, CURLOPT_ENCODING, "gzip, deflate, sdch");
 		$header = array(
@@ -46,6 +56,9 @@ class WsMegaSena {
 								);
 // --compressed
     curl_setopt($ch, CURLOPT_HEADER, $header);
+
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 
     $output = curl_exec($ch);
 		curl_close($ch);
