@@ -53,6 +53,7 @@ class WsMegaSena {
 				, 'Upgrade-Insecure-Requests:1'
 				, 'Host:www1.caixa.gov.br'
 				, 'Cookie:security=true; ASPSESSIONIDQQSRSQTC=LDJKBNOAEMFFEJMKINMFMAKC'
+				, 'Accept-Encoding:gzip, deflate, sdch'
 				)
 			);
 				
