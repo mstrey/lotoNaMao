@@ -16,7 +16,6 @@ $client = new SoapClient(null, $options);
  
 /* 
  * No Objeto $client podemos usar os métodos da classe 
- * SoapServerExemplo disponível em nosso webservice. 
+ * WsMegaSena disponível em nosso webservice. 
  */ 
-echo $client->mensagem('Maicon') . "<br />";
-echo $client->soma(3, 5) . "<br />" ;
+echo $client->getResultado('1565') . "<br />";
