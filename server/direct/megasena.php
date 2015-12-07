@@ -36,7 +36,7 @@ class WsMegaSena {
 		return $a + $b;
 	}
 	
-	private function getURL($url) {
+	public function getURL($url) {
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$output = curl_exec($ch);
