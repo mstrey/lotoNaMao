@@ -43,8 +43,8 @@ class WsMegaSena {
 		curl_setopt ($ch, CURLOPT_COOKIEJAR, "cookie.txt"); 
 		
 		// parametro pra imitar um browser firefox
-		$userAgent = "Mozilome/44.0.2403.125 Safari/537.36";
-		$userAgent = $_SERVER['HTTP_USER_AGENT'];
+		$userAgent = "Mozilla/1.22 (compatible; MSIE 10.0; Windows 3.1)";
+		// $userAgent = $_SERVER['HTTP_USER_AGENT'];
 		curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
 
 		// Executa a primeira requisição 	
