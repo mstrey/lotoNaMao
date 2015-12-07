@@ -40,11 +40,21 @@ class WsMegaSena {
 		curl_setopt($ch, CURLOPT_URL,$urlMega);
 		
 		// Imita o comportamento padrão dos navegadores: manipular cookies 
-		curl_setopt ($ch, CURLOPT_COOKIEJAR, 'cookie.txt'); 
+		curl_setopt ($ch, CURLOPT_COOKIEJAR, "cookie.txt"); 
 		
-		// define que browser que está acessando é o firefox para enganar o site
-		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilome/44.0.2403.125 Safari/537.36");
+		// parametro pra imitar um browser firefox
+		$userAgent = "Mozilome/44.0.2403.125 Safari/537.36";
+		$userAgent = $_SERVER['HTTP_USER_AGENT'];
+		curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
 
+		// Executa a primeira requisição 	
+		$store = curl_exec ($ch); 	
+		
+		// Define a URL vedadeira para ser chamada
+		curl_setopt($ch, CURLOPT_URL,$urlMega);
+		curl_setopt ($ch, CURLOPT_COOKIE, "security=true; path=/");
+		curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
+		
 		// define o header de idioma do browser
 	    curl_setopt($ch, CURLOPT_HEADER, array(
 				'Accept-Language:pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
@@ -57,12 +67,6 @@ class WsMegaSena {
 				)
 			);
 				
-		// Executa a primeira requisição 	
-		$store = curl_exec ($ch); 	
-		
-		// Define a URL vedadeira para ser chamada
-		curl_setopt($ch, CURLOPT_URL,$urlMega);
-		
 		// define parametros post do concurso que será recuperado
 		// curl_setopt($ch, CURLOPT_POST, true);
 		// curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
