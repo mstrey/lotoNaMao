@@ -33,7 +33,7 @@ class WsMegaSena {
 		$postFields = array(
 						'submeteu' => 'sim'
 						,'opcao' => 'concurso'
-						,'txtConcurso' => '1765'
+						,'txtConcurso' => $concurso
 					);
 
 		// Define a URL original
@@ -57,8 +57,8 @@ class WsMegaSena {
 		curl_setopt($ch, CURLOPT_URL,$urlMega);
 		
 		// define parametros post do concurso que será recuperado
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+		// curl_setopt($ch, CURLOPT_POST, true);
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 		
 		// Define o tipo de transferência (Padrão: 1) e o tempo (10)
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
