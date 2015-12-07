@@ -34,6 +34,19 @@ class WsMegaSena {
 		
 		$ch = curl_init($urlMega);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilome/44.0.2403.125 Safari/537.36");
+		curl_setopt($ch, CURLOPT_ENCODING, "gzip, deflate, sdch");
+		$header = array(
+				'Accept-Language:pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4'
+				, 'Cache-Control:max-age=0'
+				, 'Cookie:security=true; ASPSESSIONIDQQSRSQTC=LDJKBNOAEMFFEJMKINMFMAKC'
+				, 'Host:www1.caixa.gov.br'
+				, 'Proxy-Connection:keep-alive'
+				, 'Upgrade-Insecure-Requests:1'
+								);
+// --compressed
+		curl_setopt($ch, CURLOPT_HEADER, $header);
+
 		$output = curl_exec($ch);
 		curl_close($ch);
 		return $output;
