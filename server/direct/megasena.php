@@ -30,7 +30,14 @@ class WsMegaSena {
 	public function getResultado($concurso) {
 		$urlMega = "http://www1.caixa.gov.br/loterias/loterias/megasena/megasena_pesquisa_new.asp?submeteu=sim";
 		$urlMega .= "&opcao=concurso&txtConcurso=1765";
-		return Utils.getURL($urlMega); 
+		echo $urlMega;
+		
+		$ch = curl_init($urlMega);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		return $output;
+		
 	}
 
 }
