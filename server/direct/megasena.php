@@ -51,6 +51,7 @@ class WsMegaSena {
 				, 'Cache-Control:max-age=0'
 				, 'Proxy-Connection:keep-alive'
 				, 'Upgrade-Insecure-Requests:1'
+				, 'Host:www1.caixa.gov.br'
 				
 				)
 			);
