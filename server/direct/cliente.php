@@ -7,8 +7,8 @@
  * que o webservice irá trabalhar no modo não WSDL. 
  */ 
 $options = array( 
- 		'location' => 'http://127.0.0.1/soap/server/server.php', 
- 		'uri' => 'http://127.0.0.1/soap/server/' 
+ 		'location' => 'http://maicon.strey.nom.br/loto/direct/megasena.php', 
+ 		'uri' => 'http://maicon.strey.nom.br/loto/direct/' 
 ); 
 
 $client = new SoapClient(null, $options); 
