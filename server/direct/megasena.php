@@ -33,8 +33,4 @@ class WsMegaSena {
 		return Utils.getURL($urlMega); 
 	}
 
-	public function soma($a, $b) {
-		return $a + $b;
-	}
-	
 }
